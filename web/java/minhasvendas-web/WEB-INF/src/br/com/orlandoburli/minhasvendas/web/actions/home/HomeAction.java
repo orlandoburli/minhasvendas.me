@@ -9,6 +9,7 @@ import br.com.orlandoburli.framework.core.web.BaseAction;
 import br.com.orlandoburli.framework.core.web.filters.OutjectSession;
 import br.com.orlandoburli.minhasvendas.model.be.acesso.MenuBe;
 import br.com.orlandoburli.minhasvendas.model.vo.acesso.MenuVo;
+import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 
 public class HomeAction extends BaseAction {
 
@@ -16,6 +17,8 @@ public class HomeAction extends BaseAction {
 
 	@OutjectSession("menus")
 	private List<MenuVo> menus;
+
+	private EmpresaVo usuario;
 
 	public void execute() {
 
@@ -29,6 +32,8 @@ public class HomeAction extends BaseAction {
 			manager.commit();
 		}
 
+		getRequest().setAttribute("empresa", getUsuario());
+
 		forward("web/pages/home/home.jsp");
 	}
 
@@ -38,5 +43,13 @@ public class HomeAction extends BaseAction {
 
 	public void setMenus(List<MenuVo> menus) {
 		this.menus = menus;
+	}
+
+	public EmpresaVo getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(EmpresaVo usuario) {
+		this.usuario = usuario;
 	}
 }

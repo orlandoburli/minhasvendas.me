@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.ListException;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.framework.core.web.BaseCadastroAction;
+import br.com.orlandoburli.minhasvendas.model.be.venda.CategoriaVendedorBe;
 import br.com.orlandoburli.minhasvendas.model.be.venda.VendedorBe;
 import br.com.orlandoburli.minhasvendas.model.dao.venda.VendedorDao;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
@@ -25,6 +26,8 @@ public class VendedorCadastroAction extends BaseCadastroAction<VendedorVo, Vende
 	@Override
 	public void doBeforeVisualizar(HttpServletRequest request, HttpServletResponse response, VendedorVo vo, VendedorBe be, DAOManager manager) throws ListException {
 		super.doBeforeVisualizar(request, response, vo, be, manager);
+
+		request.setAttribute("categorias", new CategoriaVendedorBe(manager).getListAtivos(usuario));
 	}
 
 	@Override

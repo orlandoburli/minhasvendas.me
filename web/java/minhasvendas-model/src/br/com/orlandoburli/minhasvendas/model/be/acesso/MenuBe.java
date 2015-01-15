@@ -39,7 +39,8 @@ public class MenuBe extends BaseBe<MenuVo, MenuDao> {
 
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.CATEGORIA_CLIENTE, MinhasVendasConstants.Objeto.CATEGORIA_CLIENTE_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_CLIENTE_CADASTRO, "Categorias de Clientes", "", 1, MinhasVendasConstants.Menu.VENDAS));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.CLIENTE, MinhasVendasConstants.Objeto.CLIENTE_CONSULTA, MinhasVendasConstants.Objeto.CLIENTE_CADASTRO, "Clientes", "", 2, MinhasVendasConstants.Menu.VENDAS));
-		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.VENDEDOR, MinhasVendasConstants.Objeto.VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.VENDEDOR_CADASTRO, "Vendedores", "", 3, MinhasVendasConstants.Menu.VENDAS));
+		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.CATEGORIA_VENDEDOR, MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CADASTRO, "Categorias de Vendedores", "", 3, MinhasVendasConstants.Menu.VENDAS));
+		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.VENDEDOR, MinhasVendasConstants.Objeto.VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.VENDEDOR_CADASTRO, "Vendedores", "", 4, MinhasVendasConstants.Menu.VENDAS));
 	}
 
 	public void saveIfNotExists(MenuVo menu) throws BeException {

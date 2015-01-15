@@ -20,6 +20,9 @@ public final class MinhasVendasConstants {
 		public static final int CLIENTE_CONSULTA = 2003;
 		public static final int CLIENTE_CADASTRO = 2004;
 
+		public static final int CATEGORIA_VENDEDOR_CONSULTA = 2007;
+		public static final int CATEGORIA_VENDEDOR_CADASTRO = 2008;
+
 		public static final int VENDEDOR_CONSULTA = 2005;
 		public static final int VENDEDOR_CADASTRO = 2006;
 
@@ -36,6 +39,7 @@ public final class MinhasVendasConstants {
 		public static final int VENDAS = 3000;
 		public static final int CATEGORIA_CLIENTE = 3001;
 		public static final int CLIENTE = 3002;
+		public static final int CATEGORIA_VENDEDOR = 3004;
 		public static final int VENDEDOR = 3003;
 	}
 }

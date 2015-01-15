@@ -8,12 +8,6 @@
 	<div class="col-md-12">
 		<div class="portlet box blue-hoki">
 		
-			<div class="portlet-title">
-				<div class="caption">
-					<i class="fa "></i>${subtitulo}
-				</div>
-			</div>
-			
 			<div class="portlet-body form FormularioCadastro FormularioGeral" data-page-consulta="categoriaconsulta.action" data-page-operacao="${operacao}" data-page-cadastro="categoriacadastro.action">
 				
 			</div>

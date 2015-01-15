@@ -2,18 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <style type="text/css">
-table thead td:nth-child(3) {
-	width: 100px;
-}
 
 </style>
-
 
 <table data-page-count="${pageCount}" class="table">
 	<thead>
 		<tr>
 			<td>Nome</td>
-			<td>Categoria</td>
+			<td>Percentual de Comissão</td>
 			<td>Ativo</td>
 		</tr>
 	</thead>
@@ -26,9 +22,9 @@ table thead td:nth-child(3) {
 	
 	<tbody>
 		<c:forEach items="${listSource}" var="vo">
-			<tr data-id="idVendedor=${ vo.idVendedor}">
+			<tr data-id="idCategoriaVendedor=${ vo.idCategoriaVendedor}">
 			<td>${ vo.nome }</td>
-			<td>${ vo.categoria.nome }</td>
+			<td> <fmt:formatNumber type="number" value="${ vo.percentualComissao }" maxFractionDigits="2" minFractionDigits="2"/> %</td>
 			<td>${ vo.ativoDesc }</td>
 			</tr>
 		</c:forEach>

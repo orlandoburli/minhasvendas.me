@@ -11,6 +11,7 @@ import br.com.orlandoburli.minhasvendas.model.vo.acesso.ObjetoVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.CategoriaProdutoVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.ProdutoVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.CategoriaClienteVo;
+import br.com.orlandoburli.minhasvendas.model.vo.venda.CategoriaVendedorVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.ClienteVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.VendedorVo;
 
@@ -37,6 +38,8 @@ public class ObjetoBe extends BaseBe<ObjetoVo, ObjetoDao> {
 
 		criaPadraoVo(CategoriaClienteVo.class, "Categoria de Clientes", MinhasVendasConstants.Objeto.CATEGORIA_CLIENTE_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_CLIENTE_CADASTRO);
 		criaPadraoVo(ClienteVo.class, "Clientes", MinhasVendasConstants.Objeto.CLIENTE_CONSULTA, MinhasVendasConstants.Objeto.CLIENTE_CADASTRO);
+
+		criaPadraoVo(CategoriaVendedorVo.class, "Categoria de Vendedores", MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CADASTRO);
 		criaPadraoVo(VendedorVo.class, "Vendedores", MinhasVendasConstants.Objeto.VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.VENDEDOR_CADASTRO);
 	}
 

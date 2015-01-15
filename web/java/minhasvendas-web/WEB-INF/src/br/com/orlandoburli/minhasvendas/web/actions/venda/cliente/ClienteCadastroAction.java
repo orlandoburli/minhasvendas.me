@@ -28,7 +28,7 @@ public class ClienteCadastroAction extends BaseCadastroAction<ClienteVo, Cliente
 	public void doBeforeVisualizar(HttpServletRequest request, HttpServletResponse response, ClienteVo vo, ClienteBe be, DAOManager manager) throws ListException {
 		super.doBeforeVisualizar(request, response, vo, be, manager);
 
-		request.setAttribute("categorias", new CategoriaClienteBe(manager).getListAtivos());
+		request.setAttribute("categorias", new CategoriaClienteBe(manager).getListAtivos(usuario));
 	}
 
 	@Override

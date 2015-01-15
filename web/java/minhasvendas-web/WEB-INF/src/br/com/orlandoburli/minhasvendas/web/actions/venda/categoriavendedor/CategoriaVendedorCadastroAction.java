@@ -1,4 +1,4 @@
-package br.com.orlandoburli.minhasvendas.web.actions.estoque.produto;
+package br.com.orlandoburli.minhasvendas.web.actions.venda.categoriavendedor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,13 +7,12 @@ import br.com.orlandoburli.framework.core.be.exceptions.persistence.InsertBeExce
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.ListException;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.framework.core.web.BaseCadastroAction;
-import br.com.orlandoburli.minhasvendas.model.be.estoque.CategoriaProdutoBe;
-import br.com.orlandoburli.minhasvendas.model.be.estoque.ProdutoBe;
-import br.com.orlandoburli.minhasvendas.model.dao.estoque.ProdutoDao;
+import br.com.orlandoburli.minhasvendas.model.be.venda.CategoriaVendedorBe;
+import br.com.orlandoburli.minhasvendas.model.dao.venda.CategoriaVendedorDao;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
-import br.com.orlandoburli.minhasvendas.model.vo.estoque.ProdutoVo;
+import br.com.orlandoburli.minhasvendas.model.vo.venda.CategoriaVendedorVo;
 
-public class ProdutoCadastroAction extends BaseCadastroAction<ProdutoVo, ProdutoDao, ProdutoBe> {
+public class CategoriaVendedorCadastroAction extends BaseCadastroAction<CategoriaVendedorVo, CategoriaVendedorDao, CategoriaVendedorBe> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,18 +20,16 @@ public class ProdutoCadastroAction extends BaseCadastroAction<ProdutoVo, Produto
 
 	@Override
 	public String getJspCadastro() {
-		return "web/pages/estoque/produto/produtocadastro.jsp";
+		return "web/pages/venda/categoriavendedor/categoriavendedorcadastro.jsp";
 	}
 
 	@Override
-	public void doBeforeVisualizar(HttpServletRequest request, HttpServletResponse response, ProdutoVo vo, ProdutoBe be, DAOManager manager) throws ListException {
+	public void doBeforeVisualizar(HttpServletRequest request, HttpServletResponse response, CategoriaVendedorVo vo, CategoriaVendedorBe be, DAOManager manager) throws ListException {
 		super.doBeforeVisualizar(request, response, vo, be, manager);
-
-		request.setAttribute("categorias", new CategoriaProdutoBe(manager).getListAtivos(usuario));
 	}
 
 	@Override
-	public void doBeforeInserir(ProdutoVo vo, DAOManager manager) throws InsertBeException {
+	public void doBeforeInserir(CategoriaVendedorVo vo, DAOManager manager) throws InsertBeException {
 		vo.setIdEmpresa(usuario.getIdEmpresa());
 
 		super.doBeforeInserir(vo, manager);

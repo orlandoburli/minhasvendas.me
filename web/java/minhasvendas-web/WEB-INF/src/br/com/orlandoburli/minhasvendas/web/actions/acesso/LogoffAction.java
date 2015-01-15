@@ -8,6 +8,7 @@ public class LogoffAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 
 	public void execute() {
+		getRequest().getSession().invalidate();
 		getRequest().getSession().removeAttribute(Constants.Session.SESSION_USUARIO);
 		redir("login.action");
 	}

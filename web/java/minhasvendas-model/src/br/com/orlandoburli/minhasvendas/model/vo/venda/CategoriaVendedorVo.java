@@ -1,9 +1,13 @@
 package br.com.orlandoburli.minhasvendas.model.vo.venda;
 
+import java.math.BigDecimal;
+
 import br.com.orlandoburli.framework.core.be.validation.annotations.transformation.FullTrim;
+import br.com.orlandoburli.framework.core.be.validation.annotations.transformation.Precision;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.Domain;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.MaxSize;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotEmpty;
+import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotNegative;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotNull;
 import br.com.orlandoburli.framework.core.dao.annotations.Column;
 import br.com.orlandoburli.framework.core.dao.annotations.DataType;
@@ -14,26 +18,26 @@ import br.com.orlandoburli.framework.core.vo.annotations.Description;
 import br.com.orlandoburli.minhasvendas.model.domains.SimNao;
 import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Cadastros.Empresa;
 import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.CategoriaVendedor;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.Vendedor;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.Vendedor.Colunas;
+import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.CategoriaVendedor.Colunas;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 
-@Table(Vendedor.TABELA_VENDEDOR)
-public class VendedorVo extends BaseVo {
+@Table(CategoriaVendedor.TABELA_CATEGORIA_VENDEDOR)
+public class CategoriaVendedorVo extends BaseVo {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = Colunas.ID_VENDEDOR, dataType = DataType.INT, isKey = true, isAutoIncrement = true)
-	private Integer idVendedor;
+	@Column(name = Colunas.ID_CATEGORIA_VENDEDOR, dataType = DataType.INT, isKey = true, isAutoIncrement = true)
+	private Integer idCategoriaVendedor;
 
 	@Column(name = Colunas.ID_EMPRESA, dataType = DataType.INT, isNotNull = true)
+	@NotNull
 	private Integer idEmpresa;
 
 	@Column(name = Colunas.NOME, dataType = DataType.VARCHAR, maxSize = 100, isNotNull = true)
 	@NotNull
 	@NotEmpty
-	@FullTrim
 	@MaxSize(100)
+	@FullTrim
 	@Description("Nome")
 	private String nome;
 
@@ -44,28 +48,33 @@ public class VendedorVo extends BaseVo {
 	@Description("Ativo")
 	private String ativo;
 
-	@Column(name = Colunas.ID_CATEGORIA_VENDEDOR, dataType = DataType.INT)
-	@NotNull
-	@NotEmpty
-	@Description("Categoria do Vendedor")
-	private Integer idCategoriaVendedor;
+	@Column(name = Colunas.PERCENTUAL_COMISSAO, dataType = DataType.NUMERIC, maxSize = 5, precision = 2)
+	@Precision(2)
+	@NotNegative
+	@Description("Percentual de Comissão")
+	private BigDecimal percentualComissao;
 
 	@Join(columnsLocal = { Colunas.ID_EMPRESA }, columnsRemote = { Empresa.Colunas.ID_EMPRESA })
 	private EmpresaVo empresa;
-
-	@Join(columnsLocal = { Colunas.ID_CATEGORIA_VENDEDOR }, columnsRemote = { CategoriaVendedor.Colunas.ID_CATEGORIA_VENDEDOR })
-	private CategoriaVendedorVo categoria;
 
 	public String getAtivoDesc() {
 		return new SimNao().getDescription(getAtivo());
 	}
 
-	public Integer getIdVendedor() {
-		return idVendedor;
+	public Integer getIdCategoriaVendedor() {
+		return idCategoriaVendedor;
 	}
 
-	public void setIdVendedor(Integer idVendedor) {
-		this.idVendedor = idVendedor;
+	public void setIdCategoriaVendedor(Integer idCategoriaVendedor) {
+		this.idCategoriaVendedor = idCategoriaVendedor;
+	}
+
+	public Integer getIdEmpresa() {
+		return idEmpresa;
+	}
+
+	public void setIdEmpresa(Integer idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}
 
 	public String getNome() {
@@ -84,12 +93,12 @@ public class VendedorVo extends BaseVo {
 		this.ativo = ativo;
 	}
 
-	public Integer getIdEmpresa() {
-		return idEmpresa;
+	public BigDecimal getPercentualComissao() {
+		return percentualComissao;
 	}
 
-	public void setIdEmpresa(Integer idEmpresa) {
-		this.idEmpresa = idEmpresa;
+	public void setPercentualComissao(BigDecimal percentualComissao) {
+		this.percentualComissao = percentualComissao;
 	}
 
 	public EmpresaVo getEmpresa() {
@@ -98,21 +107,5 @@ public class VendedorVo extends BaseVo {
 
 	public void setEmpresa(EmpresaVo empresa) {
 		this.empresa = empresa;
-	}
-
-	public Integer getIdCategoriaVendedor() {
-		return idCategoriaVendedor;
-	}
-
-	public void setIdCategoriaVendedor(Integer idCategoriaVendedor) {
-		this.idCategoriaVendedor = idCategoriaVendedor;
-	}
-
-	public CategoriaVendedorVo getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(CategoriaVendedorVo categoria) {
-		this.categoria = categoria;
 	}
 }

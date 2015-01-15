@@ -13,28 +13,23 @@
 				</div>
 			</div>
 			
-			<div class="portlet-body form FormularioCadastro FormularioGeral" data-page-consulta="vendedorconsulta.action" data-page-operacao="${operacao}" data-page-cadastro="vendedorcadastro.action">
+			<div class="portlet-body form FormularioCadastro FormularioGeral" data-page-consulta="categoriavendedorconsulta.action" data-page-operacao="${operacao}" data-page-cadastro="categoriavendedorcadastro.action">
 				<form class="form-horizontal" action="#" role="form">
 					<div class="form-body">
-						<input id="idVendedor" type="hidden" value="${ vo.idVendedor }" />
+						<input id="idCategoriaVendedor" type="hidden" value="${ vo.idCategoriaVendedor }" />
 						<input id="idEmpresa" type="hidden" value="${ vo.idEmpresa }" />
 						
 						<div class="form-group">
 							<label class="col-sm-2 control-label text-right">Nome</label>
 							<div class="col-sm-7">
-								<input id="nome" type="text"  autofocus="autofocus" class="form-control input-circle" value="${ vo.nome }" />
+								<input id="nome" type="text" autofocus="autofocus" class="form-control input-circle" value="${ vo.nome }" />
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label class="col-sm-2 control-label text-right">Categoria</label>
+							<label class="col-sm-2 control-label text-right">Percentual de Comissão</label>
 							<div class="col-sm-7">
-								<select id="idCategoriaVendedor" class="form-control input-circle">
-									<option>[SELECIONE A CATEGORIA DO VENDEDOR]</option>
-									<c:forEach items="${categorias}" var="categoria">
-										<option <c:if test="${ vo.idCategoriaVendedor == categoria.idCategoriaVendedor}">selected="selected"</c:if> value="${categoria.idCategoriaVendedor}">${categoria.nome}</option>	
-									</c:forEach>
-								</select>
+								<input id="percentualComissao" type="text" class="form-control input-circle" value="${ vo.percentualComissao }" data-field-type="number" data-field-precision="2" />
 							</div>
 						</div>
 						

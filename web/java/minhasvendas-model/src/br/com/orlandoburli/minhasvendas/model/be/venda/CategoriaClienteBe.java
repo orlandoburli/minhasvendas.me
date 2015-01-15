@@ -8,6 +8,7 @@ import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.minhasvendas.model.dao.venda.CategoriaClienteDao;
 import br.com.orlandoburli.minhasvendas.model.domains.SimNao;
 import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.CategoriaCliente;
+import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.CategoriaClienteVo;
 
 public class CategoriaClienteBe extends BaseBe<CategoriaClienteVo, CategoriaClienteDao> {
@@ -16,9 +17,10 @@ public class CategoriaClienteBe extends BaseBe<CategoriaClienteVo, CategoriaClie
 		super(manager);
 	}
 
-	public List<CategoriaClienteVo> getListAtivos() throws ListException {
+	public List<CategoriaClienteVo> getListAtivos(EmpresaVo empresa) throws ListException {
 		CategoriaClienteVo filter = new CategoriaClienteVo();
 		filter.setAtivo(SimNao.SIM);
+		filter.setIdEmpresa(empresa.getIdEmpresa());
 
 		return getList(filter, null, CategoriaCliente.TABELA_CATEGORIA_CLIENTE + "." + CategoriaCliente.Colunas.NOME);
 

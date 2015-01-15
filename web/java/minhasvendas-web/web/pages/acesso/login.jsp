@@ -48,3 +48,11 @@
     </div>
 </body>
 </html>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	if (location.href.indexOf("login.action") <= 0) {
+		location.href = "login.action";
+	}
+});
+</script>
