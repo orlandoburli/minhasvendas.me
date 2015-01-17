@@ -9,6 +9,8 @@ import br.com.orlandoburli.minhasvendas.model.domains.SimNao;
 import br.com.orlandoburli.minhasvendas.model.utils.MinhasVendasConstants;
 import br.com.orlandoburli.minhasvendas.model.vo.acesso.ObjetoVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.CategoriaProdutoVo;
+import br.com.orlandoburli.minhasvendas.model.vo.estoque.EntradaVo;
+import br.com.orlandoburli.minhasvendas.model.vo.estoque.LocalEstoqueVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.ProdutoVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.CategoriaClienteVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.CategoriaVendedorVo;
@@ -36,11 +38,14 @@ public class ObjetoBe extends BaseBe<ObjetoVo, ObjetoDao> {
 		criaPadraoVo(CategoriaProdutoVo.class, "Categoria de Produtos", MinhasVendasConstants.Objeto.CATEGORIA_PRODUTO_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_PRODUTO_CADASTRO);
 		criaPadraoVo(ProdutoVo.class, "Produtos", MinhasVendasConstants.Objeto.PRODUTO_CONSULTA, MinhasVendasConstants.Objeto.PRODUTO_CADASTRO);
 
+		criaPadraoVo(LocalEstoqueVo.class, "Locais de Estoque", MinhasVendasConstants.Objeto.LOCAL_ESTOQUE_CONSULTA, MinhasVendasConstants.Objeto.LOCAL_ESTOQUE_CADASTRO);
+
 		criaPadraoVo(CategoriaClienteVo.class, "Categoria de Clientes", MinhasVendasConstants.Objeto.CATEGORIA_CLIENTE_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_CLIENTE_CADASTRO);
 		criaPadraoVo(ClienteVo.class, "Clientes", MinhasVendasConstants.Objeto.CLIENTE_CONSULTA, MinhasVendasConstants.Objeto.CLIENTE_CADASTRO);
 
 		criaPadraoVo(CategoriaVendedorVo.class, "Categoria de Vendedores", MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CADASTRO);
 		criaPadraoVo(VendedorVo.class, "Vendedores", MinhasVendasConstants.Objeto.VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.VENDEDOR_CADASTRO);
+		criaPadraoVo(EntradaVo.class, "Entrada de Produtos", MinhasVendasConstants.Objeto.ENTRADA_CONSULTA, MinhasVendasConstants.Objeto.ENTRADA_CADASTRO);
 	}
 
 	public void criaPadraoVo(Class<?> vo, String descricao, Integer idConsulta, Integer idCadastro) throws BeException {

@@ -14,6 +14,9 @@ public final class MinhasVendasConstants {
 		public static final int PRODUTO_CONSULTA = 1005;
 		public static final int PRODUTO_CADASTRO = 1006;
 
+		public static final int LOCAL_ESTOQUE_CONSULTA = 1007;
+		public static final int LOCAL_ESTOQUE_CADASTRO = 1008;
+
 		public static final int CATEGORIA_CLIENTE_CONSULTA = 2001;
 		public static final int CATEGORIA_CLIENTE_CADASTRO = 2002;
 
@@ -26,6 +29,8 @@ public final class MinhasVendasConstants {
 		public static final int VENDEDOR_CONSULTA = 2005;
 		public static final int VENDEDOR_CADASTRO = 2006;
 
+		public static final int ENTRADA_CONSULTA = 2007;
+		public static final int ENTRADA_CADASTRO = 2008;
 	}
 
 	public final class Menu {
@@ -35,11 +40,18 @@ public final class MinhasVendasConstants {
 
 		public static final int CATEGORIA_PRODUTOS = 2001;
 		public static final int PRODUTOS = 2002;
+		public static final int LOCAL_ESTOQUE = 2003;
 
 		public static final int VENDAS = 3000;
 		public static final int CATEGORIA_CLIENTE = 3001;
 		public static final int CLIENTE = 3002;
 		public static final int CATEGORIA_VENDEDOR = 3004;
 		public static final int VENDEDOR = 3003;
+		public static final int ENTRADA = 3005;
+
+		public static final int SEPARADOR01 = 9901;
+		public static final int SEPARADOR02 = 9902;
+		public static final int SEPARADOR03 = 9903;
+		public static final int SEPARADOR04 = 9904;
 	}
 }

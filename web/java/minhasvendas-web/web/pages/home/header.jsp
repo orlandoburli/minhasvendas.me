@@ -19,7 +19,12 @@
 	        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${menu.nome } <span class="caret"></span></a>
 	        	<ul class="dropdown-menu" role="menu">
 	        		<c:forEach items="${menu.subMenus}" var="submenu">
+	        			<c:if test="${submenu.nome == 'SEPARADOR'}">
+	        			<li class="divider"></li>
+	        			</c:if>
+	        			<c:if test="${submenu.nome != 'SEPARADOR'}">
 						<li><a href="${submenu.objeto.url}">${submenu.nome} </a></li>
+						</c:if>
 					</c:forEach>
 	        	</ul>
 	        </li>
@@ -29,6 +34,7 @@
         
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Empresa: ${empresa.fantasia}</a></li>
+        <li class="divider"></li>
         <li><a href="logoff.action">Sair</a></li>
       </ul>
       

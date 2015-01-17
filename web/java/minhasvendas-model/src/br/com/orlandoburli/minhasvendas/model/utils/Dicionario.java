@@ -85,6 +85,36 @@ public final class Dicionario {
 
 			public final class Colunas {
 				public static final String ID_ESTOQUE = "id_estoque";
+				public static final String ID_LOCAL_ESTOQUE = LocalEstoque.Colunas.ID_LOCAL_ESTOQUE;
+				public static final String ID_PRODUTO = Produto.Colunas.ID_PRODUTO;
+				public static final String QUANTIDADE_ESTOQUE = "quantidade_estoque";
+
+			}
+		}
+
+		public final class Entrada {
+			public static final String TABELA_ENTRADA = "entrada";
+
+			public final class Colunas {
+				public static final String ID_ENTRADA = "id_entrada";
+				public static final String ID_EMPRESA = Empresa.Colunas.ID_EMPRESA;
+				public static final String NUMERO_DOCUMENTO = "numero_documento";
+				public static final String SERIE = "serie";
+				public static final String DATA_EMISSAO_DOCUMENTO = "data_emissao_documento";
+				public static final String STATUS = "status";
+				public static final String DATA_PROCESSAMENTO = "data_processamento";
+			}
+		}
+
+		public final class ItemEntrada {
+			public static final String TABELA_ITEM_ENTRADA = "item_entrada";
+
+			public final class Colunas {
+				public static final String ID_ITEM_ENTRADA = "id_item_entrada";
+				public static final String ID_ENTRADA = Entrada.Colunas.ID_ENTRADA;
+				public static final String ID_PRODUTO = Produto.Colunas.ID_PRODUTO;
+				public static final String QUANTIDADE = "quantidade";
+				public static final String VALOR_COMPRA = "valor_compra";
 			}
 		}
 
