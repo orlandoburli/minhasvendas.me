@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/sticky-footer-navbar.css" />

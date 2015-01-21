@@ -1,3 +1,12 @@
+ @font-face {
+  font-family: 'Glyphicons';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+body{
+	font-family: 'Ubuntu', Helvetica, Arial, sans-serif !important;
+}
 .footer {
 	padding-top: 22px;
 }
