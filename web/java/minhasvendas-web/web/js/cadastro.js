@@ -310,7 +310,7 @@ function checkForEnter(event) {
 			event.preventDefault();
 			return false;
 		} else {
-//			$(".BotaoSalvar").click();
+			$(".BotaoSalvar").click();
 		}
 	}
 }

@@ -16,7 +16,7 @@
 	<title>${tituloApp}</title>
 	
 </head>
-<body class="metro">
+<body>
 	<header class="">
 		<%@include file="header.jsp" %>
 	</header>
@@ -27,6 +27,5 @@
 	</div>
 	
 	<footer class="footer" data-load="footer.action"></footer>
-	
 </body>
 </html>

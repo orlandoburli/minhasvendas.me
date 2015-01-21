@@ -30,7 +30,7 @@ table tbody tr td:nth-child(1) {
 
 	<tfoot>
 		<tr>
-			<td colspan="4">P&aacute;gina ${pageNumber} de ${pageCount}</td>
+			<td colspan="6">P&aacute;gina ${pageNumber} de ${pageCount}</td>
 		</tr>
 	</tfoot>
 	
