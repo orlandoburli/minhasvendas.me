@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/components.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/minhasvendas.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/jquery-ui/jquery-ui-1.10.0.custom.css" />
+<link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/jquery-ui/jquery.ui.1.10.0.ie.css" />
 
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery-2.1.1.min.js"></script>
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -16,5 +18,6 @@
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.blockUI.js"></script>
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.price_format.2.0.min.js"></script>
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.mask.min.js"></script>
+<script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery-ui-1.9.2.custom.min.js"></script>
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/web/js/geral.js"></script>

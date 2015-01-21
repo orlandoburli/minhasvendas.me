@@ -9,6 +9,7 @@
     <extraInfo></extraInfo>
     <webPath>/minhasvendas-web</webPath>
     <webClassPathEntries>
+        <webClassPathEntry>/Users/orlandoburli/Documents/java/lib/google-gson-2.2.4/gson-2.2.4.jar</webClassPathEntry>
         <webClassPathEntry>/core/bin</webClassPathEntry>
         <webClassPathEntry>/dao-postgresql/bin</webClassPathEntry>
         <webClassPathEntry>/minhasvendas-model/bin</webClassPathEntry>

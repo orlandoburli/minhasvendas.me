@@ -559,7 +559,6 @@ $(function() {
 		case (KEY_N):
 			if (event.ctrlKey) {
 				event.preventDefault();
-				// novo();
 				$(".BotaoNovo").click();
 			}
 			break;
@@ -567,14 +566,12 @@ $(function() {
 		case (KEY_E):
 			if (event.ctrlKey) {
 				event.preventDefault();
-				// editar();
 				$(".BotaoEditar").click();
 			}
 			break;
 		case (KEY_DEL):
 			if (event.ctrlKey) {
 				event.preventDefault();
-				// excluir();
 				$(".BotaoExcluir").click();
 			}
 			break;

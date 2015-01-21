@@ -1,6 +1,8 @@
 package br.com.orlandoburli.minhasvendas.model.vo.estoque;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.Domain;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotEmpty;
@@ -8,6 +10,7 @@ import br.com.orlandoburli.framework.core.be.validation.annotations.validators.N
 import br.com.orlandoburli.framework.core.dao.annotations.Column;
 import br.com.orlandoburli.framework.core.dao.annotations.DataType;
 import br.com.orlandoburli.framework.core.dao.annotations.Join;
+import br.com.orlandoburli.framework.core.dao.annotations.JoinWhen;
 import br.com.orlandoburli.framework.core.dao.annotations.Table;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.vo.annotations.Description;
@@ -48,8 +51,14 @@ public class EntradaVo extends BaseVo {
 	private String status;
 	private Calendar dataProcessamento;
 
-	@Join(columnsLocal = { Colunas.ID_EMPRESA }, columnsRemote = { Empresa.Colunas.ID_EMPRESA })
+	@Join(columnsLocal = { Colunas.ID_EMPRESA }, columnsRemote = { Empresa.Colunas.ID_EMPRESA }, joinWhen = JoinWhen.MANUAL)
 	private EmpresaVo empresa;
+
+	private List<ItemEntradaVo> itens;
+
+	public String getStatusDesc() {
+		return new StatusProcessamento().getDescription(getStatus());
+	}
 
 	public Integer getIdEntrada() {
 		return idEntrada;
@@ -113,5 +122,16 @@ public class EntradaVo extends BaseVo {
 
 	public void setEmpresa(EmpresaVo empresa) {
 		this.empresa = empresa;
+	}
+
+	public List<ItemEntradaVo> getItens() {
+		if (itens == null) {
+			itens = new ArrayList<ItemEntradaVo>();
+		}
+		return itens;
+	}
+
+	public void setItens(List<ItemEntradaVo> itens) {
+		this.itens = itens;
 	}
 }

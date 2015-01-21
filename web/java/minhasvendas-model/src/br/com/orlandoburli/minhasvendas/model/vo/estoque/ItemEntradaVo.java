@@ -37,14 +37,14 @@ public class ItemEntradaVo extends BaseVo {
 	private Integer idProduto;
 
 	@Column(name = Colunas.QUANTIDADE, dataType = DataType.NUMERIC, maxSize = 10, precision = 4, isNotNull = true)
-	@Precision(4)
+	@Precision(0)
 	@NotZero
 	@NotNegative
 	@Description("Quantidade")
 	private BigDecimal quantidade;
 
 	@Column(name = Colunas.VALOR_COMPRA, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true)
-	@Precision(4)
+	@Precision(2)
 	@NotNegative
 	@Description("Valor de Compra")
 	private BigDecimal valorCompra;

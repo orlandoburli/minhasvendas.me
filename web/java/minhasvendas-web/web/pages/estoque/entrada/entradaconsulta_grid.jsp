@@ -3,23 +3,24 @@
 
 <style type="text/css">
 table thead td:nth-child(1) {
-	width: 80px;
+	width: 60px;
 }
-
 table thead td:nth-child(2) {
-	width: 50px;
+	width: 40px;
 }
-
-
-table thead td:nth-child(1) {
+table thead td:nth-child(3) {
+	width: 120px;
+}
+table thead td:nth-child(5) {
+	width: 120px;
+}
+table thead td:nth-child(1), table thead td:nth-child(2), table thead td:nth-child(4){
 	text-align: right;
 }
-
-table tbody tr td:nth-child(1) {
+table tbody tr td:nth-child(1), table tbody tr td:nth-child(2), table tbody tr td:nth-child(4) {
 	text-align: right;
 }
 </style>
-
 
 <table data-page-count="${pageCount}" class="table">
 	<thead>
@@ -43,7 +44,8 @@ table tbody tr td:nth-child(1) {
 			<tr data-id="idEntrada=${ vo.idEntrada}">
 			<td>${ vo.numeroDocumento }</td>
 			<td>${ vo.serie }</td>
-			<td>${ vo.dataEmissaoDocumento }</td>
+			<td><fmt:formatDate value="${vo.dataEmissaoDocumento.time}" pattern="dd/MM/yyyy" /></td>
+			<td></td>
 			<td>${ vo.statusDesc }</td>
 			</tr>
 		</c:forEach>

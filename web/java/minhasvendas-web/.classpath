@@ -12,5 +12,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/dao-postgresql"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/minhasvendas-model"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Google Gson"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

@@ -1,5 +1,4 @@
 var conteudoId = ".page-content-body";
-// "#formulario-home";
 
 var browser = {
 	chrome : false,
@@ -8,137 +7,6 @@ var browser = {
 	msie : false,
 	safari : false
 };
-
-$(function() {
-	var link_sair_visivel = false;
-
-	$(".link-sair").click(function() {
-		if (link_sair_visivel) {
-			$(".div-link-sair").fadeOut();
-			link_sair_visivel = false;
-		} else {
-			$(".div-link-sair").fadeIn();
-			link_sair_visivel = true;
-		}
-	});
-
-	$(".div-link-sair").hide();
-
-	var sBrowser, sUsrAg = navigator.userAgent;
-	if (sUsrAg.indexOf("Chrome") > -1) {
-		browser.chrome = true;
-	} else if (sUsrAg.indexOf("Safari") > -1) {
-		browser.safari = true;
-	} else if (sUsrAg.indexOf("Opera") > -1) {
-		browser.opera = true;
-	} else if (sUsrAg.indexOf("Firefox") > -1) {
-		browser.mozilla = true;
-	} else if (sUsrAg.indexOf("MSIE") > -1) {
-		browser.msie = true;
-	}
-
-	// $( document ).tooltip();
-});
-
-function mensagemModal(mensagem, titulo) {
-	mensagemModal(mensagem, titulo, null);
-}
-
-function mensagemModal(mensagem, titulo, funcaoRetorno) {
-
-	$("#div-message").attr("title", titulo);
-
-	$("#div-message").html(mensagem);
-
-	$("#div-message").dialog({
-		modal : true,
-		buttons : {
-			Ok : function() {
-				$(this).dialog("close");
-
-				if (funcaoRetorno) {
-					funcaoRetorno();
-				}
-			}
-		}
-	});
-}
-
-function confirmacaoModal(mensagem, titulo, funcaoSim) {
-	confirmacaoModal(mensagem, titulo, funcaoSim, null);
-}
-
-function confirmacaoModal(mensagem, titulo, funcaoSim, funcaoNao) {
-
-	$(".modal-title").html(titulo);
-	$(".modal-body").html(mensagem);
-	$(".btn-modal-flex-sim").click(funcaoSim);
-	$(".btn-modal-flex-nao").click(funcaoNao);
-	$(".modal-confirmacao-sim-nao").modal('show');
-}
-
-function fillSelect(selectElement, values, valueKey, textKey, defaultValue) {
-	if (typeof (selectElement) == "string") {
-		selectElement = $(selectElement);
-	}
-
-	selectElement.empty();
-
-	if (typeof (values) == 'object') {
-		if (values.length) {
-
-			var type = typeof (values[0]);
-			var html = "";
-
-			if (type == 'object') {
-				// values is array of hashes
-				var optionElement = null;
-
-				$.each(values, function() {
-					var value = "";
-					var row = this;
-
-					if (valueKey.indexOf(";") >= 0) {
-						var keys = valueKey.split(";");
-
-						$.each(keys, function() {
-
-							if (row[this] != null) {
-								value += row[this] + ";";
-							} else {
-								value += "";
-							}
-						});
-
-					} else {
-						value = this[valueKey] == null ? "" : this[valueKey];
-					}
-
-					html += '<option value="' + value + '">' + this[textKey]
-							+ '</option>';
-				});
-
-			} else {
-				// array of strings
-				$.each(values, function() {
-					var value = this.toString();
-					html += '<option value="' + value + '">' + value
-							+ '</option>';
-				});
-			}
-			selectElement.append(html);
-		}
-
-		// select the defaultValue is one was passed in
-		if (typeof defaultValue != 'undefined') {
-			selectElement.children('option[value="' + defaultValue + '"]')
-					.attr('selected', 'selected');
-		}
-	}
-	return false;
-}
-
-// Widget combobox auto-complete jQuery UI
 
 // Constantes de teclas de funcao
 
@@ -186,7 +54,6 @@ function getTimeStamp() {
 
 function mensagem(oMensagem, tipo) {
 	$.bootstrapGrowl(oMensagem, { type: tipo });
-//	$.Notify({style: {background: 'red', color: 'white'}, content: oMensagem});
 }
 
 function mensagemInfo(oMensagem) {
