@@ -1,12 +1,12 @@
 package br.com.orlandoburli.minhasvendas.model.vo.acesso;
 
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Menu.Colunas.CLASSE;
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Menu.Colunas.ID_MENU;
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Menu.Colunas.ID_MENU_PAI;
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Menu.Colunas.ID_OBJETO;
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Menu.Colunas.ID_OBJETO_SECUNDARIO;
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Menu.Colunas.NOME;
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Menu.Colunas.ORDEM;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Menu.Colunas.CLASSE;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Menu.Colunas.ID_MENU;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Menu.Colunas.ID_MENU_PAI;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Menu.Colunas.ID_OBJETO;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Menu.Colunas.ID_OBJETO_SECUNDARIO;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Menu.Colunas.NOME;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Menu.Colunas.ORDEM;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,10 @@ import br.com.orlandoburli.framework.core.dao.annotations.JoinWhen;
 import br.com.orlandoburli.framework.core.dao.annotations.Table;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.vo.annotations.Description;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario;
+import br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Menu;
+import br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Objeto;
 
-@Table(Dicionario.Acesso.Menu.TABELA_MENU)
+@Table(Menu.TABELA_MENU)
 public class MenuVo extends BaseVo {
 
 	private static final long serialVersionUID = 1L;
@@ -55,10 +56,10 @@ public class MenuVo extends BaseVo {
 	@Join(columnsLocal = { ID_MENU }, columnsRemote = { ID_MENU }, joinWhen = JoinWhen.MANUAL)
 	private MenuVo menuPai;
 
-	@Join(columnsLocal = { ID_OBJETO }, columnsRemote = { Dicionario.Acesso.Objeto.Colunas.ID_OBJETO })
+	@Join(columnsLocal = { ID_OBJETO }, columnsRemote = { Objeto.Colunas.ID_OBJETO })
 	private ObjetoVo objeto;
 
-	@Join(columnsLocal = { ID_OBJETO_SECUNDARIO }, columnsRemote = { Dicionario.Acesso.Objeto.Colunas.ID_OBJETO }, tableAlias = "secundario")
+	@Join(columnsLocal = { ID_OBJETO_SECUNDARIO }, columnsRemote = { Objeto.Colunas.ID_OBJETO }, tableAlias = "secundario")
 	private ObjetoVo objetoSecundario;
 
 	private List<MenuVo> subMenus;

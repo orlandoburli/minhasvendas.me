@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.orlandoburli.framework.core.web.BaseConsultaAction;
 import br.com.orlandoburli.minhasvendas.model.be.estoque.LocalEstoqueBe;
 import br.com.orlandoburli.minhasvendas.model.dao.estoque.LocalEstoqueDao;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.LocalEstoque;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.LocalEstoque;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.LocalEstoqueVo;
 

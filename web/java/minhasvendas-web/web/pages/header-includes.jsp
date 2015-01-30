@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu" />
+<link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/bootstrap-editable.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/sticky-footer-navbar.css" />
@@ -20,5 +21,6 @@
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.price_format.2.0.min.js"></script>
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.mask.min.js"></script>
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="/minhasvendas-assets/bootstrap/3.3.1/js/bootstrap-editable.min.js"></script>
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/web/js/geral.js"></script>

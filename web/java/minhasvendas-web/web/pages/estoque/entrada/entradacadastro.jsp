@@ -142,9 +142,7 @@
 			url : 'entradacadastro.adicionaritem.action',
 			type : 'POST',
 			data : params,
-			beforeSend : function(data) {
-				// console.log("loading...");
-			},
+			beforeSend : function(data) { },
 			success : function(data) {
 
 				var retorno = $.parseJSON(data);
@@ -152,7 +150,94 @@
 				if (retorno.sucesso) {
 					mensagemInfo(retorno.mensagem);
 					limparCamposItem();
-					loadDataGrid();
+					loadDataGrid(setRemoverItem);
+					$("#idProduto").focus();
+				} else {
+					mensagemErro(retorno.mensagem);
+					$("#" + retorno.fieldFocus).focus();
+				}
+			},
+			error : function(erro) {
+				console.log("Erro no load ajax! " + erro);
+			}
+		});
+	}
+	
+	function alterarItem(campo) {
+		// Se tiver alguma requisicao rolando, nao executa.
+		if ($.active > 0) {
+			return;
+		}
+		
+		var _quantidade = "";
+		var _valorCompra = "";
+		
+		// Verifica qual campo está sendo atualizado
+		if (campo.hasClass("item-quantidade")) {
+			_quantidade = campo.val();
+			_valorCompra = campo.closest("tr").find(".item-valor-compra").val();
+		} else if (campo.hasClass("item-valor-compra")) {
+			_quantidade = campo.closest("tr").find(".item-quantidade").val();
+			_valorCompra = campo.val(); 
+		}
+		
+		var params = {
+			index : $(campo).closest("tr").attr("data-index"),
+			quantidade : _quantidade,
+			valorCompra : _valorCompra
+		};
+		
+		$.ajax({
+			url : 'entradacadastro.editaritem.action',
+			type : 'POST',
+			data : params,
+			beforeSend : function(data) { },
+			success : function(data) {
+
+				var retorno = $.parseJSON(data);
+
+				if (retorno.sucesso) {
+					// Se deu certo, nao precisa avisar nada...
+					/* mensagemInfo(retorno.mensagem); */
+				} else {
+					mensagemErro(retorno.mensagem);
+					$("#" + retorno.fieldFocus).focus();
+				}
+			},
+			error : function(erro) {
+				console.log("Erro no load ajax! " + erro);
+			}
+		});
+	}
+	
+	function removerItem(indexParam) {
+		
+		if (!confirm("Confirma exclusão deste item?")) {
+			return;
+		}
+		
+		// Se tiver alguma requisicao rolando, nao executa.
+		if ($.active > 0) {
+			return;
+		}
+		
+		var params = {
+			index : indexParam
+		};
+		
+		$.ajax({
+			url : 'entradacadastro.removeritem.action',
+			type : 'POST',
+			data : params,
+			beforeSend : function(data) { },
+			success : function(data) {
+				
+				var retorno = $.parseJSON(data);
+				
+				if (retorno.sucesso) {
+					mensagemInfo(retorno.mensagem);
+					limparCamposItem();
+					loadDataGrid(setRemoverItem);
 					$("#idProduto").focus();
 				} else {
 					mensagemErro(retorno.mensagem);
@@ -169,12 +254,23 @@
 		adicionarItem();
 	});
 	
+	
+	function setRemoverItem() {
+		$(".BotaoRemoverItem").click(function() {
+			removerItem($(this).attr("data-index"));
+		});
+		
+		$(".item-quantidade,.item-valor-compra").blur(function() {
+			alterarItem($(this));
+		});
+	}
+	
 	$(document).ready(function() {
 		loadJs("web/js/item.js");
 		
 		setTimeout(function() {
 			limparCamposItem();
-			loadDataGrid();	
+			loadDataGrid(setRemoverItem);
 		}, 1000);
 	});
 	

@@ -104,3 +104,5 @@ function loadDataLink(dataLink, link) {
     });
 }
 
+// Setando a opcao default para editar inline
+$.fn.editable.defaults.mode = 'inline';

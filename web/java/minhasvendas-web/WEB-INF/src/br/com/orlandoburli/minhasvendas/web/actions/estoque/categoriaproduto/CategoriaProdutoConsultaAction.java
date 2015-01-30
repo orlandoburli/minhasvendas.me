@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.orlandoburli.framework.core.web.BaseConsultaAction;
 import br.com.orlandoburli.minhasvendas.model.be.estoque.CategoriaProdutoBe;
 import br.com.orlandoburli.minhasvendas.model.dao.estoque.CategoriaProdutoDao;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.CategoriaProduto;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.CategoriaProduto;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.CategoriaProdutoVo;
 

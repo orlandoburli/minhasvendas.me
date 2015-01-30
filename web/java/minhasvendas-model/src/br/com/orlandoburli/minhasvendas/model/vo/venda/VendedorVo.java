@@ -12,11 +12,11 @@ import br.com.orlandoburli.framework.core.dao.annotations.JoinWhen;
 import br.com.orlandoburli.framework.core.dao.annotations.Table;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.vo.annotations.Description;
+import br.com.orlandoburli.minhasvendas.model.dicionario.cadastros.Empresa;
+import br.com.orlandoburli.minhasvendas.model.dicionario.vendas.CategoriaVendedor;
+import br.com.orlandoburli.minhasvendas.model.dicionario.vendas.Vendedor;
+import br.com.orlandoburli.minhasvendas.model.dicionario.vendas.Vendedor.Colunas;
 import br.com.orlandoburli.minhasvendas.model.domains.SimNao;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Cadastros.Empresa;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.CategoriaVendedor;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.Vendedor;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.Vendedor.Colunas;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 
 @Table(Vendedor.TABELA_VENDEDOR)

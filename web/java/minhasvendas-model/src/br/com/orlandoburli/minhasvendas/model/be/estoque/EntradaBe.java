@@ -1,5 +1,7 @@
 package br.com.orlandoburli.minhasvendas.model.be.estoque;
 
+import java.util.List;
+
 import br.com.orlandoburli.framework.core.be.BaseBe;
 import br.com.orlandoburli.framework.core.be.exceptions.BeException;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
@@ -16,14 +18,27 @@ public class EntradaBe extends BaseBe<EntradaVo, EntradaDao> {
 
 	@Override
 	public void doBeforeInsert(EntradaVo vo) throws BeException {
-		super.doBeforeInsert(vo);
-
 		vo.setStatus(StatusProcessamento.NAO_PROCESSADO);
+
+		super.doBeforeInsert(vo);
 	}
 
 	@Override
 	public void doBeforeSave(EntradaVo vo) throws BeException {
 		super.doBeforeSave(vo);
+	}
+
+	@Override
+	public void doBeforeDelete(EntradaVo vo) throws BeException {
+		super.doBeforeDelete(vo);
+
+		// Apagar todos os itens
+		ItemEntradaBe itemBe = new ItemEntradaBe(getManager());
+		List<ItemEntradaVo> list = itemBe.getList(vo);
+
+		for (ItemEntradaVo itemEntradaVo : list) {
+			itemBe.remove(itemEntradaVo);
+		}
 	}
 
 	@Override

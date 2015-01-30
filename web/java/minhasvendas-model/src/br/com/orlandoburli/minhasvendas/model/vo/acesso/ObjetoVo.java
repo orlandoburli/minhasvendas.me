@@ -1,9 +1,9 @@
 package br.com.orlandoburli.minhasvendas.model.vo.acesso;
 
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Objeto.Colunas.AUTO_START;
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Objeto.Colunas.ID_OBJETO;
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Objeto.Colunas.NOME;
-import static br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Acesso.Objeto.Colunas.URL;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Objeto.Colunas.AUTO_START;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Objeto.Colunas.ID_OBJETO;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Objeto.Colunas.NOME;
+import static br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Objeto.Colunas.URL;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.Domain;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.MaxSize;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotEmpty;
@@ -13,10 +13,10 @@ import br.com.orlandoburli.framework.core.dao.annotations.DataType;
 import br.com.orlandoburli.framework.core.dao.annotations.Table;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.vo.annotations.Description;
+import br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Objeto;
 import br.com.orlandoburli.minhasvendas.model.domains.SimNao;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario;
 
-@Table(Dicionario.Acesso.Objeto.TABELA_OBJETO)
+@Table(Objeto.TABELA_OBJETO)
 public class ObjetoVo extends BaseVo {
 	private static final long serialVersionUID = 1L;
 

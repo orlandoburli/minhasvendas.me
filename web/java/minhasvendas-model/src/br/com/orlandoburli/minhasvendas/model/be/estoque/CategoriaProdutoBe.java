@@ -6,8 +6,8 @@ import br.com.orlandoburli.framework.core.be.BaseBe;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.ListException;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.minhasvendas.model.dao.estoque.CategoriaProdutoDao;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.CategoriaProduto;
 import br.com.orlandoburli.minhasvendas.model.domains.SimNao;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.CategoriaProduto;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.CategoriaProdutoVo;
 

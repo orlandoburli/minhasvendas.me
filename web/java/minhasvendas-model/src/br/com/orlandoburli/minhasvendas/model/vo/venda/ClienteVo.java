@@ -17,10 +17,10 @@ import br.com.orlandoburli.framework.core.dao.annotations.JoinWhen;
 import br.com.orlandoburli.framework.core.dao.annotations.Table;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.vo.annotations.Description;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Cadastros.Empresa;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.CategoriaCliente;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.Cliente;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.Cliente.Colunas;
+import br.com.orlandoburli.minhasvendas.model.dicionario.cadastros.Empresa;
+import br.com.orlandoburli.minhasvendas.model.dicionario.vendas.CategoriaCliente;
+import br.com.orlandoburli.minhasvendas.model.dicionario.vendas.Cliente;
+import br.com.orlandoburli.minhasvendas.model.dicionario.vendas.Cliente.Colunas;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 
 @Table(Cliente.TABELA_CLIENTE)

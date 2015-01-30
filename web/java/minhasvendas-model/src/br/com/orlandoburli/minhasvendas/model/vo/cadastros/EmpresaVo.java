@@ -16,9 +16,9 @@ import br.com.orlandoburli.framework.core.dao.annotations.DataType;
 import br.com.orlandoburli.framework.core.dao.annotations.Table;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.vo.annotations.Description;
+import br.com.orlandoburli.minhasvendas.model.dicionario.cadastros.Empresa;
+import br.com.orlandoburli.minhasvendas.model.dicionario.cadastros.Empresa.Colunas;
 import br.com.orlandoburli.minhasvendas.model.domains.SimNao;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Cadastros.Empresa;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Cadastros.Empresa.Colunas;
 
 @Table(Empresa.TABELA_EMPRESA)
 public class EmpresaVo extends BaseVo {
