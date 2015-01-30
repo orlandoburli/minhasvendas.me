@@ -102,4 +102,4 @@ $(function() {
 	
 });
 
-
+console.log("login.js carregado.");

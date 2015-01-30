@@ -29,23 +29,29 @@ public class MenuBe extends BaseBe<MenuVo, MenuDao> {
 	}
 
 	public void inicializarMenus() throws BeException {
-		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.HOME, null, null, "Home", "fa-home", 0, null));
-		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.ESTOQUE, null, null, "Estoque", "", 1, null));
+		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.HOME, null, null, "Home", "fa fa-home", 0, null));
+		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.ESTOQUE, null, null, "Estoque", "fa fa-cube", 1, null));
 
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.CATEGORIA_PRODUTOS, MinhasVendasConstants.Objeto.CATEGORIA_PRODUTO_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_PRODUTO_CADASTRO, "Categoria de Produtos", "", 1, MinhasVendasConstants.Menu.ESTOQUE));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.PRODUTOS, MinhasVendasConstants.Objeto.PRODUTO_CONSULTA, MinhasVendasConstants.Objeto.PRODUTO_CADASTRO, "Produtos", "", 3, MinhasVendasConstants.Menu.ESTOQUE));
-		saveIfNotExists(criaSeparador(MinhasVendasConstants.Menu.SEPARADOR01, 4, MinhasVendasConstants.Menu.ESTOQUE));
+		// saveIfNotExists(criaSeparador(MinhasVendasConstants.Menu.SEPARADOR01,
+		// 4, MinhasVendasConstants.Menu.ESTOQUE));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.LOCAL_ESTOQUE, MinhasVendasConstants.Objeto.LOCAL_ESTOQUE_CONSULTA, MinhasVendasConstants.Objeto.LOCAL_ESTOQUE_CADASTRO, "Locais de Estoque", "", 5, MinhasVendasConstants.Menu.ESTOQUE));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.ENTRADA, MinhasVendasConstants.Objeto.ENTRADA_CONSULTA, MinhasVendasConstants.Objeto.ENTRADA_CADASTRO, "Entrada de Mercadorias", "", 6, MinhasVendasConstants.Menu.ESTOQUE));
 
-		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.VENDAS, null, null, "Vendas", "", 2, null));
+		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.VENDAS, null, null, "Vendas", "fa fa-cc-mastercard", 2, null));
 
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.CATEGORIA_CLIENTE, MinhasVendasConstants.Objeto.CATEGORIA_CLIENTE_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_CLIENTE_CADASTRO, "Categorias de Clientes", "", 1, MinhasVendasConstants.Menu.VENDAS));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.CLIENTE, MinhasVendasConstants.Objeto.CLIENTE_CONSULTA, MinhasVendasConstants.Objeto.CLIENTE_CADASTRO, "Clientes", "", 2, MinhasVendasConstants.Menu.VENDAS));
-		saveIfNotExists(criaSeparador(MinhasVendasConstants.Menu.SEPARADOR02, 3, MinhasVendasConstants.Menu.VENDAS));
+		// saveIfNotExists(criaSeparador(MinhasVendasConstants.Menu.SEPARADOR02,
+		// 3, MinhasVendasConstants.Menu.VENDAS));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.CATEGORIA_VENDEDOR, MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CADASTRO, "Categorias de Vendedores", "", 4, MinhasVendasConstants.Menu.VENDAS));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.VENDEDOR, MinhasVendasConstants.Objeto.VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.VENDEDOR_CADASTRO, "Vendedores", "", 5, MinhasVendasConstants.Menu.VENDAS));
 
+		deleteIfExists(MinhasVendasConstants.Menu.SEPARADOR01);
+		deleteIfExists(MinhasVendasConstants.Menu.SEPARADOR02);
+		deleteIfExists(MinhasVendasConstants.Menu.SEPARADOR03);
+		deleteIfExists(MinhasVendasConstants.Menu.SEPARADOR04);
 	}
 
 	public void saveIfNotExists(MenuVo menu) throws BeException {
@@ -54,6 +60,14 @@ public class MenuBe extends BaseBe<MenuVo, MenuDao> {
 			menu.setNew(false);
 		}
 		save(menu);
+	}
+
+	public void deleteIfExists(Integer idMenu) {
+		try {
+			remove(get(idMenu));
+		} catch (BeException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public MenuVo criaSeparador(Integer idMenu, Integer ordem, Integer idMenuPai) {

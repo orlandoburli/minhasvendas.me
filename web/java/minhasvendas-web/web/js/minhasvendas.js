@@ -95,14 +95,13 @@ function loadDataLink(dataLink, link) {
 			} else if (dataLink.indexOf("consulta") > 0) {
 				loadJs("web/js/consulta.js");
 			}
-//			loadJs("web/js/load.js");
             
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            pageContentBody.html('<h4>Could not load the requested contentxxxx.</h4>');
+            pageContentBody.html('<h4>Não foi possível carregar a página solicitada.<br/>'+thrownError+'</h4>');
         }
     });
 }
 
 // Setando a opcao default para editar inline
-$.fn.editable.defaults.mode = 'inline';
+//$.fn.editable.defaults.mode = 'inline';

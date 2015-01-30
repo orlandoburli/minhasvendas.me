@@ -105,7 +105,7 @@ function checkForEnter(event) {
 		if (textboxes[currentBoxNumber + 1] != null) {
 			nextBox = textboxes[currentBoxNumber + 1]
 			nextBox.focus();
-			nextBox.select();
+//			nextBox.select();
 			event.preventDefault();
 			return false;
 		} else {
