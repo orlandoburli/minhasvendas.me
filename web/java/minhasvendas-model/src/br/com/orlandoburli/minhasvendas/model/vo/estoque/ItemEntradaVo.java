@@ -13,10 +13,10 @@ import br.com.orlandoburli.framework.core.dao.annotations.Join;
 import br.com.orlandoburli.framework.core.dao.annotations.Table;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.vo.annotations.Description;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.Entrada;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.ItemEntrada;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.ItemEntrada.Colunas;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.Produto;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.Entrada;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.ItemEntrada;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.ItemEntrada.Colunas;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.Produto;
 
 @Table(ItemEntrada.TABELA_ITEM_ENTRADA)
 public class ItemEntradaVo extends BaseVo {

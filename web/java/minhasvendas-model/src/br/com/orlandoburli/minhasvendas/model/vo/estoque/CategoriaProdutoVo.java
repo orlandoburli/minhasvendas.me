@@ -12,10 +12,10 @@ import br.com.orlandoburli.framework.core.dao.annotations.JoinWhen;
 import br.com.orlandoburli.framework.core.dao.annotations.Table;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.vo.annotations.Description;
+import br.com.orlandoburli.minhasvendas.model.dicionario.cadastros.Empresa;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.CategoriaProduto;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.CategoriaProduto.Colunas;
 import br.com.orlandoburli.minhasvendas.model.domains.SimNao;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Cadastros.Empresa;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.CategoriaProduto;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.CategoriaProduto.Colunas;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 
 @Table(CategoriaProduto.TABELA_CATEGORIA)

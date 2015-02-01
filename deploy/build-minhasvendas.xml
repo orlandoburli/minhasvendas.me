@@ -1,0 +1,300 @@
+<project name="publisher" default="build-all">
+
+	<!-- Definicao do arquivo de propriedades -->
+	<property file="build.properties" />
+
+	<target name="compile">
+		<antcall target="revision">
+		</antcall>
+	</target>
+
+	<target name="dist">
+		<antcall target="minor">
+		</antcall>
+	</target>
+
+	<target name="revision">
+		<propertyfile file="build_info.properties">
+			<entry key="build.revision.number" type="int" operation="+" value="1" pattern="00" />
+		</propertyfile>
+
+		<antcall target="generate.version.number" />
+	</target>
+
+	<target name="minor">
+		<propertyfile file="build_info.properties">
+			<entry key="build.minor.number" type="int" operation="+" value="1" pattern="00" />
+			<entry key="build.revision.number" type="int" value="0" pattern="00" />
+		</propertyfile>
+
+		<antcall target="generate.version.number" />
+	</target>
+
+	<target name="major">
+		<propertyfile file="build_info.properties">
+			<entry key="build.major.number" type="int" operation="+" value="1" pattern="00" />
+			<entry key="build.minor.number" type="int" value="0" pattern="00" />
+			<entry key="build.revision.number" type="int" value="0" pattern="00" />
+		</propertyfile>
+
+		<antcall target="generate.version.number" />
+	</target>
+
+	<target name="all">
+		<propertyfile file="build_info.properties">
+			<entry key="build.major.number" type="int" operation="+" value="1" pattern="00" />
+			<entry key="build.minor.number" type="int" operation="+" value="1" pattern="00" />
+			<entry key="build.revision.number" type="int" operation="+" value="1" pattern="00" />
+		</propertyfile>
+
+		<antcall target="generate.version.number" />
+	</target>
+
+	<target name="generate.version.number">
+
+		<property file="build_info.properties" />
+
+		<tstamp>
+			<format property="build.time" pattern="dd/MM/yyyy HH:mm:ss" unit="hour" />
+		</tstamp>
+
+		<property name="build.number" value="${build.major.number}.${build.minor.number}.${build.revision.number}" />
+
+		<property name="new.version.number" value="${build.number} build: ${build.time}" />
+
+		<echo message="${new.version.number}" />
+
+
+		<propertyfile file="build_info.properties">
+			<entry key="version.number" value="${new.version.number}" />
+		</propertyfile>
+
+	</target>
+
+	<target name="baixar-git">
+		<!-- Incremento de versoes -->
+		<property file="build_info.properties" />
+		<replaceregexp file="build.properties" match="(version[ \t]*=[ \t]*)+.*$" byline="true" replace="\1${new.version.number}" />
+
+		<sshexec host="github.com" username="orlandoburli" password="carol1408" passphrase="carol1408" command="git clone git@github.com:ultraveloz/${projeto.nome}.git  ${minhasvendas.home}" trust="true" />
+	</target>
+
+	<!-- INICIO CORE -->
+
+	<!-- Target para limpar a pasta compilada do core -->
+	<target name="limpar-core" description="Limpa a pasta compilada do projeto core">
+		<delete dir="${projeto.build.dir.core}" failonerror="false">
+		</delete>
+		<mkdir dir="${projeto.build.dir.core}" />
+	</target>
+
+	<!-- Target para compilar o projeto core -->
+	<target name="compilar-core" depends="limpar-core">
+		<javac srcdir="${projeto.dir.core}/src" destdir="${projeto.build.dir.core}" encoding="UTF-8" deprecation="off" nowarn="on" includeantruntime="on" includejavaruntime="on" debug="on">
+			<classpath>
+				<fileset dir="${tomcat-lib.dir}">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="/Users/orlandoburli/Documents/java/lib/google-gson-2.2.4">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- Target para empacotar o core -->
+	<target name="empacotar-core" depends="compilar-core">
+		<delete file="${deploy.dir}/core.jar">
+		</delete>
+		<jar destfile="${deploy.dir}/core.jar" basedir="${projeto.build.dir.core}">
+		</jar>
+	</target>
+
+	<!-- FIM CORE -->
+
+	<!-- INICIO DAO-POSTGRESQL -->
+	<!-- Target para limpar a pasta compilada do core -->
+	<target name="limpar-dao-postgresql" description="Limpa a pasta compilada do projeto dao-postgresql">
+		<delete dir="${projeto.build.dir.dao-postgresql}}" failonerror="false">
+		</delete>
+		<mkdir dir="${projeto.build.dir.dao-postgresql}" />
+	</target>
+
+	<!-- Target para compilar o projeto dao-postgresql -->
+	<target name="compilar-dao-postgresql" depends="limpar-dao-postgresql">
+		<javac srcdir="${projeto.dir.dao-postgresql}/src" destdir="${projeto.build.dir.dao-postgresql}" encoding="UTF-8" deprecation="off" nowarn="on" includeantruntime="on" includejavaruntime="on" debug="on">
+			<classpath>
+				<fileset dir="${deploy.dir}">
+					<include name="core.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- Target para empacotar o dao-postgresql -->
+	<target name="empacotar-dao-postgresql" depends="compilar-dao-postgresql">
+		<delete file="${deploy.dir}/dao-postgresql.jar">
+		</delete>
+		<jar destfile="${deploy.dir}/dao-postgresql.jar" basedir="${projeto.build.dir.dao-postgresql}">
+		</jar>
+	</target>
+	<!-- FIM DAO-POSTGRESQL -->
+
+	<!-- INICIO MODEL -->
+	<!-- Target para limpar a pasta compilada do model -->
+	<target name="limpar-model" description="Limpa a pasta compilada do projeto model">
+		<delete dir="${projeto.build.dir.model}" failonerror="false">
+		</delete>
+		<mkdir dir="${projeto.build.dir.model}" />
+	</target>
+
+	<!-- Target para compilar o projeto minhasvendas-model -->
+	<target name="compilar-model" depends="limpar-model">
+		<javac srcdir="${projeto.dir.model}/src" destdir="${projeto.build.dir.model}" encoding="UTF-8" deprecation="off" nowarn="on" includeantruntime="on" includejavaruntime="on" debug="on">
+			<classpath>
+				<fileset dir="/Users/orlandoburli/Documents/java/lib/pagseguro-java-2.1.2">
+					<include name="pagseguro-api-2.1.2.jar" />
+				</fileset>
+				<fileset dir="/Users/orlandoburli/Documents/java/lib/commons-email-1.3.2">
+					<include name="commons-email-1.3.2.jar" />
+				</fileset>
+				<fileset dir="${deploy.dir}">
+					<include name="core.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- Target para empacotar o model -->
+	<target name="empacotar-model" depends="compilar-model">
+		<delete file="${deploy.dir}/${projeto.nome}-model.jar">
+		</delete>
+		<jar destfile="${deploy.dir}/${projeto.nome}-model.jar" basedir="${projeto.build.dir.model}">
+		</jar>
+	</target>
+	<!-- FIM MODEL -->
+
+
+	<!-- INICIO WEB -->
+	<!-- Target para limpar a pasta compilada do web -->
+	<target name="limpar-web" description="Limpa a pasta compilada do projeto web">
+		<delete dir="${projeto.build.dir.web}" failonerror="false">
+		</delete>
+		<mkdir dir="${projeto.build.dir.web}" />
+	</target>
+
+	<!-- Target para compilar o projeto web -->
+	<target name="compilar-web" depends="limpar-web,empacotar-core,empacotar-dao-postgresql,empacotar-model">
+		<javac srcdir="${projeto.dir.web}/WEB-INF/src" destdir="${projeto.build.dir.web}" encoding="UTF-8" deprecation="off" nowarn="on" includeantruntime="on" includejavaruntime="on" debug="on">
+			<classpath>
+				<fileset dir="${deploy.dir}">
+					<include name="core.jar" />
+					<include name="${projeto.nome}-model.jar" />
+					<include name="/Users/orlandoburli/Documents/java/lib/lucene-4.8.1/core/lucene-core-4.8.1.jar"/>
+					<include name="/Users/orlandoburli/Documents/java/lib/lucene-4.8.1/analysis/common/lucene-analyzers-common-4.8.1.jar"/>
+					<include name="/Users/orlandoburli/Documents/java/lib/lucene-4.8.1/queries/lucene-queries-4.8.1.jar"/>
+					<include name="/Users/orlandoburli/Documents/java/lib/lucene-4.8.1/queryparser/lucene-queryparser-4.8.1.jar"/>
+				</fileset>
+				<fileset dir="${tomcat-lib.dir}">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="/Users/orlandoburli/Documents/java/lib/google-gson-2.2.4">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- Target para empacotar o web -->
+	<target name="empacotar-web" depends="compilar-web">
+		<property file="build_info.properties" />
+
+		<antcall target="generate.version.number" />
+	    
+		<delete file="${deploy.dir}/${projeto.nome}-web.war">
+		</delete>
+
+		<!-- Copia os arquivos de resources -->
+		<copy todir="${projeto.build.dir.web}">
+			<fileset dir="${projeto.dir.web}/src" includes="**/*.properties">
+			</fileset>
+		</copy>
+
+		<war destfile="${deploy.dir}/${projeto.war.name}" webxml="${projeto.dir.web}/WEB-INF/web.xml">
+
+			<classes dir="${projeto.build.dir.web}">
+			</classes>
+
+			<lib dir="${deploy.dir}">
+				<include name="core.jar" />
+				<include name="dao-postgresql.jar" />
+				<include name="${projeto.nome}-model.jar" />
+			</lib>
+
+			<fileset dir="${projeto.dir.web}/">
+				<exclude name="WEB-INF/classes/" />
+			</fileset>
+
+			<manifest>
+				<attribute name="Versao" value="${version.number}" />
+			</manifest>
+		</war>
+
+	</target>
+	<!-- FIM WEB -->
+	
+	
+	<!-- ESPECIAL ASSETS -->
+	<target name="empacotar-assets">
+		<property file="build_info.properties" />
+
+		<delete file="${deploy.dir}/${projeto.nome}-assets.war">
+		</delete>
+
+		<!-- Copia os arquivos de resources -->
+		<copy todir="${projeto.build.dir.assets}">
+			<fileset dir="${projeto.dir.assets}" includes="**/*">
+			</fileset> 
+		</copy> 
+
+		<war destfile="${deploy.dir}/${projeto.nome}-assets.war">
+			<fileset dir="${projeto.dir.assets}/">
+				<exclude name="WEB-INF/classes/" />
+			</fileset>
+		</war>
+
+	</target>
+	<!-- FIM ESPECIAL ASSETS -->
+
+	<!-- Deploys remotos -->
+
+	<target name="deploy-producao-web" depends="empacotar-web">
+		<sshexec command="rm -Rf ${servidor.producao.path.deploy}/${projeto.war.name}" host="${servidor.producao.host}" username="${servidor.producao.user}" password="${servidor.producao.password}" />
+		<scp todir="${servidor.producao.user}@${servidor.producao.host}:${servidor.producao.path.deploy}" file="${deploy.dir}/${projeto.war.name}" host="${servidor.producao.host}" username="${servidor.producao.user}" password="${servidor.producao.password}" />
+		<sshexec command="mv ${servidor.producao.path.deploy}/${projeto.war.name} ${servidor.producao.path.app}" host="${servidor.producao.host}" username="${servidor.producao.user}" password="${servidor.producao.password}" />
+	</target>
+	
+	<target name="deploy-producao-assets" depends="empacotar-assets">
+		<sshexec command="rm -Rf ${servidor.producao.path.deploy}/${projeto.nome}-assets.war" host="${servidor.producao.host}" username="${servidor.producao.user}" password="${servidor.producao.password}" />
+		<scp todir="${servidor.producao.user}@${servidor.producao.host}:${servidor.producao.path.deploy}" file="${deploy.dir}/${projeto.nome}-assets.war" host="${servidor.producao.host}" username="${servidor.producao.user}" password="${servidor.producao.password}" />
+		<sshexec command="mv ${servidor.producao.path.deploy}/${projeto.nome}-assets.war ${servidor.producao.path.app}" host="${servidor.producao.host}" username="${servidor.producao.user}" password="${servidor.producao.password}" />
+	</target>
+
+	<!-- Target para compilacao completa do projeto -->
+	<target name="build-all" description="Compilação completa do projeto">
+
+	    <antcall target="empacotar-web" inheritall="true" inheritrefs="true">
+		</antcall>
+
+	</target>
+
+	<!-- Target para deploy completo do projeto -->
+
+	<target name="deploy-all">
+
+		<antcall target="deploy-producao-web" inheritall="true" inheritrefs="true">
+		</antcall>
+
+	</target>
+
+</project>

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.orlandoburli.framework.core.web.BaseConsultaAction;
 import br.com.orlandoburli.minhasvendas.model.be.venda.VendedorBe;
 import br.com.orlandoburli.minhasvendas.model.dao.venda.VendedorDao;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Vendas.Vendedor;
+import br.com.orlandoburli.minhasvendas.model.dicionario.vendas.Vendedor;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.VendedorVo;
 

@@ -593,6 +593,9 @@ $(function() {
 		// Load automatico
 		setTimeout(function() {
 			loadDataGrid();
+			
+			loadJs("web/js/components.js");
+			
 		}, 100);
 	});
 

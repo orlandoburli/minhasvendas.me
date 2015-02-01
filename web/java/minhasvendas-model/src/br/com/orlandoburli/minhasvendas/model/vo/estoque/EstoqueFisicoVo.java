@@ -10,8 +10,8 @@ import br.com.orlandoburli.framework.core.dao.annotations.DataType;
 import br.com.orlandoburli.framework.core.dao.annotations.Table;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.vo.annotations.Description;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.EstoqueFisico;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario.Estoque.EstoqueFisico.Colunas;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.EstoqueFisico;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.EstoqueFisico.Colunas;
 
 @Table(EstoqueFisico.TABELA_ESTOQUE)
 public class EstoqueFisicoVo extends BaseVo {

@@ -9,7 +9,7 @@ import br.com.orlandoburli.framework.core.be.exceptions.persistence.SaveBeExcept
 import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.framework.core.log.Log;
 import br.com.orlandoburli.minhasvendas.model.dao.acesso.MenuDao;
-import br.com.orlandoburli.minhasvendas.model.utils.Dicionario;
+import br.com.orlandoburli.minhasvendas.model.dicionario.acesso.Menu;
 import br.com.orlandoburli.minhasvendas.model.utils.MinhasVendasConstants;
 import br.com.orlandoburli.minhasvendas.model.vo.acesso.MenuVo;
 
@@ -85,8 +85,8 @@ public class MenuBe extends BaseBe<MenuVo, MenuDao> {
 	}
 
 	public List<MenuVo> getMenus() throws ListException {
-		String sql = Dicionario.Acesso.Menu.TABELA_MENU + "." + Dicionario.Acesso.Menu.Colunas.ID_MENU_PAI + " IS NULL";
-		List<MenuVo> rootMenus = this.getList(null, sql, Dicionario.Acesso.Menu.TABELA_MENU + "." + Dicionario.Acesso.Menu.Colunas.ORDEM);
+		String sql = Menu.TABELA_MENU + "." + Menu.Colunas.ID_MENU_PAI + " IS NULL";
+		List<MenuVo> rootMenus = this.getList(null, sql, Menu.TABELA_MENU + "." + Menu.Colunas.ORDEM);
 
 		// Busca os sub-menus de cada um
 		for (MenuVo root : rootMenus) {
@@ -99,7 +99,7 @@ public class MenuBe extends BaseBe<MenuVo, MenuDao> {
 	public List<MenuVo> getListChildren(MenuVo menuPai) throws ListException {
 		MenuVo filter = new MenuVo();
 		filter.setIdMenuPai(menuPai.getIdMenu());
-		return this.getList(filter, null, Dicionario.Acesso.Menu.TABELA_MENU + "." + Dicionario.Acesso.Menu.Colunas.ORDEM);
+		return this.getList(filter, null, Menu.TABELA_MENU + "." + Menu.Colunas.ORDEM);
 	}
 
 }
