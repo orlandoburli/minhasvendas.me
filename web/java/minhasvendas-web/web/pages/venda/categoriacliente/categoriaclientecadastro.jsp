@@ -3,50 +3,52 @@
 
 <%@include file="../../header-title.jsp"%>
 
-<div class="row">
-	<div class="col-md-12">
-		<div class="portlet box blue-hoki">
-		
-			<div class="portlet-title">
-				<div class="caption">
-					<i class="fa "></i>${subtitulo}
-				</div>
-			</div>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="portlet box box-solid box-primary">
 			
-			<div class="portlet-body form FormularioCadastro FormularioGeral" data-page-consulta="categoriaclienteconsulta.action" data-page-operacao="${operacao}" data-page-cadastro="categoriaclientecadastro.action">
-				<form class="form-horizontal" action="#" role="form">
-					<div class="form-body">
-						<input id="idCategoria" type="hidden" value="${ vo.idCategoria }" />
-						<input id="idEmpresa" type="hidden" value="${ vo.idEmpresa }" />
-						
-						<div class="form-group">
-							<label class="col-sm-2 control-label text-right">Nome</label>
-							<div class="col-sm-7">
-								<input id="nome" type="text" autofocus="autofocus" class="form-control input-circle" value="${ vo.nome }" />
+				<div class="box-header">
+					 <h3 class="box-title">${subtitulo}</h3>
+				</div>
+				
+				<div class="box-body">
+					<div class="portlet-body form FormularioCadastro FormularioGeral" data-page-consulta="categoriaclienteconsulta.action" data-page-operacao="${operacao}" data-page-cadastro="categoriaclientecadastro.action">
+						<form class="form-horizontal" action="#" role="form">
+							<div class="form-body">
+								<input id="idCategoria" type="hidden" value="${ vo.idCategoria }" />
+								<input id="idEmpresa" type="hidden" value="${ vo.idEmpresa }" />
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label text-right">Nome</label>
+									<div class="col-sm-7">
+										<input id="nome" type="text" autofocus="autofocus" class="form-control input-circle" value="${ vo.nome }" />
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label text-right">Ativo</label>
+									<div class="col-sm-7">
+										<select id="ativo" class="form-control input-circle">
+											<option <c:if test="${ vo.ativo == 'S'}">selected="selected"</c:if> value="S">Sim</option>
+											<option <c:if test="${ vo.ativo == 'N'}">selected="selected"</c:if> value="N">Não</option>
+										</select>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label text-right">% de desconto</label>
+									<div class="col-sm-7">
+										<input id="percentualDesconto" style="text-align: right;" type="text" class="form-control input-circle" value="${ vo.percentualDesconto }" data-field-type="number" data-field-precision="2" />
+									</div>
+								</div>
+								
+								<%@include file="../../botoes-cadastro.jsp"%>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="col-sm-2 control-label text-right">Ativo</label>
-							<div class="col-sm-7">
-								<select id="ativo" class="form-control input-circle">
-									<option <c:if test="${ vo.ativo == 'S'}">selected="selected"</c:if> value="S">Sim</option>
-									<option <c:if test="${ vo.ativo == 'N'}">selected="selected"</c:if> value="N">Não</option>
-								</select>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="col-sm-2 control-label text-right">% de desconto</label>
-							<div class="col-sm-5">
-								<input id="percentualDesconto" style="text-align: right;" type="text" class="form-control input-circle" value="${ vo.percentualDesconto }" data-field-type="number" data-field-precision="2" />
-							</div>
-						</div>
-						
-						<%@include file="../../botoes-cadastro.jsp"%>
+						</form>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</section>

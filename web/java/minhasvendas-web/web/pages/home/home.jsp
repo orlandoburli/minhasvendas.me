@@ -21,36 +21,14 @@
 		<%@include file="header.jsp" %>
 	</header>
 	
-<!-- 	<div class="container page-content">
-		<div class="page-content-body" data-load="dashboard.action">
-		</div>
-	</div>
-	
-	<footer class="footer" data-load="footer.action"></footer> -->
-	
 	<div class="wrapper row-offcanvas row-offcanvas-left">
 		<%@include file="sidebar.jsp" %>
 		
-		<!-- Right side column. Contains the navbar and content of the page -->
         <aside class="right-side page-content-body" data-load="dashboard.action">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Blank page
-                    <small>it all starts here</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="#">Examples</a></li>
-                    <li class="active">Blank page</li>
-                </ol>
-            </section>
-
-            <!-- Main content -->
-            <section class="content" >
-
-            </section><!-- /.content -->
-        </aside><!-- /.right-side -->
+			
+        </aside>
+        
+        <footer class="footer" data-load="footer.action"></footer>
 	</div>
 </body>
 </html>

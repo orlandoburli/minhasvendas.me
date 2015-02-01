@@ -29,10 +29,13 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <c:forEach items="${menus}" var="menu">
+                        	
                         	<c:if test="${menu.subMenus.size() <= 0 }">
-								<li>
-									<a class="${menu.classe }" href="${menu.objeto.url}">${menu.nome}</a>
-								</li>
+								<li class="active">
+		                            <a href="${menu.objeto.url}">
+		                                <i class="${menu.classe}"></i> <span>${menu.nome}</span>
+		                            </a>
+		                        </li>
 						  	</c:if>
 						  	<c:if test="${menu.subMenus.size() > 0 }">
 								<li class="treeview">
