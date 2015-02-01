@@ -8,7 +8,11 @@ table thead td:nth-child(2) {
 }
 
 table thead td:nth-child(3) {
-	
+	width: 300px;
+}
+
+table thead td:nth-child(4) {
+	width: 50px;
 }
 
 table thead td:nth-child(2), table thead td:nth-child(3) {
@@ -21,7 +25,7 @@ table tbody tr td:nth-child(2), table tbody tr td:nth-child(3) {
 </style>
 
 <fmt:setLocale value="pt_BR"/>
-<table data-page-count="${pageCount}" class="table">
+<table data-page-count="${pageCount}" class="table table-striped">
 	<thead>
 		<tr>
 			<td>Produto</td>
@@ -35,13 +39,13 @@ table tbody tr td:nth-child(2), table tbody tr td:nth-child(3) {
 		<c:forEach items="${vo.itens}" var="item" varStatus="loop">
 			<tr data-id="idItemEntrada=${ item.idItemEntrada}" data-index="${loop.index}">
 				<td>${ item.produto.nome }</td>
-				<td> 
+				<td>
 					<input id="quantidade${loop.index}" class="form-control input-circle text-right item-quantidade"  value="${item.quantidade}" data-field-type="number" data-field-precision="0" /> 
 				</td>
 				<td>
-					<div class="input-icon right">
-						<i class="fa fa-usd"></i>
+					<div class="input-group">
 						<input id="valorCompra${loop.index}" class="form-control input-circle text-right item-valor-compra" data-field-type="number" data-field-precision="2" value="${item.valorCompra }" />
+						<span class="input-group-addon"><i class="fa fa-usd"></i></span>
 					</div>
 				</td>
 				<td>
@@ -52,5 +56,4 @@ table tbody tr td:nth-child(2), table tbody tr td:nth-child(3) {
 			</tr>
 		</c:forEach>
 	</tbody>
-
 </table>

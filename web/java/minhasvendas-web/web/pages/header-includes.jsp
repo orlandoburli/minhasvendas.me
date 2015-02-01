@@ -82,6 +82,7 @@
 <script src="/minhasvendas-assets/lte/js/AdminLTE/demo.js" type="text/javascript"></script>
  
 <!-- Adições extras -->
+<script src="/minhasvendas-assets/select2-3.5.2/select2.min.js"></script>
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.blockUI.js"></script>
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.bootstrap-growl.min.js"></script>
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.price_format.2.0.min.js"></script>

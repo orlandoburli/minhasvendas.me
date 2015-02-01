@@ -43,11 +43,23 @@ public class ItemEntradaVo extends BaseVo {
 	@Description("Quantidade")
 	private BigDecimal quantidade;
 
-	@Column(name = Colunas.VALOR_COMPRA, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true)
+	@Column(name = Colunas.VALOR_UNITARIO, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true)
 	@Precision(2)
 	@NotNegative
-	@Description("Valor de Compra")
-	private BigDecimal valorCompra;
+	@Description("Valor Unitário")
+	private BigDecimal valoUnitario;
+
+	@Column(name = Colunas.VALOR_DESCONTO, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true)
+	@Precision(2)
+	@NotNegative
+	@Description("Valor Desconto")
+	private BigDecimal valoDesconto;
+
+	@Column(name = Colunas.VALOR_TOTAL, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true)
+	@Precision(2)
+	@NotNegative
+	@Description("Valor Total")
+	private BigDecimal valorTotal;
 
 	@Join(columnsLocal = { Colunas.ID_ENTRADA }, columnsRemote = { Entrada.Colunas.ID_ENTRADA })
 	private EntradaVo entrada;
@@ -87,14 +99,6 @@ public class ItemEntradaVo extends BaseVo {
 		this.quantidade = quantidade;
 	}
 
-	public BigDecimal getValorCompra() {
-		return valorCompra;
-	}
-
-	public void setValorCompra(BigDecimal valorCompra) {
-		this.valorCompra = valorCompra;
-	}
-
 	public EntradaVo getEntrada() {
 		return entrada;
 	}
@@ -109,5 +113,29 @@ public class ItemEntradaVo extends BaseVo {
 
 	public void setProduto(ProdutoVo produto) {
 		this.produto = produto;
+	}
+
+	public BigDecimal getValoUnitario() {
+		return valoUnitario;
+	}
+
+	public void setValoUnitario(BigDecimal valoUnitario) {
+		this.valoUnitario = valoUnitario;
+	}
+
+	public BigDecimal getValoDesconto() {
+		return valoDesconto;
+	}
+
+	public void setValoDesconto(BigDecimal valoDesconto) {
+		this.valoDesconto = valoDesconto;
+	}
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 }

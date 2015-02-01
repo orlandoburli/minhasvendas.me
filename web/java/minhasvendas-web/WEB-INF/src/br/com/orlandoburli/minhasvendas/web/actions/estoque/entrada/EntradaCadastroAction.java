@@ -110,33 +110,36 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 
 	public void adicionaritem() {
 		try {
-			if (getIdProduto() == null || getIdProduto() == 0) {
-				writeErrorMessage("Informe o produto!", "idProduto");
-				return;
-			}
 
-			if (getQuantidade() == null || getQuantidade().compareTo(BigDecimal.ZERO) <= 0) {
-				writeErrorMessage("Informe a quantidade!", "quantidade");
-				return;
-			}
-
-			if (getQuantidade() == null || getQuantidade().compareTo(BigDecimal.ZERO) < 0) {
-				writeErrorMessage("Informe o valor de compra!", "valorCompra");
-				return;
-			}
-
-			ProdutoVo produto = new ProdutoBe(getManager()).get(getIdProduto());
-
-			if (produto == null) {
-				writeErrorMessage("Informe o produto!", "idProduto");
-				return;
-			}
+			// if (getIdProduto() == null || getIdProduto() == 0) {
+			// writeErrorMessage("Informe o produto!", "idProduto");
+			// return;
+			// }
+			//
+			// if (getQuantidade() == null ||
+			// getQuantidade().compareTo(BigDecimal.ZERO) <= 0) {
+			// writeErrorMessage("Informe a quantidade!", "quantidade");
+			// return;
+			// }
+			//
+			// if (getQuantidade() == null ||
+			// getQuantidade().compareTo(BigDecimal.ZERO) < 0) {
+			// writeErrorMessage("Informe o valor de compra!", "valorCompra");
+			// return;
+			// }
+			//
+			// ProdutoVo produto = new
+			// ProdutoBe(getManager()).get(getIdProduto());
+			//
+			// if (produto == null) {
+			// writeErrorMessage("Informe o produto!", "idProduto");
+			// return;
+			// }
 
 			ItemEntradaVo item = new ItemEntradaVo();
-			item.setProduto(produto);
-			item.setIdProduto(produto.getIdProduto());
-			item.setQuantidade(getQuantidade());
-			item.setValorCompra(getValorCompra());
+			injectVo(item);
+
+			new ItemEntradaBe(getManager()).validate(item);
 
 			EntradaVo entrada = getVoSession();
 
@@ -149,7 +152,7 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 			setVoSession(entrada);
 
 			write(Utils.voToJson(new RetornoAction(true, "Item adicionado!")));
-		} catch (ListException e) {
+		} catch (BeException e) {
 			Log.error(e);
 			writeErrorMessage(e.getMessage());
 		}
@@ -202,7 +205,7 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 
 		ItemEntradaVo item = entrada.getItens().get(getIndex());
 		item.setQuantidade(getQuantidade());
-		item.setValorCompra(getValorCompra());
+		// item.setValorCompra(getValorCompra());
 
 		setVoSession(entrada);
 
