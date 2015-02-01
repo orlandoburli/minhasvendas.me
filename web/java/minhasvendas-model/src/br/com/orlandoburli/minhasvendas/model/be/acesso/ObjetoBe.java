@@ -15,6 +15,7 @@ import br.com.orlandoburli.minhasvendas.model.vo.estoque.ProdutoVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.CategoriaClienteVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.CategoriaVendedorVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.ClienteVo;
+import br.com.orlandoburli.minhasvendas.model.vo.venda.OrcamentoVo;
 import br.com.orlandoburli.minhasvendas.model.vo.venda.VendedorVo;
 
 public class ObjetoBe extends BaseBe<ObjetoVo, ObjetoDao> {
@@ -46,6 +47,7 @@ public class ObjetoBe extends BaseBe<ObjetoVo, ObjetoDao> {
 		criaPadraoVo(CategoriaVendedorVo.class, "Categoria de Vendedores", MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_VENDEDOR_CADASTRO);
 		criaPadraoVo(VendedorVo.class, "Vendedores", MinhasVendasConstants.Objeto.VENDEDOR_CONSULTA, MinhasVendasConstants.Objeto.VENDEDOR_CADASTRO);
 		criaPadraoVo(EntradaVo.class, "Entrada de Produtos", MinhasVendasConstants.Objeto.ENTRADA_CONSULTA, MinhasVendasConstants.Objeto.ENTRADA_CADASTRO);
+		criaPadraoVo(OrcamentoVo.class, "Orçamento", MinhasVendasConstants.Objeto.ORCAMENTO_CONSULTA, MinhasVendasConstants.Objeto.ORCAMENTO_CADASTRO);
 	}
 
 	public void criaPadraoVo(Class<?> vo, String descricao, Integer idConsulta, Integer idCadastro) throws BeException {

@@ -31,6 +31,9 @@ public final class MinhasVendasConstants {
 
 		public static final int ENTRADA_CONSULTA = 2007;
 		public static final int ENTRADA_CADASTRO = 2008;
+		
+		public static final int ORCAMENTO_CONSULTA = 2009;
+		public static final int ORCAMENTO_CADASTRO = 2010;
 	}
 
 	public final class Menu {
@@ -48,6 +51,7 @@ public final class MinhasVendasConstants {
 		public static final int CATEGORIA_VENDEDOR = 3004;
 		public static final int VENDEDOR = 3003;
 		public static final int ENTRADA = 3005;
+		public static final int ORCAMENTO = 3006;
 
 		public static final int SEPARADOR01 = 9901;
 		public static final int SEPARADOR02 = 9902;

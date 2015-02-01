@@ -29,7 +29,7 @@
 								<input id="idEntrada" type="text"  autofocus="autofocus" class="form-control input-circle" value="${ vo.idEntrada }" />
 							</div>
 						</div>
-						
+						<div class="row">
 						<div class="form-group">
 							<label class="col-sm-2 control-label text-right">Produto</label>
 							<div class="col-sm-7">
@@ -49,6 +49,7 @@
 							<div class="col-sm-7">
 								<input id="valorCompra" type="text"   class="form-control input-circle" value="${ vo.valorCompra }" />
 							</div>
+						</div>
 						</div>
 						
 						<%@include file="../../botoes-cadastro.jsp"%>
