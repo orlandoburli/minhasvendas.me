@@ -11,6 +11,7 @@ import br.com.orlandoburli.framework.core.be.exceptions.BeException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.InsertBeException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.ListException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.SaveBeException;
+import br.com.orlandoburli.framework.core.be.exceptions.validation.ValidationBeException;
 import br.com.orlandoburli.framework.core.be.validation.annotations.transformation.Precision;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.framework.core.log.Log;
@@ -110,48 +111,27 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 
 	public void adicionaritem() {
 		try {
-
-			// if (getIdProduto() == null || getIdProduto() == 0) {
-			// writeErrorMessage("Informe o produto!", "idProduto");
-			// return;
-			// }
-			//
-			// if (getQuantidade() == null ||
-			// getQuantidade().compareTo(BigDecimal.ZERO) <= 0) {
-			// writeErrorMessage("Informe a quantidade!", "quantidade");
-			// return;
-			// }
-			//
-			// if (getQuantidade() == null ||
-			// getQuantidade().compareTo(BigDecimal.ZERO) < 0) {
-			// writeErrorMessage("Informe o valor de compra!", "valorCompra");
-			// return;
-			// }
-			//
-			// ProdutoVo produto = new
-			// ProdutoBe(getManager()).get(getIdProduto());
-			//
-			// if (produto == null) {
-			// writeErrorMessage("Informe o produto!", "idProduto");
-			// return;
-			// }
-
-			ItemEntradaVo item = new ItemEntradaVo();
-			injectVo(item);
-
-			new ItemEntradaBe(getManager()).validate(item);
-
 			EntradaVo entrada = getVoSession();
 
 			if (entrada == null) {
 				entrada = new EntradaVo();
+				entrada.setIdEntrada(0);
 			}
+
+			ItemEntradaVo item = new ItemEntradaVo();
+			injectVo(item);
+
+			item.setIdEntrada(entrada.getIdEntrada());
+
+			new ItemEntradaBe(getManager()).validate(item);
 
 			entrada.getItens().add(item);
 
 			setVoSession(entrada);
 
-			write(Utils.voToJson(new RetornoAction(true, "Item adicionado!")));
+			write(Utils.voToJson(new RetornoAction(true, "Item adicionado!", item)));
+		} catch (ValidationBeException e) {
+			writeErrorMessage(e.getMessage());
 		} catch (BeException e) {
 			Log.error(e);
 			writeErrorMessage(e.getMessage());
@@ -176,40 +156,39 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 		writeSucesso("Item removido!");
 	}
 
-	public void editaritem() {
-		Log.fine("Editando item...");
+	public void alteraritem() {
+		try {
+			Log.fine("Editando item...");
 
-		EntradaVo entrada = getVoSession();
+			EntradaVo entrada = getVoSession();
 
-		if (entrada == null) {
-			entrada = new EntradaVo();
+			if (entrada == null) {
+				entrada = new EntradaVo();
+			}
+
+			if (getIndex() == null || getIndex() < 0) {
+				writeErrorMessage("Indice não informado!");
+				return;
+			} else if (getIndex() >= entrada.getItens().size()) {
+				writeErrorMessage("Indice " + getIndex() + " fora da faixa de valores!");
+				return;
+			}
+
+			ItemEntradaVo item = entrada.getItens().get(getIndex());
+
+			injectVo(item);
+
+			new ItemEntradaBe(getManager()).validate(item);
+
+			setVoSession(entrada);
+
+			write(Utils.voToJson(new RetornoAction(true, "Item alterado!", item)));
+		} catch (ValidationBeException e) {
+			writeErrorMessage(e.getMessage(), e.getField());
+		} catch (BeException e) {
+			e.printStackTrace();
+			writeErrorMessage(e.getMessage(), e.getField());
 		}
-
-		if (getIndex() == null || getIndex() < 0) {
-			writeErrorMessage("Indice não informado!");
-			return;
-		} else if (getIndex() >= entrada.getItens().size()) {
-			writeErrorMessage("Indice " + getIndex() + " fora da faixa de valores!");
-			return;
-		}
-
-		if (getQuantidade() == null || getQuantidade().compareTo(BigDecimal.ZERO) <= 0) {
-			writeErrorMessage("Informe a quantidade!", "quantidade" + getIndex());
-			return;
-		}
-
-		if (getQuantidade() == null || getQuantidade().compareTo(BigDecimal.ZERO) < 0) {
-			writeErrorMessage("Informe o valor de compra!", "valorCompra" + getIndex());
-			return;
-		}
-
-		ItemEntradaVo item = entrada.getItens().get(getIndex());
-		item.setQuantidade(getQuantidade());
-		// item.setValorCompra(getValorCompra());
-
-		setVoSession(entrada);
-
-		write(Utils.voToJson(new RetornoAction(true, "Item alterado!")));
 	}
 
 	public EmpresaVo getUsuario() {

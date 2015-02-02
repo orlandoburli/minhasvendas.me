@@ -35,7 +35,7 @@ table tbody tr td:nth-child(1), table tbody tr td:nth-child(2), table tbody tr t
 
 	<tfoot>
 		<tr>
-			<td colspan="4">P&aacute;gina ${pageNumber} de ${pageCount}</td>
+			<td colspan="6">P&aacute;gina ${pageNumber} de ${pageCount}</td>
 		</tr>
 	</tfoot>
 	

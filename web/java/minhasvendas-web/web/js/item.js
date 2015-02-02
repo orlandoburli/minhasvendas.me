@@ -1,327 +1,317 @@
-// Funcao que limpa as linhas selecionadas da grid
-function limparSelecao() {
-	$(".DataGridConsulta > table > tbody > tr").each(function(index) {
-		$(this).attr("data-selected", "false");
-		$(this).attr("class", "");
-	});
-}
-
-// Retorna o id da linha selecionada
-function getSelectedDataId() {
-	var retorno = null;
-
-	$(".DataGridConsulta > table > tbody > tr").each(function(index) {
-		if ($(this).attr("data-selected") == "true") {
-			retorno = $(this).attr("data-id");
+// Funcoes de manipulacao da grid de itens
+function adicionarItem(retornoFocus) {
+	// Se tiver alguma requisicao rolando, nao executa.
+	if ($.active > 0) {
+		return;
+	}
+	
+	var paginaCadastro = $(".FormularioCadastro").attr("data-page-cadastro");
+	var paginaBase = paginaCadastro.split(".")[0];
+	var operacao = "adicionaritem";
+	var paginaFinal = paginaBase + "." + operacao + "." + paginaCadastro.split(".")[1];
+	
+	var params = {};
+	
+	$(".FormItens > div > input,select,textarea, .FormItens > div > div > input,select,textarea").each(function(index) {
+		var val;
+		
+		if ($(this).hasClass("autocomplete")) {
+			val = $(this).attr("data-value");
+		} else {
+			val = $(this).val();
+		}
+		
+		params[$(this).attr("id")] = val;
+		if (debug) {
+			console.log($(this).attr("id") + ' = ' + val);	
 		}
 	});
-	return retorno;
-}
+	
+	$.ajax({
+		url : paginaFinal,
+		type : 'POST',
+		data : params,
+		beforeSend : function(data) { },
+		success : function(data) {
 
-function getPageSize() {
-	return parseInt($(".DataGridConsulta").attr("data-page-size"));
-}
+			var retorno = $.parseJSON(data);
 
-// Retorna a linha selecionada
-function getSelectedIndex() {
-	var retorno = -1;
-
-	$(".DataGridConsulta > table > tbody > tr").each(function(index) {
-		if ($(this).attr("data-selected") == "true") {
-			retorno = index;
+			if (retorno.sucesso) {
+				
+				mensagemInfo(retorno.mensagem);
+				
+				limparCamposItem();
+				
+				loadDataGrid();
+				
+				if (retornoFocus) {
+					$(retornoFocus).focus();
+				}
+			} else {
+				mensagemErro(retorno.mensagem);
+				$("#" + retorno.fieldFocus).focus();
+			}
+		},
+		error : function(erro) {
+			if (debug) {
+				console.log("Erro no load ajax! " + erro);	
+			}
 		}
 	});
-	return retorno;
+}
+
+function alterarItem(oIndex) {
+	// Se tiver alguma requisicao rolando, nao executa.
+	
+	var paginaCadastro = $(".FormularioCadastro").attr("data-page-cadastro");
+	var paginaBase = paginaCadastro.split(".")[0];
+	var operacao = "alteraritem";
+	var paginaFinal = paginaBase + "." + operacao + "." + paginaCadastro.split(".")[1];
+	
+	var params = {
+		index : oIndex
+	};
+	
+	// Este +1 e por causa do cabecalho, que também conta.
+	var indexGrid = oIndex + 1;
+	
+	$(".DataGridItens tr:eq("+indexGrid+") ").find("input,select,textarea").each(function(index2) {
+		
+		var val;
+		
+		if ($(this).hasClass("autocomplete")) {
+			val = $(this).attr("data-value");
+		} else {
+			val = $(this).val();
+		}
+		
+		params[$(this).attr("id")] = val;
+		
+		if (debug) {
+			console.log($(this).attr("id") + ' = ' + val);	
+		}
+	});
+
+	if (debug) {
+		console.log(params);
+	}
+	
+	$.ajax({
+		url : paginaFinal,
+		type : 'POST',
+		data : params,
+		beforeSend : function(data) { },
+		success : function(data) {
+
+			var retorno = $.parseJSON(data);
+
+			if (retorno.sucesso) {
+				// Se deu certo, nao precisa avisar nada...
+				if (debug) {
+					console.log("Retorno de alteraritem");
+					console.log(retorno);
+				}
+				
+				try {
+					// Procurar itens desabilitados para jogar o retorno
+					$(".DataGridItens tr:eq("+indexGrid+") ").find("input:disabled,select:disabled,textarea:disabled").each(function(index2) {
+						var id = $(this).attr("id");
+						
+						$(this).val(retorno.objeto[id]);
+						
+						// Formatacao de numeros
+						if ($(this).attr("data-field-type") == "number") {
+							var decimais = $(this).attr("data-field-precision");
+
+							var valueNumber = parseFloat($(this).val());
+							valueNumber = valueNumber * (Math.pow(10, decimais));
+							
+							valueNumber = parseInt(valueNumber);
+							
+							$(this).val(valueNumber);
+
+							$(this).priceFormat({
+								clearPrefix : true,
+								prefix : '',
+								centsSeparator : ',',
+								thousandsSeparator : '',
+								centsLimit : parseInt(decimais)
+							});
+						}
+						
+						if (debug) {
+							console.log(id + ' = ' + $(this).val());	
+						}
+					});
+				} catch(error) {
+					if (debug) {
+						console.log(error);
+					}
+				}
+			} else {
+				mensagemErro(retorno.mensagem);
+				$("#" + retorno.fieldFocus).focus();
+			}
+		},
+		error : function(erro) {
+			console.log("Erro no load ajax! " + erro);
+		}
+	});
+}
+
+function limparCamposItem() {
+	$(".FormItens > div > input,select,textarea, .FormItens > div > div > input,select,textarea").each(function(index) {
+		var defaultValue = $(this).attr("data-default-value");
+		
+		$(this).val(defaultValue);
+		
+		if ($(this).hasClass("autocomplete")) {
+			$(this).attr("data-value", defaultValue);
+		}
+	});
 }
 
 // Altera a linha selecionada
-function setSelectedIndex(selectedIndex) {
-	limparSelecao();
-
-//	$(".DataGridConsulta > table > tbody > tr").each(function(index) {
-//		if (index == selectedIndex) {
-//			$(this).attr("data-selected", "true");
-//			$(this).attr("class", "btn-primary");
-//		}
-//	});
-}
-
-function loadDataGrid(funcaoSucesso) {
-	// Se tiver alguma requisicao rolando, nao executa.
-//	if ($.active > 0) {
-//		return;
-//	}
-	
-	console.log("Load grid...");
+function loadDataGrid(funcaoSucesso, funcaoBindItens) {
+	if (debug) {
+		console.log("Load grid...");	
+	}
 
 	blockConteudo(".DataGridConsulta");
 
 	var paginaGrid = $(".DataGridConsulta").attr("data-page");
-	var pageSize = $(".DataGridConsulta").attr("data-page-size");
-	var pageNumber = $(".DataGridConsulta").attr("data-page-number");
 
-	console.log("pageSize: " + pageSize);
-
-	if (!pageNumber) {
-		pageNumber = 1;
-	}
-
-	var params = {
-		'PageNumber' : pageNumber,
-		'PageSize' : pageSize
-	};
-
-	// Loop nos input's do form para enviar
-	$("input,select").each(function(index) {
-		params[$(this).attr("id")] = $(this).val();
-		console.log($(this).attr("id") + ' = ' + $(this).val());
-	});
+	var params = {};
 
 	$.ajax({
 		url : paginaGrid,
 		type : 'POST',
 		data : params,
 		beforeSend : function(data) {
-			// console.log("loading...");
+			if (debug) {
+				console.log("loading...");
+			}
 		},
 		success : function(data) {
 			$(".DataGridConsulta").html(data);
 
-			limparSelecao();
-
-			setSelectedIndex(0);
-			
 			// Carrega as funcoes de componente
 			loadJs("web/js/components.js");
 			
 			if (funcaoSucesso) {
 				funcaoSucesso();
 			}
-
-			// FUNCOES DOS BOTOES DE NAVEGACAO
-
-			// Selecao da grid
-//			$(".DataGridConsulta > table > tbody > tr").click(function() {
-//				// TODO - Funcionalidade default e de selecao unica, posso
-//				// implementar
-//				// ainda a selecao mutipla
-//				// Varre a tabela para limpar as selecoes
-//
-//				limparSelecao();
-//				
-//				$(this).attr("data-selected", "true");
-//				$(this).attr("class", "btn-primary");
-//			});
 			
+			// Bind dos eventos de exclusao / alteracao
+			
+			bindItemEvents();
+
 			unBlockConteudo(".DataGridConsulta");
 		},
 		error : function(erro) {
-			// Metronic.unblockUI('.DataGridConsulta');
-			console.log("Erro no load ajax! " + erro);
 			unBlockConteudo(".DataGridConsulta");
+			
+			if (debug) {
+				console.log("Erro no load ajax! " + erro);	
+			}
 		}
 	});
 }
-function primeiraPagina() {
+
+function removerItem(indexParam) {
+	
+	if (!confirm("Confirma exclusão deste item?")) {
+		return;
+	}
+	
 	// Se tiver alguma requisicao rolando, nao executa.
 	if ($.active > 0) {
 		return;
 	}
-
-	var pageNumber = $(".DataGridConsulta").attr("data-page-number");
-
-	pageNumber = 1;
-
-	$(".DataGridConsulta").attr("data-page-number", pageNumber);
-
-	loadDataGrid();
-}
-
-function proximaPagina() {
-	// Se tiver alguma requisicao rolando, nao executa.
-	if ($.active > 0) {
-		return;
-	}
-
-	var pageNumber = $(".DataGridConsulta").attr("data-page-number");
-	var pageCount = $(".DataGridConsulta table").attr("data-page-count");
-
-	if (!$.isNumeric(pageCount)) {
-		pageCount = 1;
-	}
-
-	if (!$.isNumeric(pageNumber)) {
-		pageNumber = 1;
-	}
-
-	if (parseInt(pageNumber) < parseInt(pageCount)) {
-		pageNumber = parseInt(pageNumber) + 1;
-
-		$(".DataGridConsulta").attr("data-page-number", pageNumber);
-
-		loadDataGrid();
-	}
-}
-
-function ultimaPagina() {
-	// Se tiver alguma requisicao rolando, nao executa.
-	if ($.active > 0) {
-		return;
-	}
-
-	var pageNumber = $(".DataGridConsulta").attr("data-page-number");
-	var pageCount = $(".DataGridConsulta table").attr("data-page-count");
-
-	if (!$.isNumeric(pageCount)) {
-		pageCount = 1;
-	}
-
-	if (!$.isNumeric(pageNumber)) {
-		pageNumber = 1;
-	}
-
-	if (parseInt(pageNumber) < parseInt(pageCount)) {
-		pageNumber = parseInt(pageCount);
-
-		$(".DataGridConsulta").attr("data-page-number", pageNumber);
-
-		loadDataGrid();
-	}
-}
-
-function paginaAnterior() {
-	// Se tiver alguma requisicao rolando, nao executa.
-	if ($.active > 0) {
-		return;
-	}
-
-	var pageNumber = $(".DataGridConsulta").attr("data-page-number");
-	var pageCount = $(".DataGridConsulta table").attr("data-page-count");
-
-	if (!$.isNumeric(pageCount)) {
-		pageCount = 1;
-	}
-
-	if (!$.isNumeric(pageNumber)) {
-		pageNumber = 1;
-	}
-
-	if (parseInt(pageNumber) > 1) {
-		pageNumber = parseInt(pageNumber) - 1;
-
-		$(".DataGridConsulta").attr("data-page-number", pageNumber);
-
-		loadDataGrid();
-	}
-}
-
-function itemAnterior() {
-	// Se tiver alguma requisicao rolando, nao executa.
-	if ($.active > 0) {
-		return;
-	}
-
-	var index = getSelectedIndex();
-
-	if (index > 0) {
-		index = parseInt(index) - 1;
-		setSelectedIndex(index);
-	} else {
-		paginaAnterior();
-	}
-}
-
-function proximoItem() {
-	// Se tiver alguma requisicao rolando, nao executa.
-	if ($.active > 0) {
-		return;
-	}
-
-	var index = getSelectedIndex();
-
-	if (index < (getPageSize() - 1)) {
-		index = parseInt(index) + 1;
-		setSelectedIndex(index);
-	} else {
-		proximaPagina();
-	}
-}
-
-var eventoTeclasConsulta = function(event) {
-	switch (event.which) {
-
-	case (KEY_NEXT):
-		proximaPagina();
-		break;
-
-	case (KEY_PAGEDOWN):
-		proximaPagina();
-		break;
-
-	case (KEY_PREVIOUS):
-		paginaAnterior();
-		break;
-
-	case (KEY_PAGEUP):
-		paginaAnterior();
-		break;
-
-	case (KEY_UP):
-		itemAnterior();
-		break;
-
-	case (KEY_DOWN):
-		proximoItem();
-		break;
-
-	case (KEY_ENTER):
-		primeiraPagina();
-		break;
-
-	case (KEY_HOME):
-		primeiraPagina();
-		break;
-
-	case (KEY_END):
-		ultimaPagina();
-		break;
-
-	case (KEY_N):
-		if (event.ctrlKey) {
-			event.preventDefault();
-			$(".BotaoNovo").click();
+	
+	var paginaCadastro = $(".FormularioCadastro").attr("data-page-cadastro");
+	var paginaBase = paginaCadastro.split(".")[0];
+	var operacao = "removeritem";
+	var paginaFinal = paginaBase + "." + operacao + "." + paginaCadastro.split(".")[1];
+	
+	var params = {
+		index : indexParam
+	};
+	
+	$.ajax({
+		url : paginaFinal,
+		type : 'POST',
+		data : params,
+		beforeSend : function(data) { },
+		success : function(data) {
+			
+			var retorno = $.parseJSON(data);
+			
+			if (retorno.sucesso) {
+				mensagemInfo(retorno.mensagem);
+				limparCamposItem();
+				loadDataGrid();
+			} else {
+				mensagemErro(retorno.mensagem);
+				$("#" + retorno.fieldFocus).focus();
+			}
+		},
+		error : function(erro) {
+			console.log("Erro no load ajax! " + erro);
 		}
-		break;
+	});
+}
 
-	case (KEY_E):
-		if (event.ctrlKey) {
-			event.preventDefault();
-			$(".BotaoEditar").click();
+function bindItemEvents() {
+	// Bind do clique do botao Remover Item
+	$(".DataGridConsulta > table > tbody > tr").each(function(index) {
+		var tr = $(this);
+		var botao = $(this).find(".BotaoRemoverItem");
+		
+		if (debug) {
+			console.log("Bind do excluir indice " + index + ".");
 		}
-		break;
-	case (KEY_DEL):
-		if (event.ctrlKey) {
-			event.preventDefault();
-			$(".BotaoExcluir").click();
-		}
-		break;
-	}
-};
+		
+		botao.on("click", function() {
+			removerItem(index);
+		});
+		
+		$(tr).find("input,select,textarea").each(function(index2){
+			if (debug) {
+				console.log("Bind do alterar item indice " + index + " id " + $(this).attr("id") + ".");
+			}
+			
+			$(this).on("blur", function() {
+				alterarItem(index);
+			});
+		});
+	});
+}
 
 $(document).ready(function() {
-
+	
 	$(document).off("keydown");
 
-	// Verifica se e uma tela de consulta
-	if ($(".DataGridConsulta")) {
-		$(document).on("keydown", eventoTeclasConsulta);
+	$(".BotaoAdicionarItem").click(function() {
+		adicionarItem();
+	});
+	
+	// TODO Buscar ultimo input
+	
+	if (browser.mozilla) {
+		$("#valorDesconto").keypress(keySalvar);
+	} else {
+		$("#valorDesconto").keydown(keySalvar);
 	}
 
-	// Foco no primeiro input (autofocus)
-	$('input[autofocus]').focus();
+	function keySalvar(event) {
+		if (event.keyCode == 13) {
+			adicionarItem();
+		}
+	}
 
 	// Load automatico
 	setTimeout(function() {
 		loadDataGrid();
-	}, 100);
+	}, 1000);
 });

@@ -43,19 +43,19 @@ public class ItemEntradaVo extends BaseVo {
 	@Description("Quantidade")
 	private BigDecimal quantidade;
 
-	@Column(name = Colunas.VALOR_UNITARIO, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true)
+	@Column(name = Colunas.VALOR_UNITARIO, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true, defaultValue = "0")
 	@Precision(2)
 	@NotNegative
 	@Description("Valor Unitário")
-	private BigDecimal valoUnitario;
+	private BigDecimal valorUnitario;
 
-	@Column(name = Colunas.VALOR_DESCONTO, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true)
+	@Column(name = Colunas.VALOR_DESCONTO, dataType = DataType.NUMERIC, maxSize = 20, precision = 4)
 	@Precision(2)
 	@NotNegative
 	@Description("Valor Desconto")
-	private BigDecimal valoDesconto;
+	private BigDecimal valorDesconto;
 
-	@Column(name = Colunas.VALOR_TOTAL, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true)
+	@Column(name = Colunas.VALOR_TOTAL, dataType = DataType.NUMERIC, maxSize = 20, precision = 4)
 	@Precision(2)
 	@NotNegative
 	@Description("Valor Total")
@@ -115,27 +115,27 @@ public class ItemEntradaVo extends BaseVo {
 		this.produto = produto;
 	}
 
-	public BigDecimal getValoUnitario() {
-		return valoUnitario;
-	}
-
-	public void setValoUnitario(BigDecimal valoUnitario) {
-		this.valoUnitario = valoUnitario;
-	}
-
-	public BigDecimal getValoDesconto() {
-		return valoDesconto;
-	}
-
-	public void setValoDesconto(BigDecimal valoDesconto) {
-		this.valoDesconto = valoDesconto;
-	}
-
 	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
 
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
+	}
+
+	public BigDecimal getValorUnitario() {
+		return valorUnitario;
+	}
+
+	public void setValorUnitario(BigDecimal valorUnitario) {
+		this.valorUnitario = valorUnitario;
+	}
+
+	public BigDecimal getValorDesconto() {
+		return valorDesconto;
+	}
+
+	public void setValorDesconto(BigDecimal valorDesconto) {
+		this.valorDesconto = valorDesconto;
 	}
 }

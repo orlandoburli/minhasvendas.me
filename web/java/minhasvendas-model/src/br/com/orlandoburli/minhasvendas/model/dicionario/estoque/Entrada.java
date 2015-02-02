@@ -13,5 +13,10 @@ public final class Entrada {
 		public static final String DATA_EMISSAO_DOCUMENTO = "data_emissao_documento";
 		public static final String STATUS = "status";
 		public static final String DATA_PROCESSAMENTO = "data_processamento";
+
+		public static final String VALOR_ITENS = "valor_itens";
+		public static final String VALOR_DESCONTOS = "valor_descontos";
+		public static final String VALOR_FRETE = "valor_frete";
+		public static final String VALOR_TOTAL = "valor_total";
 	}
 }

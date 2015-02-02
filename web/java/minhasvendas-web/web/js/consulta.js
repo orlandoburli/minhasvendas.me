@@ -1,5 +1,6 @@
-//console.log("Carregando js da consulta");
-
+if (debug) {
+	console.log("Carregando js da consulta");	
+}
 // FUNCOES DA DATAGRID
 
 $(function() {
@@ -68,7 +69,9 @@ $(function() {
 		var pageSize = $(".DataGridConsulta").attr("data-page-size");
 		var pageNumber = $(".DataGridConsulta").attr("data-page-number");
 
-		console.log("pageSize: " + pageSize);
+		if (debug) {
+			console.log("pageSize: " + pageSize);	
+		}
 
 		if (!pageNumber) {
 			pageNumber = 1;
@@ -82,7 +85,9 @@ $(function() {
 		// Loop nos input's do form para enviar
 		$("input,select").each(function(index) {
 			params[$(this).attr("id")] = $(this).val();
-			console.log($(this).attr("id") + ' = ' + $(this).val());
+			if (debug) {
+				console.log($(this).attr("id") + ' = ' + $(this).val());	
+			}
 		});
 
 		$.ajax({
@@ -90,7 +95,9 @@ $(function() {
 			type : 'POST',
 			data : params,
 			beforeSend : function(data) {
-				// console.log("loading...");
+				if (debug) {
+					console.log("loading...");	
+				}
 			},
 			success : function(data) {
 				$(".DataGridConsulta").html(data);
@@ -117,8 +124,9 @@ $(function() {
 				unBlockConteudo(".DataGridConsulta");
 			},
 			error : function(erro) {
-				// Metronic.unblockUI('.DataGridConsulta');
-				console.log("Erro no load ajax! " + erro);
+				if (debug){
+					console.log("Erro no load ajax! " + erro);	
+				}
 				unBlockConteudo(".DataGridConsulta");
 			}
 		});
@@ -216,7 +224,9 @@ $(function() {
 			},
 			error : function(erro) {
 				unBlockUI();
-				console.log("Erro no load ajax! " + erro);
+				if (debug) {
+					console.log("Erro no load ajax! " + erro);	
+				}
 			}
 		});
 	}
@@ -271,8 +281,10 @@ $(function() {
 				unBlockUI();
 			},
 			error : function(erro) {
-				console.log("Erro no load ajax! " + erro);
 				unBlockUI();
+				if (debug) {
+					console.log("Erro no load ajax! " + erro);	
+				}
 			}
 		});
 	}
@@ -323,8 +335,10 @@ $(function() {
 				unBlockUI();
 			},
 			error : function(erro) {
-				console.log("Erro no load ajax! " + erro);
 				unBlockUI();
+				if (debug) {
+					console.log("Erro no load ajax! " + erro);
+				}
 			}
 		});
 	}
@@ -385,11 +399,12 @@ $(function() {
 				}
 			},
 			error : function(erro) {
-				console.log("Erro no load ajax! " + erro);
 				unBlockUI();
+				if (debug) {
+					console.log("Erro no load ajax! " + erro);
+				}
 			}
 		});
-
 	}
 
 	function primeiraPagina() {

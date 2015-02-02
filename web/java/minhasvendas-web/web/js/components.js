@@ -12,7 +12,9 @@ $("input[data-field-type='number']").each(function() {
 
 	var valueNumber = parseFloat($(this).val());
 	valueNumber = valueNumber * (Math.pow(10, decimais));
-
+	
+	valueNumber = parseInt(valueNumber);
+	
 	$(this).val(valueNumber);
 
 	$(this).priceFormat({
@@ -56,23 +58,21 @@ $("input.autocomplete").each(
 									response(data);
 								},
 								error : function(erro, status, text) {
-									console.log("Erro no load ajax! " + erro
-											+ ", " + status + ", " + text);
+									if (debug) {
+										console.log("Erro no load ajax! " + erro + ", " + status + ", " + text);	
+									}
 								}
 							});
 						},
 						minLenght : 1,
 						select : function(event, ui) {
-							$(this).attr("data-value",
-									ui.item ? ui.item.id : "");
+							$(this).attr("data-value", ui.item ? ui.item.id : "");
 						},
 						open : function() {
-							$(this).removeClass("ui-corner-all").addClass(
-									"ui-corner-top");
+							$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
 						},
 						close : function() {
-							$(this).removeClass("ui-corner-top").addClass(
-									"ui-corner-all");
+							$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
 						}
 					});
 		});

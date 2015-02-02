@@ -32,7 +32,7 @@
                         	
                         	<c:if test="${menu.subMenus.size() <= 0 }">
 								<li class="active">
-		                            <a href="${menu.objeto.url}">
+		                            <a href="${menu.objeto.url}" class="ajax-link">
 		                                <i class="${menu.classe}"></i> <span>${menu.nome}</span>
 		                            </a>
 		                        </li>
@@ -47,7 +47,7 @@
 						        	
 						        	<ul class="treeview-menu">
 						        		<c:forEach items="${menu.subMenus}" var="submenu">
-			                                <li><a href="${submenu.objeto.url}"><i class="fa fa-angle-double-right"></i> ${submenu.nome}</a></li>
+			                                <li><a href="${submenu.objeto.url}" class="ajax-link"><i class="fa fa-angle-double-right"></i> ${submenu.nome}</a></li>
 										</c:forEach>
 						        	</ul>
 						        </li>

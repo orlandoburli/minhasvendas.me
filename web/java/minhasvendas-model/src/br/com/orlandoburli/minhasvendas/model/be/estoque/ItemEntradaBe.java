@@ -1,5 +1,6 @@
 package br.com.orlandoburli.minhasvendas.model.be.estoque;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import br.com.orlandoburli.framework.core.be.BaseBe;
@@ -9,6 +10,7 @@ import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.minhasvendas.model.dao.estoque.ItemEntradaDao;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.EntradaVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.ItemEntradaVo;
+import br.com.orlandoburli.minhasvendas.model.vo.estoque.ProdutoVo;
 
 public class ItemEntradaBe extends BaseBe<ItemEntradaVo, ItemEntradaDao> {
 
@@ -27,5 +29,19 @@ public class ItemEntradaBe extends BaseBe<ItemEntradaVo, ItemEntradaDao> {
 		for (ItemEntradaVo itemEntradaVo : list) {
 			remove(itemEntradaVo);
 		}
+	}
+
+	@Override
+	public void doBeforeSave(ItemEntradaVo vo) throws BeException {
+		super.doBeforeSave(vo);
+
+		ProdutoVo produto = new ProdutoBe(getManager()).get(vo.getIdProduto());
+		vo.setProduto(produto);
+
+		if (vo.getValorDesconto() == null) {
+			vo.setValorDesconto(BigDecimal.ZERO);
+		}
+
+		vo.setValorTotal(vo.getQuantidade().multiply(vo.getValorUnitario()).subtract(vo.getValorDesconto()));
 	}
 }
