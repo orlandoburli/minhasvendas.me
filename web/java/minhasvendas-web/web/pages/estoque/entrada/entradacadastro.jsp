@@ -91,7 +91,7 @@
 											</div>
 											<div class="row">
 												<div class="table-scrollable">
-													<div class="box">
+													<div class="box" style="margin-top: 20px;">
 														<div class="box-body">
 															<div class="DataGridConsulta" data-page="entradacadastro.grid.action" data-page-size="8" data-detail-page="entradacadastro.action"></div>
 														</div>
