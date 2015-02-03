@@ -15,7 +15,7 @@
 					<p>Neste cadastro você poderá informar os dados pessoais, endereço e contatos do 
 					seu cliente. Se seu cliente for uma empresa, informe o CNPJ e encontre rapidamente 
 					as informações sobre ele. Adicione um cliente:</p>
-					<button class="btn btn-success btn-lg" style="margin-top: 20px;">Adicionar Cliente</button>
+					<button class="btn btn-success btn-lg BotaoNovo" style="margin-top: 20px;">Adicionar Cliente</button>
              </div>
          </div>
     </div>
