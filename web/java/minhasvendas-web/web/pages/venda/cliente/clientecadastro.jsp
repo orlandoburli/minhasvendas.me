@@ -111,7 +111,25 @@
 									</select>
 								</div>
 							</div>
-							
+							<div class="box box-solid">
+                                <div class="box-header">
+                                    <i class="fa  fa-file-text-o"></i>
+                                    <h3 class="box-title">Observações</h3>
+                                    <div class="box-tools pull-right">
+                                        <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                    </div>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="row">
+										<div class="form-group">
+											<label class="col-sm-2 control-label text-right">Observações</label>
+											<div class="col-sm-7">
+												<textarea class="form-control" rows="3" placeholder=""></textarea>
+											</div>
+										</div>
+                                    </div><!-- /.row -->
+                                </div><!-- /.box-body -->
+                            </div>
 							<%@include file="../../botoes-cadastro.jsp"%>
 						</div>
 					</form>

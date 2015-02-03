@@ -5,6 +5,22 @@
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
+        	<!-- general form elements disabled -->
+        	
+        	<div class="alert alert-info alert-dismissable">
+                 <i class="fa fa-info"></i>
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                	<p>Os <b>Clientes</b> são empresas ou pessoas para quem você vende seus 
+					produtos e serviços, emite nota fiscal ou envia boletos de pagamento.</p>
+					<p>Neste cadastro você poderá informar os dados pessoais, endereço e contatos do 
+					seu cliente. Se seu cliente for uma empresa, informe o CNPJ e encontre rapidamente 
+					as informações sobre ele. Adicione um cliente:</p>
+					<button class="btn btn-success btn-lg" style="margin-top: 20px;">Adicionar Cliente</button>
+             </div>
+         </div>
+    </div>
+	<div class="row">
+		<div class="col-md-12">
 			<div class="portlet box box-solid box-primary">
 			
 				<div class="box-header">
