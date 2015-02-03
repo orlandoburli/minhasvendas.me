@@ -134,3 +134,17 @@ $("[data-widget='collapse']").click(function() {
         bf.slideDown();
     }
 });
+
+$(document).ready(function() {
+	// Para widgets que devem começar escondidos
+	$(".init-collapsed").each(function(index) {
+		var box = $(this);
+	    //Find the body and the footer
+	    var bf = box.find(".box-body, .box-footer");
+	    
+	    box.addClass("collapsed-box");
+        //Convert minus into plus
+        $(this).children(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
+        bf.slideUp();
+	});
+});

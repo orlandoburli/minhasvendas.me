@@ -111,10 +111,9 @@
 									</select>
 								</div>
 							</div>
-							<div class="box box-solid">
+							<div class="box box-success init-collapsed">
                                 <div class="box-header">
-                                    <i class="fa  fa-file-text-o"></i>
-                                    <h3 class="box-title">Observações</h3>
+                                    <h3 class="box-title"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;&nbsp; Observações</h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                     </div>
@@ -142,7 +141,7 @@
 <script type="text/javascript" >
 
        $(document).ready(function() {
-
+    	   
            //Quando o campo cep perde o foco.
            $("#cep").blur(function() {
 
