@@ -68,6 +68,14 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 		new ItemEntradaBe(manager).remove(getItensRemover());
 	}
 
+	public void total() {
+
+		EntradaVo entrada = getVoSession();
+		new EntradaBe(getManager()).calcularTotal(entrada);
+
+		writeSucesso("OK", entrada);
+	}
+
 	@Override
 	public void doBeforeWriteVo(EntradaVo vo) {
 		super.doBeforeWriteVo(vo);

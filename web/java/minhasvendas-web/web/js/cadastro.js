@@ -114,12 +114,6 @@ function salvar() {
 	});
 }
 
-// Funcao de excluir o registro
-function excluirOld() {
-	// confirmacaoModal("Confirma a exclusão deste registro?", "Confirmação",
-	// excluirConfirmado);
-}
-
 function excluir() {
 	// Se tiver alguma requisicao rolando, nao executa.
 	if ($.active > 0) {
@@ -221,6 +215,60 @@ $(document).ready(function() {
 		$(document).on("keydown", eventoTeclasCadastro);
 	}
 });
+
+//Funcao de salvar o registro
+function getVoSessao(funcaoRetorno) {
+	var paginaCadastro = $(".FormularioCadastro").attr("data-page-cadastro");
+	var paginaBase = paginaCadastro.split(".")[0];
+	var operacao = "total";
+	var paginaFinal = paginaBase + "." + operacao + "." + paginaCadastro.split(".")[1];
+
+	var params = {
+		'operacao' : operacao
+	};
+
+	// Loop nos input's do form para enviar
+	if (debug) {
+		console.log("Parametros do metodo vo");	
+	}
+
+	$(".FormularioDadosCadastro").find("input,select,textarea").each(function(index) {
+		params[$(this).attr("id")] = $(this).val();
+		if (debug) {
+			console.log($(this).attr("id") + ' = ' + $(this).val());	
+		}
+	});
+
+	$.ajax({
+		url : paginaFinal,
+		type : 'POST',
+		data : params,
+		beforeSend : function(data) {
+			if (debug) {
+				console.log("loading...");	
+			}
+		},
+		success : function(data) {
+
+			var retorno = $.parseJSON(data);
+			
+			if (retorno.sucesso) {
+				if (funcaoRetorno) {
+					funcaoRetorno(retorno);
+				}
+			} else {
+				mensagemErro(retorno.mensagem);
+				$("#" + retorno.fieldFocus).focus();
+			}
+
+		},
+		error : function(erro) {
+			if (debug) {
+				console.log("Erro no load ajax! " + erro);
+			}
+		}
+	});
+}
 
 
 loadJs("web/js/components.js");

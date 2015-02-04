@@ -1,5 +1,6 @@
 package br.com.orlandoburli.minhasvendas.model.be.estoque;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import br.com.orlandoburli.framework.core.be.BaseBe;
@@ -26,6 +27,30 @@ public class EntradaBe extends BaseBe<EntradaVo, EntradaDao> {
 	@Override
 	public void doBeforeSave(EntradaVo vo) throws BeException {
 		super.doBeforeSave(vo);
+
+		calcularTotal(vo);
+	}
+
+	public void calcularTotal(EntradaVo vo) {
+		if (vo == null) {
+			return;
+		}
+
+		// Calcula total
+		vo.setValorItens(BigDecimal.ZERO);
+		vo.setValorDescontos(BigDecimal.ZERO);
+		vo.setValorTotal(BigDecimal.ZERO);
+
+		if (vo.getValorFrete() == null) {
+			vo.setValorFrete(BigDecimal.ZERO);
+		}
+
+		for (ItemEntradaVo item : vo.getItens()) {
+			vo.setValorItens(vo.getValorItens().add(item.getValorUnitario().multiply(item.getQuantidade())));
+			vo.setValorDescontos(vo.getValorDescontos().add(item.getValorDesconto()));
+		}
+
+		vo.setValorTotal(vo.getValorItens().subtract(vo.getValorDescontos()).add(vo.getValorFrete()));
 	}
 
 	@Override

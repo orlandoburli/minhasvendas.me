@@ -15,7 +15,7 @@
 				<div class="box-body">
 					<div class="portlet-body form FormularioCadastro FormularioGeral" data-page-consulta="entradaconsulta.action" data-page-operacao="${operacao}" data-page-cadastro="entradacadastro.action">
 						<form class="form-horizontal" action="#" role="form">
-							<div class="form-body">
+							<div class="form-body FormularioDadosCadastro">
 								<input id="idEntrada" type="hidden" value="${ vo.idEntrada }" />
 								<input id="idEmpresa" type="hidden" value="${ vo.idEmpresa }" />
 								
@@ -33,17 +33,52 @@
 								
 								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Data de Emissão</label>
-									<div class="col-sm-3">
+									<div class="col-sm-2">
 										<input id="dataEmissaoDocumento" type="text" class="form-control input-circle" value="<fmt:formatDate value="${ vo.dataEmissaoDocumento.time }" pattern="dd/MM/yyyy"/>" data-field-type="date" />
 									</div>
 									<label class="col-sm-1 control-label text-right">Status</label>
 									
-									<input id="status" type="hidden" value="${vo.status }">
+									<input id="status" type="hidden" value="${vo.status}">
 									
 									<div class="col-sm-3">
 										<input id="statusDesc" type="text" disabled="disabled" class="form-control input-circle" value="${ vo.statusDesc }" />	
 									</div>
+									<label class="col-sm-2 control-label text-right">Valor do Frete</label>
+									<div class="col-sm-2">
+										<div class="input-group">
+											<input id="valorFrete" class="form-control input-circle text-right" data-field-type="number" data-field-precision="2" value="${vo.valorFrete}"/>
+											<span class="input-group-addon">R$</span>
+										</div>
+									</div>
 								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label text-right">Valor dos Itens</label>
+									<div class="col-sm-2">
+										<div class="input-group">
+											<input id="valorItens" disabled="disabled" class="form-control input-circle text-right" data-field-type="number" data-field-precision="2" value="${vo.valorItens}"/>
+											<span class="input-group-addon">R$</span>
+										</div>
+									</div>
+									<label class="col-sm-2 control-label text-right">Valor dos Descontos</label>
+									<div class="col-sm-2">
+										<div class="input-group">
+											<input id="valorDescontos" disabled="disabled" class="form-control input-circle text-right" data-field-type="number" data-field-precision="2" value="${vo.valorDescontos}"/>
+											<span class="input-group-addon">R$</span>
+										</div>
+									</div>
+									
+									<label class="col-sm-2 control-label text-right">Valor Total</label>
+									<div class="col-sm-2">
+										<div class="input-group">
+											<input id="valorTotal" disabled="disabled" class="form-control input-circle text-right" data-field-type="number" data-field-precision="2" value="${vo.valorTotal}"/>
+											<span class="input-group-addon">R$</span>
+										</div>
+									</div>
+									
+								</div>
+								
+								<!-- ITENS -->
 								
 								<div class="box">
 									<div class="box-body">
@@ -137,6 +172,23 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		loadJs("web/js/item.js");
+		loadJs("web/js/item.js", function() {
+			ItemHandler.init(function() {
+				if (debug) {
+					console.log("Refresh do total... TODO");
+				}
+				
+				getVoSessao(function(retorno) {
+					$(".FormularioDadosCadastro").find("#valorItens").val(retorno.objeto.valorItens);
+					$(".FormularioDadosCadastro").find("#valorDescontos").val(retorno.objeto.valorDescontos);
+					$(".FormularioDadosCadastro").find("#valorTotal").val(retorno.objeto.valorTotal);
+					
+					formataInput($(".FormularioDadosCadastro").find("#valorItens"));
+					formataInput($(".FormularioDadosCadastro").find("#valorDescontos"));
+					formataInput($(".FormularioDadosCadastro").find("#valorTotal")); 
+				});
+				
+			});
+		});
 	});
 </script>

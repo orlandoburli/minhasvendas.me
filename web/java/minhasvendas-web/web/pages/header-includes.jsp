@@ -88,5 +88,4 @@
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.price_format.2.0.min.js"></script>
 <script src="/minhasvendas-assets/bootstrap/3.3.1/js/jquery.mask.min.js"></script>
 
-
 <script type="text/javascript" src="<%=request.getContextPath()%>/web/js/geral.js"></script>

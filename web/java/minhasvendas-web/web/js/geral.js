@@ -79,7 +79,7 @@ function mensagemErro(oMensagem) {
 	mensagem(oMensagem, 'danger');
 }
 
-function loadJs(jsFile) {
+function loadJs(jsFile, funcaoSucesso, funcaoErro) {
 	if (debug) {
 		console.log("Carregando arquivo " + jsFile);	
 	}
@@ -88,9 +88,15 @@ function loadJs(jsFile) {
 		if (debug) {
 			console.log("Arquivo " + jsFile + " carregado com sucesso.");	
 		}
+		if (funcaoSucesso) {
+			funcaoSucesso();
+		}
 	}).fail(function(jqxhr, settings, exception) {
 		if (debug) {
 			console.log("Erro ao carregar js file " + jsFile+ " - Erro: " + exception);	
+		}
+		if (funcaoErro) {
+			funcaoErro();
 		}
 	});
 }

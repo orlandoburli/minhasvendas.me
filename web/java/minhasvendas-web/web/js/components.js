@@ -2,9 +2,7 @@
  * Controle de componentes
  */
 
-$(function () {
-  $('.tooltips').tooltip();
-});
+$('.tooltips').tooltip();
 
 // Funcao para input's numericos - Formata e coloca a mascara
 $("input[data-field-type='number']").each(function() {
@@ -29,11 +27,6 @@ $("input[data-field-type='number']").each(function() {
 $("input[data-field-type='date']").mask("00/00/0000");
 
 $("input[data-field-type='cep']").mask("00000-000");
-
-var availableTags = [ "ActionScript", "AppleScript", "Asp", "BASIC", "C",
-		"C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy",
-		"Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python",
-		"Ruby", "Scala", "Scheme" ];
 
 // autocomplete
 $("input.autocomplete").each(
@@ -134,6 +127,34 @@ $("[data-widget='collapse']").click(function() {
         bf.slideDown();
     }
 });
+
+function formataInput(input) {
+	if (!input) {
+		return;
+	}
+	
+	// Formatacao de numeros
+	if ($(input).attr("data-field-type") == "number") {
+		
+		var decimais = $(input).attr("data-field-precision");
+
+		var valueNumber = parseFloat($(input).val());
+		
+		valueNumber = valueNumber * (Math.pow(10, decimais));
+		
+		valueNumber = parseInt(valueNumber);
+		
+		$(input).val(valueNumber);
+
+		$(input).priceFormat({
+			clearPrefix : true,
+			prefix : '',
+			centsSeparator : ',',
+			thousandsSeparator : '',
+			centsLimit : parseInt(decimais)
+		});
+	}
+}
 
 $(document).ready(function() {
 	// Para widgets que devem começar escondidos
