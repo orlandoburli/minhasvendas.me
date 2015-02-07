@@ -20,11 +20,13 @@ import br.com.orlandoburli.framework.core.web.BaseCadastroAction;
 import br.com.orlandoburli.framework.core.web.filters.OutjectSession;
 import br.com.orlandoburli.framework.core.web.retorno.RetornoAction;
 import br.com.orlandoburli.minhasvendas.model.be.estoque.EntradaBe;
+import br.com.orlandoburli.minhasvendas.model.be.estoque.FornecedorBe;
 import br.com.orlandoburli.minhasvendas.model.be.estoque.ItemEntradaBe;
 import br.com.orlandoburli.minhasvendas.model.be.estoque.ProdutoBe;
 import br.com.orlandoburli.minhasvendas.model.dao.estoque.EntradaDao;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.EntradaVo;
+import br.com.orlandoburli.minhasvendas.model.vo.estoque.FornecedorVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.ItemEntradaVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.ProdutoVo;
 
@@ -125,7 +127,31 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 			write(Utils.listToJson(produtoBe.toJsonItemListCustom(listAtivos)));
 		} catch (ListException e) {
 			Log.error(e);
+		} finally {
+			getManager().commit();
 		}
+	}
+
+	public void fornecedores() {
+
+		try {
+			FornecedorBe fornecedorBe = new FornecedorBe(getManager());
+			List<FornecedorVo> list = null;
+			if (getIdSource() != null && getIdSource() > 0) {
+				// Busca unica
+				list = new ArrayList<FornecedorVo>();
+				list.add(fornecedorBe.get(getIdSource()));
+			} else {
+				list = fornecedorBe.getListFornecedores(usuario, query);
+			}
+
+			write(Utils.listToJson(fornecedorBe.toJsonItemListCustom(list)));
+		} catch (ListException e) {
+			Log.error(e);
+		} finally {
+			getManager().commit();
+		}
+
 	}
 
 	public void grid() {

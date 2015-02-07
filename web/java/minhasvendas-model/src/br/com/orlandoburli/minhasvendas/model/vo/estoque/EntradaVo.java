@@ -20,6 +20,7 @@ import br.com.orlandoburli.framework.core.vo.annotations.Description;
 import br.com.orlandoburli.minhasvendas.model.dicionario.cadastros.Empresa;
 import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.Entrada;
 import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.Entrada.Colunas;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.Fornecedor;
 import br.com.orlandoburli.minhasvendas.model.domains.StatusProcessamento;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 
@@ -76,8 +77,15 @@ public class EntradaVo extends BaseVo {
 	@Description("Valor Total")
 	private BigDecimal valorTotal;
 
+	@Column(name = Colunas.ID_FORNECEDOR, dataType = DataType.INT)
+	@Description("Fornecedor")
+	private Integer idFornecedor;
+
 	@Join(columnsLocal = { Colunas.ID_EMPRESA }, columnsRemote = { Empresa.Colunas.ID_EMPRESA }, joinWhen = JoinWhen.MANUAL)
 	private EmpresaVo empresa;
+
+	@Join(columnsLocal = { Colunas.ID_FORNECEDOR }, columnsRemote = { Fornecedor.Colunas.ID_FORNECEDOR })
+	private FornecedorVo fornecedor;
 
 	private List<ItemEntradaVo> itens;
 
@@ -190,5 +198,21 @@ public class EntradaVo extends BaseVo {
 
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
+	}
+
+	public Integer getIdFornecedor() {
+		return idFornecedor;
+	}
+
+	public void setIdFornecedor(Integer idFornecedor) {
+		this.idFornecedor = idFornecedor;
+	}
+
+	public FornecedorVo getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(FornecedorVo fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 }

@@ -18,5 +18,6 @@ public final class Entrada {
 		public static final String VALOR_DESCONTOS = "valor_descontos";
 		public static final String VALOR_FRETE = "valor_frete";
 		public static final String VALOR_TOTAL = "valor_total";
+		public static final String ID_FORNECEDOR = Fornecedor.Colunas.ID_FORNECEDOR;
 	}
 }

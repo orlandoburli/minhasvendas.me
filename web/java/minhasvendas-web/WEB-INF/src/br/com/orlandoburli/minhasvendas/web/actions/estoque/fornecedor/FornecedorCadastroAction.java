@@ -3,6 +3,7 @@ package br.com.orlandoburli.minhasvendas.web.actions.estoque.fornecedor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.orlandoburli.framework.core.be.exceptions.BeException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.InsertBeException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.ListException;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
@@ -35,11 +36,25 @@ public class FornecedorCadastroAction extends BaseCadastroAction<FornecedorVo, F
 		vo.setIdEmpresa(getUsuario().getIdEmpresa());
 	}
 
+	@Override
+	public void rapido() {
+		try {
+			FornecedorVo rapido = new FornecedorBe(getManager()).cadastroRapido(getTerm(), usuario);
+
+			writeSucesso("Fornecedor adicionado com sucesso!", rapido);
+
+		} catch (BeException e) {
+			writeErrorMessage(e.getMessage());
+		} finally {
+			getManager().commit();
+		}
+	}
+
 	public EmpresaVo getUsuario() {
-	    return usuario;
-    }
+		return usuario;
+	}
 
 	public void setUsuario(EmpresaVo usuario) {
-	    this.usuario = usuario;
-    }
+		this.usuario = usuario;
+	}
 }

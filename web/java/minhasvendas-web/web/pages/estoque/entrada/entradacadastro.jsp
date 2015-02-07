@@ -21,7 +21,7 @@
 								
 								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Número Documento</label>
-									<div class="col-sm-4">
+									<div class="col-sm-3">
 										<input id="numeroDocumento" type="text" autofocus="autofocus" class="form-control input-circle" value="${ vo.numeroDocumento }" />
 									</div>
 								
@@ -36,13 +36,23 @@
 									<div class="col-sm-2">
 										<input id="dataEmissaoDocumento" type="text" class="form-control input-circle" value="<fmt:formatDate value="${ vo.dataEmissaoDocumento.time }" pattern="dd/MM/yyyy"/>" data-field-type="date" />
 									</div>
-									<label class="col-sm-1 control-label text-right">Status</label>
+									<label class="col-sm-2 control-label text-right">Status</label>
 									
 									<input id="status" type="hidden" value="${vo.status}">
 									
-									<div class="col-sm-3">
+									<div class="col-sm-2">
 										<input id="statusDesc" type="text" disabled="disabled" class="form-control input-circle" value="${ vo.statusDesc }" />	
 									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-2 control-label text-right">Fornecedor</label>
+									<div class="col-xs-4">
+										<input type="hidden" id="idFornecedor" class="form-control select2" data-remote-source="entradacadastro.fornecedores.action" data-cadastro-rapido="fornecedorcadastro.rapido.action" value="${vo.idFornecedor }"/>
+									</div>
+								</div>
+								
+								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Valor do Frete</label>
 									<div class="col-sm-2">
 										<div class="input-group">
@@ -50,9 +60,6 @@
 											<span class="input-group-addon">R$</span>
 										</div>
 									</div>
-								</div>
-								
-								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Valor dos Itens</label>
 									<div class="col-sm-2">
 										<div class="input-group">
@@ -60,6 +67,9 @@
 											<span class="input-group-addon">R$</span>
 										</div>
 									</div>
+								</div>
+								
+								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Valor dos Descontos</label>
 									<div class="col-sm-2">
 										<div class="input-group">
