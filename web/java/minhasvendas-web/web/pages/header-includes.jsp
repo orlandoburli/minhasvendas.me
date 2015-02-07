@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/sticky-footer-navbar.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/jasny-bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/components.css" />
-<link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/minhasvendas.css" />
+
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/font-awesome/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/jquery-ui/jquery-ui-1.10.0.custom.css" />
 <link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/jquery-ui/jquery.ui.1.10.0.ie.css" />
@@ -43,6 +43,8 @@
 <link href="/minhasvendas-assets/lte/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 <link href="/minhasvendas-assets/select2-3.5.2/select2.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/minhasvendas-assets/bootstrap/3.3.1/css/minhasvendas.css" />
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>

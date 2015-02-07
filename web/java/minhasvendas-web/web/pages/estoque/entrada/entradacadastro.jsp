@@ -116,7 +116,7 @@
 											
 											<div class="row FormItens">
 												<div class="col-xs-4">
-													<input type="hidden" id="idProduto" class="select2-input select2-default select2" data-remote-source="entradacadastro.produtos.action" data-cadastro-rapido="produtocadastro.rapido.action"/>
+													<input type="hidden" id="idProduto" class="form-control select2" data-remote-source="entradacadastro.produtos.action" data-cadastro-rapido="produtocadastro.rapido.action"/>
 												</div>
 												
 												<div class="col-xs-1">

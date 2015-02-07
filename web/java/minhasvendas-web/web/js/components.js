@@ -149,7 +149,7 @@ $(".select2").each(function(index) {
 	$(this).select2({
         placeholder: "Digite para pesquisar...",
         minimumInputLength: 1,
-        width: "element",
+        width: "resolve",
         ajax: {
             url: sourceURL,
             dataType: 'json',
