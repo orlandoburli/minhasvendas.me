@@ -115,7 +115,7 @@
                                 <div class="box-header">
                                     <h3 class="box-title"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;&nbsp; Observações</h3>
                                     <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
                                     </div>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
@@ -123,7 +123,7 @@
 										<div class="form-group">
 											<label class="col-sm-2 control-label text-right">Observações</label>
 											<div class="col-sm-7">
-												<textarea class="form-control" rows="3" placeholder=""></textarea>
+												<textarea id="observacoes" class="form-control" rows="3" placeholder="">${vo.observacoes}</textarea>
 											</div>
 										</div>
                                     </div><!-- /.row -->

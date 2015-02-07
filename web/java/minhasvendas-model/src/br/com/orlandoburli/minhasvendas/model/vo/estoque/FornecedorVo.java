@@ -1,6 +1,5 @@
 package br.com.orlandoburli.minhasvendas.model.vo.estoque;
 
-import br.com.orlandoburli.framework.core.be.validation.annotations.transformation.FilterOnly;
 import br.com.orlandoburli.framework.core.be.validation.annotations.transformation.FullTrim;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.CpfCnpj;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.MaxSize;
@@ -44,24 +43,20 @@ public class FornecedorVo extends BaseVo {
 	@Description("Razão Social")
 	private String razaoSocial;
 
-	@Column(name = Colunas.CPF_CNPJ, dataType = DataType.VARCHAR, maxSize = 14)
-	@FilterOnly("1234567890")
+	@Column(name = Colunas.CPF_CNPJ, dataType = DataType.VARCHAR, maxSize = 25)
 	@CpfCnpj
 	@Description("Cpf / Cnpj")
 	private String cpfCnpj;
 
 	@Column(name = Colunas.FONE01, dataType = DataType.VARCHAR, maxSize = 20)
-	@FilterOnly("1234567890")
 	@Description("Fone 1")
 	private String fone01;
 
 	@Column(name = Colunas.FONE02, dataType = DataType.VARCHAR, maxSize = 20)
-	@FilterOnly("1234567890")
 	@Description("Fone 2")
 	private String fone02;
 
 	@Column(name = Colunas.FONE03, dataType = DataType.VARCHAR, maxSize = 20)
-	@FilterOnly("1234567890")
 	@Description("Fone 3")
 	private String fone03;
 

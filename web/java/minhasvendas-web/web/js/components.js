@@ -30,6 +30,18 @@ $("input[data-field-type='date']").mask("00/00/0000");
 
 $("input[data-field-type='cep']").mask("00000-000");
 
+//mascara dos telefones
+var maskCpfCnpj = function(val) {
+	return val.replace(/\D/g, '').length <= 11 ? '000.000.000-00'
+			: '00.000.000/0000-00';
+}, optionsCpfCnpj = {
+	onKeyPress : function(val, e, field, options) {
+		field.mask(maskCpfCnpj.apply({}, arguments), options);
+	}
+};
+
+$("input[data-field-type='cpfcnpj']").mask(maskCpfCnpj, optionsCpfCnpj);
+
 // autocomplete
 $("input.autocomplete").each(
 		function(index) {

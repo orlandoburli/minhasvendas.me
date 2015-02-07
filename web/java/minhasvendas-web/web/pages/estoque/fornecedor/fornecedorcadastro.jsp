@@ -35,38 +35,46 @@
 								
 								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Cpf / Cnpj</label>
-									<div class="col-sm-7">
+									<div class="col-sm-3">
 										<input id="cpfCnpj" type="text"   class="form-control input-circle" value="${ vo.cpfCnpj }" data-field-type="cpfcnpj"/>
 									</div>
-								</div>
-								
-								<div class="form-group">
-									<label class="col-sm-2 control-label text-right">Fone 1</label>
-									<div class="col-sm-7">
+									
+									<label class="col-sm-1 control-label text-right">Fone 1</label>
+									<div class="col-sm-3">
 										<input id="fone01" type="text"   class="form-control input-circle" value="${ vo.fone01 }" data-field-type="fone"/>
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Fone 2</label>
-									<div class="col-sm-7">
+									<div class="col-sm-3">
 										<input id="fone02" type="text"   class="form-control input-circle" value="${ vo.fone02 }" data-field-type="fone"/>
 									</div>
-								</div>
-								
-								<div class="form-group">
-									<label class="col-sm-2 control-label text-right">Fone 3</label>
-									<div class="col-sm-7">
+									
+									<label class="col-sm-1 control-label text-right">Fone 3</label>
+									<div class="col-sm-3">
 										<input id="fone03" type="text"   class="form-control input-circle" value="${ vo.fone03 }" data-field-type="fone"/>
 									</div>
 								</div>
 								
-								<div class="form-group">
-									<label class="col-sm-2 control-label text-right">Observações</label>
-									<div class="col-sm-7">
-										<textarea id="observacoes" class="form-control input-circle">${ vo.observacoes }</textarea>
-									</div>
-								</div>
+								<div class="box box-success init-collapsed">
+	                                <div class="box-header">
+	                                    <h3 class="box-title"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;&nbsp; Observações</h3>
+	                                    <div class="box-tools pull-right">
+	                                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+	                                    </div>
+	                                </div>
+	                                <div class="box-body">
+	                                    <div class="row">
+											<div class="form-group">
+												<label class="col-sm-2 control-label text-right">Observações</label>
+												<div class="col-sm-7">
+													<textarea id="observacoes" class="form-control" rows="8" placeholder="">${vo.observacoes}</textarea>
+												</div>
+											</div>
+	                                    </div>
+	                                </div>
+	                            </div>
 								
 								<%@include file="../../botoes-cadastro.jsp"%>
 							</div>

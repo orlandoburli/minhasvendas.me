@@ -19,15 +19,9 @@
 						
 						<div class="col-sm-2">
 							<select id="ParametroPesquisa" class="form-control input-circle">
-													<option value="idFornecedor">idFornecedor</option>
-													<option value="nome">Nome</option>
-													<option value="razaoSocial">Razão Social</option>
-													<option value="cpfCnpj">Cpf / Cnpj</option>
-													<option value="fone01">Fone 1</option>
-													<option value="fone02">Fone 2</option>
-													<option value="fone03">Fone 3</option>
-													<option value="observacoes">Observações</option>
-										</select>
+										<option value="nome">Nome</option>
+										<option value="cpfCnpj">Cpf / Cnpj</option>
+							</select>
 						</div>
 				
 						<div class="col-sm-3">
