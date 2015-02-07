@@ -559,9 +559,9 @@ $(function() {
 			proximoItem();
 			break;
 
-		case (KEY_ENTER):
-			primeiraPagina();
-			break;
+//		case (KEY_ENTER):
+//			primeiraPagina();
+//			break;
 
 		case (KEY_HOME):
 			primeiraPagina();
@@ -609,9 +609,7 @@ $(function() {
 		setTimeout(function() {
 			loadDataGrid();
 			
-			loadJs("web/js/components.js");
-			
-		}, 100);
+		}, 500);
 	});
 
 });

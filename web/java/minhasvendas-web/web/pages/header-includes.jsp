@@ -42,6 +42,8 @@
 <!-- Theme style -->
 <link href="/minhasvendas-assets/lte/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
+<link href="/minhasvendas-assets/select2-3.5.2/select2.css" rel="stylesheet" type="text/css" />
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js" type="text/javascript"></script>

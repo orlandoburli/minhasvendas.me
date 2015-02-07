@@ -1,9 +1,11 @@
 package br.com.orlandoburli.minhasvendas.model.be.estoque;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.orlandoburli.framework.core.be.BaseBe;
+import br.com.orlandoburli.framework.core.be.exceptions.BeException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.ListException;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.framework.core.vo.JsonItemVo;
@@ -47,12 +49,27 @@ public class ProdutoBe extends BaseBe<ProdutoVo, ProdutoDao> {
 		for (ProdutoVo p : source) {
 			JsonItemVo item = new JsonItemVo();
 			item.setId(p.getIdProduto().toString());
-			item.setLabel(p.getCodigoProduto() + " - " + p.getNome());
+			if (p.getCodigoProduto() != null && !p.getCodigoProduto().trim().equals("")) {
+				item.setLabel(p.getCodigoProduto() + " - " + p.getNome());
+			} else {
+				item.setLabel(p.getNome());
+			}
 			item.setValue(p.getNome());
 
 			list.add(item);
 		}
 
 		return list;
+	}
+
+	public ProdutoVo cadastroRapido(String nomeProduto, EmpresaVo empresa) throws BeException {
+		ProdutoVo produto = new ProdutoVo();
+		produto.setNome(nomeProduto);
+		produto.setAtivo(SimNao.SIM);
+		produto.setIdEmpresa(empresa.getIdEmpresa());
+		produto.setValorVenda(BigDecimal.ZERO);
+		save(produto);
+
+		return produto;
 	}
 }

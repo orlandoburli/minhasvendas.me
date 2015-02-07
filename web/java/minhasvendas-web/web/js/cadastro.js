@@ -228,16 +228,14 @@ function getVoSessao(funcaoRetorno) {
 	};
 
 	// Loop nos input's do form para enviar
-	if (debug) {
-		console.log("Parametros do metodo vo");	
-	}
-
 	$(".FormularioDadosCadastro").find("input,select,textarea").each(function(index) {
 		params[$(this).attr("id")] = $(this).val();
-		if (debug) {
-			console.log($(this).attr("id") + ' = ' + $(this).val());	
-		}
 	});
+	
+	if (debug) {
+		console.log("Parametros do metodo vo");
+		console.log(params);
+	}
 
 	$.ajax({
 		url : paginaFinal,

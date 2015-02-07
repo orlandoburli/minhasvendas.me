@@ -6,10 +6,10 @@
 	<thead>
 		<tr>
 			<td>Produto</td>
-			<td>Quantidade</td>
-			<td>Valor Unitário</td>
-			<td>Valor Desconto</td>
-			<td class="right">Valor Total</td>
+			<td class="text-right">Quantidade</td>
+			<td class="text-right">Valor Unitário</td>
+			<td class="text-right">Valor Desconto</td>
+			<td class="text-right">Valor Total</td>
 			<td></td>
 		</tr>
 	</thead>
@@ -17,8 +17,8 @@
 	<tbody>
 		<c:forEach items="${vo.itens}" var="item" varStatus="loop">
 			<tr data-id="idItemEntrada=${ item.idItemEntrada}" data-index="${loop.index}">
-				<td class="col-xs-3">${ item.produto.nome }</td>
-				<td class="col-xs-2">
+				<td class="col-xs-4">${ item.produto.nome }</td>
+				<td class="col-xs-1">
 					<input id="quantidade" class="form-control input-circle text-right item-quantidade"  value="${item.quantidade}" data-field-type="number" data-field-precision="0" /> 
 				</td>
 				<td class="col-xs-2">

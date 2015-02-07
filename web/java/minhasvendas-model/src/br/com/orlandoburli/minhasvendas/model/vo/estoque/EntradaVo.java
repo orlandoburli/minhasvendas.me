@@ -67,11 +67,13 @@ public class EntradaVo extends BaseVo {
 
 	@Column(name = Colunas.VALOR_FRETE, dataType = DataType.NUMERIC, maxSize = 18, precision = 2)
 	@NotNegative
-	@NotZero
 	@Description("Valor Frete")
 	private BigDecimal valorFrete;
 
 	@Column(name = Colunas.VALOR_TOTAL, dataType = DataType.NUMERIC, maxSize = 18, precision = 2)
+	@NotNegative
+	@NotZero
+	@Description("Valor Total")
 	private BigDecimal valorTotal;
 
 	@Join(columnsLocal = { Colunas.ID_EMPRESA }, columnsRemote = { Empresa.Colunas.ID_EMPRESA }, joinWhen = JoinWhen.MANUAL)

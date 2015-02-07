@@ -35,7 +35,7 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 	private EmpresaVo usuario;
 	private String query;
 
-	private Integer idProduto;
+	private Integer idSource;
 
 	private Integer index;
 
@@ -71,7 +71,17 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 	public void total() {
 
 		EntradaVo entrada = getVoSession();
+
+		if (entrada == null) {
+			entrada = new EntradaVo();
+			entrada.setIdEntrada(0);
+		}
+
+		injectVo(entrada);
+
 		new EntradaBe(getManager()).calcularTotal(entrada);
+
+		setVoSession(entrada);
 
 		writeSucesso("OK", entrada);
 	}
@@ -102,10 +112,17 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 	public void produtos() {
 		try {
 			ProdutoBe produtoBe = new ProdutoBe(getManager());
+			List<ProdutoVo> listAtivos = null;
 
-			List<ProdutoVo> listAtivos = produtoBe.getListAtivos(usuario, query);
-
-			write(Utils.voToJson(produtoBe.toJsonItemListCustom(listAtivos)));
+			if (getIdSource() != null && getIdSource() > 0) {
+				// Busca unica
+				listAtivos = new ArrayList<ProdutoVo>();
+				listAtivos.add(produtoBe.get(getIdSource()));
+			} else {
+				// Busca lista
+				listAtivos = produtoBe.getListAtivos(usuario, query);
+			}
+			write(Utils.listToJson(produtoBe.toJsonItemListCustom(listAtivos)));
 		} catch (ListException e) {
 			Log.error(e);
 		}
@@ -139,10 +156,10 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 
 			write(Utils.voToJson(new RetornoAction(true, "Item adicionado!", item)));
 		} catch (ValidationBeException e) {
-			writeErrorMessage(e.getMessage());
+			writeErrorMessage(e.getMessage(), e.getField());
 		} catch (BeException e) {
 			Log.error(e);
-			writeErrorMessage(e.getMessage());
+			writeErrorMessage(e.getMessage(), e.getField());
 		}
 	}
 
@@ -215,14 +232,6 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 		this.query = query;
 	}
 
-	public Integer getIdProduto() {
-		return idProduto;
-	}
-
-	public void setIdProduto(Integer idProduto) {
-		this.idProduto = idProduto;
-	}
-
 	public BigDecimal getQuantidade() {
 		return quantidade;
 	}
@@ -256,5 +265,13 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 
 	public void setIndex(Integer index) {
 		this.index = index;
+	}
+
+	public Integer getIdSource() {
+		return idSource;
+	}
+
+	public void setIdSource(Integer idSource) {
+		this.idSource = idSource;
 	}
 }

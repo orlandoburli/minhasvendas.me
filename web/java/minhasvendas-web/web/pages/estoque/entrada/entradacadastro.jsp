@@ -88,11 +88,11 @@
 										
 										<div class="box-body">
 											<div class="row">
-												<div class="col-xs-3">
+												<div class="col-xs-4">
 													<label class="control-label text-right">Produto</label>
 												</div>
 												
-												<div class="col-xs-2">
+												<div class="col-xs-1">
 													<label class="control-label col-md-12 text-right">Qtd.</label>
 												</div>
 												
@@ -104,18 +104,22 @@
 													<label class="control-label col-md-12 text-right">Valor Desconto</label>
 												</div>
 												
-												<div class="col-xs-2">
+												<div class="col-xs-2 text-right">
 													<label class="control-label col-md-12 text-right">Valor Total</label>
+												</div>
+												
+												<div class="col-xs-1">
+													&nbsp;
 												</div>
 												
 											</div>
 											
 											<div class="row FormItens">
-												<div class="col-xs-3">
-													<input id="idProduto" class="form-control input-circle autocomplete" data-remote-source="entradacadastro.produtos.action"/>
+												<div class="col-xs-4">
+													<input type="hidden" id="idProduto" class="select2-input select2-default select2" data-remote-source="entradacadastro.produtos.action" data-cadastro-rapido="produtocadastro.rapido.action"/>
 												</div>
 												
-												<div class="col-xs-2">
+												<div class="col-xs-1">
 													<input id="quantidade" class="form-control input-circle text-right" data-field-type="number" data-field-precision="0" data-default-value="1" value="1"/>
 												</div>
 												
@@ -128,7 +132,7 @@
 												
 												<div class="col-xs-2">
 													<div class="input-group">
-														<input id="valorDesconto" class="form-control input-circle text-right" data-field-type="number" data-field-precision="2" />
+														<input id="valorDesconto" class="form-control input-circle text-right" data-field-type="number" data-field-precision="2" data-skip-enter="true" />
 														<span class="input-group-addon">R$</span>
 													</div>
 												</div>
@@ -142,7 +146,7 @@
 												
 												<div class="col-xs-1">
 													<button type="button" class="BotaoAdicionarItem btn btn-primary tooltips" title="Novo Registro (Ctrl + N)">
-														<i class="fa fa-plus-circle"></i> Adicionar Item
+														<i class="fa fa-plus-circle"></i>
 													</button>
 												</div>
 											</div>
@@ -172,23 +176,23 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		loadJs("web/js/item.js", function() {
-			ItemHandler.init(function() {
-				if (debug) {
-					console.log("Refresh do total... TODO");
-				}
+		function funcaoRefresh() {
+			getVoSessao(function(retorno) {
+				$(".FormularioDadosCadastro").find("#valorItens").val(retorno.objeto.valorItens);
+				$(".FormularioDadosCadastro").find("#valorDescontos").val(retorno.objeto.valorDescontos);
+				$(".FormularioDadosCadastro").find("#valorTotal").val(retorno.objeto.valorTotal);
 				
-				getVoSessao(function(retorno) {
-					$(".FormularioDadosCadastro").find("#valorItens").val(retorno.objeto.valorItens);
-					$(".FormularioDadosCadastro").find("#valorDescontos").val(retorno.objeto.valorDescontos);
-					$(".FormularioDadosCadastro").find("#valorTotal").val(retorno.objeto.valorTotal);
-					
-					formataInput($(".FormularioDadosCadastro").find("#valorItens"));
-					formataInput($(".FormularioDadosCadastro").find("#valorDescontos"));
-					formataInput($(".FormularioDadosCadastro").find("#valorTotal")); 
-				});
-				
+				formataInput($(".FormularioDadosCadastro").find("#valorItens"));
+				formataInput($(".FormularioDadosCadastro").find("#valorDescontos"));
+				formataInput($(".FormularioDadosCadastro").find("#valorTotal")); 
 			});
+		}
+		
+		loadJs("web/js/item.js", function() {
+			ItemHandler.init(funcaoRefresh);
+			
+			// Ao alterar o frete, também recalcula o total.
+			$(".FormularioDadosCadastro").find("#valorFrete").on("blur", funcaoRefresh);
 		});
 	});
 </script>

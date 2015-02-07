@@ -1,7 +1,7 @@
 var ItemHandler = function() {
 	
 	// Funcoes de manipulacao da grid de itens
-	function adicionarItem(retornoFocus) {
+	function adicionarItem() {
 		// Se tiver alguma requisicao rolando, nao executa.
 		if ($.active > 0) {
 			return;
@@ -24,10 +24,12 @@ var ItemHandler = function() {
 			}
 			
 			params[$(this).attr("id")] = val;
-			if (debug) {
-				console.log($(this).attr("id") + ' = ' + val);	
-			}
 		});
+		
+		if (debug) {
+			console.log("Parâmetros de adicionaritem");
+			console.log(params);
+		}
 		
 		$.ajax({
 			url : paginaFinal,
@@ -44,14 +46,40 @@ var ItemHandler = function() {
 					
 					limparCamposItem();
 					
-					loadDataGrid();
-					
-					if (retornoFocus) {
-						$(retornoFocus).focus();
-					}
+					loadDataGrid(function() {
+						var input = getFirstInput();
+						
+						if ($(input).hasClass("select2")) {
+							if (debug) {
+								console.log("Select2 Focus on " + input);
+							}
+							setTimeout(function() {
+								$(input).select2("open");	
+							}, 500);
+						} else {
+							if (debug) {
+								console.log("Input Focus on " + input);
+							}
+							$(input).focus();	
+						}
+					});
+
 				} else {
 					mensagemErro(retorno.mensagem);
-					$("#" + retorno.fieldFocus).focus();
+					var input = "#" + retorno.fieldFocus;
+					
+					if ($(input).hasClass("select2")) {
+						if (debug) {
+							console.log("Select2 Focus on " + input);
+						}
+						$(input).select2("open");
+					} else {
+						if (debug) {
+							console.log("Input Focus on " + input);
+						}
+						$(input).focus();	
+					}
+					
 				}
 			},
 			error : function(erro) {
@@ -170,6 +198,29 @@ var ItemHandler = function() {
 				$(this).attr("data-value", defaultValue);
 			}
 		});
+	}
+	
+	function getFirstInput() {
+		var input;
+		var continuar = true;
+		$(".FormItens > div > input,select,textarea, .FormItens > div > div > input,select,textarea").each(function(index) {
+			if (continuar) {
+				if (debug) {
+					console.log("Input: " + $(this).attr("id"));
+				}
+				input = $(this).attr("id");
+				
+				if (input.indexOf("auto") < 0) {
+					continuar = false;	
+				}
+			}
+		});
+		
+		if (debug) {
+			console.log("First input: " + input);
+		}
+		
+		return "#" + input;
 	}
 
 	// Altera a linha selecionada
@@ -304,9 +355,9 @@ var ItemHandler = function() {
 			// TODO Buscar ultimo input
 			
 			if (browser.mozilla) {
-				$("#valorDesconto").keypress(keySalvar);
+				$("#valorDesconto").on("keypress", keySalvar);
 			} else {
-				$("#valorDesconto").keydown(keySalvar);
+				$("#valorDesconto").on("keydown", keySalvar);
 			}
 
 			function keySalvar(event) {

@@ -32,6 +32,7 @@ public class MenuBe extends BaseBe<MenuVo, MenuDao> {
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.HOME, null, null, "Home", "fa fa-home", 0, null));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.ESTOQUE, null, null, "Estoque", "fa fa-cube", 1, null));
 
+		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.FORNECEDOR, MinhasVendasConstants.Objeto.FORNECEDOR_CONSULTA, MinhasVendasConstants.Objeto.FORNECEDOR_CADASTRO, "Fornecedores", "", 0, MinhasVendasConstants.Menu.ESTOQUE));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.CATEGORIA_PRODUTOS, MinhasVendasConstants.Objeto.CATEGORIA_PRODUTO_CONSULTA, MinhasVendasConstants.Objeto.CATEGORIA_PRODUTO_CADASTRO, "Categoria de Produtos", "", 1, MinhasVendasConstants.Menu.ESTOQUE));
 		saveIfNotExists(criaMenu(MinhasVendasConstants.Menu.PRODUTOS, MinhasVendasConstants.Objeto.PRODUTO_CONSULTA, MinhasVendasConstants.Objeto.PRODUTO_CADASTRO, "Produtos", "", 3, MinhasVendasConstants.Menu.ESTOQUE));
 		// saveIfNotExists(criaSeparador(MinhasVendasConstants.Menu.SEPARADOR01,

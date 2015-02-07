@@ -123,7 +123,16 @@ function blockUI(oMessage) {
 	 }); 
 }
 
-function blockConteudo(oMessage, oComponente) {
+function blockConteudo(oComponente, oMessage) {
+	if (debug) {
+		console.log("Bloqueando " + oComponente);
+	}
+	
+	if (!oComponente) {
+		blockUI(oMessage);
+		return false;
+	}
+	
 	if (!oMessage) {
 		oMessage = "Aguarde, processando...";
 	}

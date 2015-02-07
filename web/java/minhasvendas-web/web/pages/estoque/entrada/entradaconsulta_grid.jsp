@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="pt_BR" />
 
 <style type="text/css">
 table thead td:nth-child(1) {
@@ -45,7 +46,9 @@ table tbody tr td:nth-child(1), table tbody tr td:nth-child(2), table tbody tr t
 			<td>${ vo.numeroDocumento }</td>
 			<td>${ vo.serie }</td>
 			<td><fmt:formatDate value="${vo.dataEmissaoDocumento.time}" pattern="dd/MM/yyyy" /></td>
-			<td></td>
+			<td>
+				<fmt:formatNumber value="${vo.valorTotal }" type="currency" />
+			</td>
 			<td>${ vo.statusDesc }</td>
 			</tr>
 		</c:forEach>
