@@ -49,11 +49,13 @@ public class ProdutoBe extends BaseBe<ProdutoVo, ProdutoDao> {
 		for (ProdutoVo p : source) {
 			JsonItemVo item = new JsonItemVo();
 			item.setId(p.getIdProduto().toString());
+
 			if (p.getCodigoProduto() != null && !p.getCodigoProduto().trim().equals("")) {
 				item.setLabel(p.getCodigoProduto() + " - " + p.getNome());
 			} else {
 				item.setLabel(p.getNome());
 			}
+
 			item.setValue(p.getNome());
 
 			list.add(item);

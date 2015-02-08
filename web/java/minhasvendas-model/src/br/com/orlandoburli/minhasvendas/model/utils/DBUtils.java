@@ -18,6 +18,7 @@ import br.com.orlandoburli.minhasvendas.model.dao.estoque.ProdutoDao;
 import br.com.orlandoburli.minhasvendas.model.dao.venda.CategoriaClienteDao;
 import br.com.orlandoburli.minhasvendas.model.dao.venda.CategoriaVendedorDao;
 import br.com.orlandoburli.minhasvendas.model.dao.venda.ClienteDao;
+import br.com.orlandoburli.minhasvendas.model.dao.venda.OrcamentoDao;
 import br.com.orlandoburli.minhasvendas.model.dao.venda.VendedorDao;
 
 public class DBUtils {
@@ -46,6 +47,8 @@ public class DBUtils {
 
 			new EntradaDao(manager).checkTable();
 			new ItemEntradaDao(manager).checkTable();
+
+			new OrcamentoDao(manager).checkTable();
 
 			new ObjetoBe(manager).inicializarObjetos();
 			new MenuBe(manager).inicializarMenus();

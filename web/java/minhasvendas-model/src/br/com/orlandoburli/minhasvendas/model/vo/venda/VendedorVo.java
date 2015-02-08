@@ -46,8 +46,6 @@ public class VendedorVo extends BaseVo {
 	private String ativo;
 
 	@Column(name = Colunas.ID_CATEGORIA_VENDEDOR, dataType = DataType.INT)
-	@NotNull
-	@NotEmpty
 	@Description("Categoria do Vendedor")
 	private Integer idCategoriaVendedor;
 

@@ -3,6 +3,7 @@ package br.com.orlandoburli.minhasvendas.web.actions.venda.vendedor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.orlandoburli.framework.core.be.exceptions.BeException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.ListException;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.framework.core.web.BaseCadastroAction;
@@ -36,6 +37,20 @@ public class VendedorCadastroAction extends BaseCadastroAction<VendedorVo, Vende
 
 		super.doBeforeInserir(vo, manager);
 	};
+
+	@Override
+	public void rapido() {
+		try {
+			VendedorVo rapido = new VendedorBe(getManager()).cadastroRapido(getTerm(), usuario);
+
+			writeSucesso("Vendedor adicionado com sucesso!", rapido);
+
+		} catch (BeException e) {
+			writeErrorMessage(e.getMessage());
+		} finally {
+			getManager().commit();
+		}
+	}
 
 	public EmpresaVo getUsuario() {
 		return usuario;

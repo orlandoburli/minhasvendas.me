@@ -129,6 +129,7 @@
                                     </div><!-- /.row -->
                                 </div><!-- /.box-body -->
                             </div>
+                            
 							<%@include file="../../botoes-cadastro.jsp"%>
 						</div>
 					</form>
