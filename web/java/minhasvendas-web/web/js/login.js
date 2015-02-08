@@ -7,8 +7,10 @@ var isLoading = false;
 $(function() {
 	// Funcao principal de Login
 	function entrar() {
-		console.log("Entrando...");
-		
+		if (debug) {
+			console.log("Entrando...");	
+		}
+
 		if ($("#email").val().length <= 0 || $("#senha").val().length <= 0) {
 			mensagemErro("Informe o usu&aacute;rio / senha!");
 			$("#email").focus();
@@ -29,7 +31,9 @@ $(function() {
 				},
 
 				success : function(data) {
-					console.log(data);
+					if (debug) {
+						console.log(data);	
+					}
 					
 					var retorno = $.parseJSON(data);
 					
@@ -102,4 +106,6 @@ $(function() {
 	
 });
 
-
+if (debug) {
+	console.log("login.js carregado.");	
+}

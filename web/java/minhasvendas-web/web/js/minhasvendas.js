@@ -43,26 +43,32 @@ $(function() {
 });
 
 $(function() {
-	console.log("Carregando minhasvendas.js ...");
+	if (debug) {
+		console.log("Carregando minhasvendas.js ...");	
+	}
     // Menu de navegacao
 
-	$("a").click(function(e) {
+	$("a.ajax-link").click(function(e) {
 		var dataLink = $(this).attr("href");
 		
-		if (dataLink != null && dataLink != '' && dataLink != 'javascript:;') {
+		if (dataLink != null && dataLink != '' && dataLink != 'javascript:;' && dataLink != '#') {
 			e.preventDefault();
 			loadDataLink(dataLink, this);
+
+			if (debug) {
+				console.log("carregando item " + dataLink)	
+			}
 		}
 	});
     
-    console.log("Fim do load de minhasvendas.js.");
+	if (debug) {
+		console.log("Fim do load de minhasvendas.js.");	
+	}
 });
 
 $(window).scroll(function(){
     headerPosition();
 });
-
-METRO_AUTO_REINIT = true;
 
 // Funcao de load de tela no corpo da pagina
 var tempo = 250;
@@ -95,14 +101,10 @@ function loadDataLink(dataLink, link) {
 			} else if (dataLink.indexOf("consulta") > 0) {
 				loadJs("web/js/consulta.js");
 			}
-//			loadJs("web/js/load.js");
             
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            pageContentBody.html('<h4>Could not load the requested contentxxxx.</h4>');
+            pageContentBody.html('<h4>Não foi possível carregar a página solicitada.<br/>'+thrownError+'</h4>');
         }
     });
 }
-
-// Setando a opcao default para editar inline
-$.fn.editable.defaults.mode = 'inline';

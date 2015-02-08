@@ -41,13 +41,13 @@
                 </label>
 
                 <button id="entrar" class="btn btn-lg btn-primary btn-block">
-                    Entrar <i class="icon-enter-2 on-right on-left"></i>
+                    Entrar &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-key"></i>
                 </button>
+                
             </div>
         </div>
     </div>
 </body>
-</html>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -56,3 +56,5 @@ $(document).ready(function() {
 	}
 });
 </script>
+</html>
+

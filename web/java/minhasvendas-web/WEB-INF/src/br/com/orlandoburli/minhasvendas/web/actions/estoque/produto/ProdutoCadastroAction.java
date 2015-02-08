@@ -3,6 +3,7 @@ package br.com.orlandoburli.minhasvendas.web.actions.estoque.produto;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.orlandoburli.framework.core.be.exceptions.BeException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.InsertBeException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.ListException;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
@@ -29,6 +30,20 @@ public class ProdutoCadastroAction extends BaseCadastroAction<ProdutoVo, Produto
 		super.doBeforeVisualizar(request, response, vo, be, manager);
 
 		request.setAttribute("categorias", new CategoriaProdutoBe(manager).getListAtivos(usuario));
+	}
+
+	@Override
+	public void rapido() {
+		try {
+			ProdutoVo rapido = new ProdutoBe(getManager()).cadastroRapido(getTerm(), usuario);
+
+			writeSucesso("Produto adicionado com sucesso!", rapido);
+
+		} catch (BeException e) {
+			writeErrorMessage(e.getMessage());
+		} finally {
+			getManager().commit();
+		}
 	}
 
 	@Override

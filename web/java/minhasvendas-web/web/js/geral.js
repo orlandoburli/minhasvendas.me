@@ -1,3 +1,18 @@
+var debug = false;
+
+if (location.href.indexOf("localhost") >= 0) {
+	console.log("Debug ativado por localhost.");
+	debug = true;
+}
+
+if (location.href.indexOf("debug") >= 0) {
+	console.log("Debug ativado por parametro.");
+	debug = true;
+} 
+if (location.href.indexOf("nodebug") >= 0) {
+	debug = false;
+}
+
 var conteudoId = ".page-content-body";
 
 var browser = {
@@ -64,13 +79,25 @@ function mensagemErro(oMensagem) {
 	mensagem(oMensagem, 'danger');
 }
 
-function loadJs(jsFile) {
-	console.log("Carregando arquivo " + jsFile);
+function loadJs(jsFile, funcaoSucesso, funcaoErro) {
+	if (debug) {
+		console.log("Carregando arquivo " + jsFile);	
+	}
 	
 	$.getScript(jsFile).done(function(script, textStatus) {
-		console.log("Arquivo " + jsFile + " carregado com sucesso.");
+		if (debug) {
+			console.log("Arquivo " + jsFile + " carregado com sucesso.");	
+		}
+		if (funcaoSucesso) {
+			funcaoSucesso();
+		}
 	}).fail(function(jqxhr, settings, exception) {
-		console.log("Erro ao carregar js file " + jsFile+ " - Erro: " + exception);
+		if (debug) {
+			console.log("Erro ao carregar js file " + jsFile+ " - Erro: " + exception);	
+		}
+		if (funcaoErro) {
+			funcaoErro();
+		}
 	});
 }
 
@@ -96,7 +123,16 @@ function blockUI(oMessage) {
 	 }); 
 }
 
-function blockConteudo(oMessage, oComponente) {
+function blockConteudo(oComponente, oMessage) {
+	if (debug) {
+		console.log("Bloqueando " + oComponente);
+	}
+	
+	if (!oComponente) {
+		blockUI(oMessage);
+		return false;
+	}
+	
 	if (!oMessage) {
 		oMessage = "Aguarde, processando...";
 	}

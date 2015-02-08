@@ -22,5 +22,6 @@ public final class Cliente {
 		public static final String CIDADE = "cidade";
 		public static final String UF = "uf";
 		public static final String ID_CATEGORIA_CLIENTE = CategoriaCliente.Colunas.ID_CATEGORIA_CLIENTE;
+		public static final String OBSERVACOES = "observacoes";
 	}
 }

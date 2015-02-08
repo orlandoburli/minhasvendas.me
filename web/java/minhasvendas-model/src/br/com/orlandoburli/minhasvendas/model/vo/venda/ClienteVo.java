@@ -111,6 +111,10 @@ public class ClienteVo extends BaseVo {
 	@Description("Categoria")
 	private Integer idCategoriaCliente;
 
+	@Column(name = Colunas.OBSERVACOES, dataType = DataType.TEXT)
+	@Description("Observações")
+	private String observacoes;
+
 	@Join(columnsLocal = { Colunas.ID_CATEGORIA_CLIENTE }, columnsRemote = { CategoriaCliente.Colunas.ID_CATEGORIA_CLIENTE })
 	private CategoriaClienteVo categoria;
 
@@ -259,6 +263,14 @@ public class ClienteVo extends BaseVo {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getObservacoes() {
+		return observacoes;
+	}
+
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
 	}
 
 }

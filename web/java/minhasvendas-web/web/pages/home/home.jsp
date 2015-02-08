@@ -16,16 +16,19 @@
 	<title>${tituloApp}</title>
 	
 </head>
-<body>
-	<header class="">
+<body class="skin-blue">
+	<header class="header">
 		<%@include file="header.jsp" %>
 	</header>
 	
-	<div class="container page-content">
-		<div class="page-content-body" data-load="dashboard.action">
-		</div>
+	<div class="wrapper row-offcanvas row-offcanvas-left">
+		<%@include file="sidebar.jsp" %>
+		
+        <aside class="right-side page-content-body" data-load="dashboard.action">
+			
+        </aside>
+        
+        <footer class="footer" data-load="footer.action"></footer>
 	</div>
-	
-	<footer class="footer" data-load="footer.action"></footer>
 </body>
 </html>

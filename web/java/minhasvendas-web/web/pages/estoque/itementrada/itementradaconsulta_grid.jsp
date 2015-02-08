@@ -1,32 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-
-<style type="text/css">
-table thead td:nth-child(2) {
-	width: 100px;
-}
-
-table thead td:nth-child(3) {
-	
-}
-
-table thead td:nth-child(2), table thead td:nth-child(3) {
-	text-align: right;
-}
-
-table tbody tr td:nth-child(2), table tbody tr td:nth-child(3) {
-	text-align: right;
-}
-</style>
-
 <fmt:setLocale value="pt_BR"/>
-<table data-page-count="${pageCount}" class="table">
+<table data-page-count="${pageCount}" class="table table-striped DataGridItens">
 	<thead>
 		<tr>
 			<td>Produto</td>
-			<td>Quantidade</td>
-			<td>Valor de Compra</td>
+			<td class="text-right">Quantidade</td>
+			<td class="text-right">Valor Unitário</td>
+			<td class="text-right">Valor Desconto</td>
+			<td class="text-right">Valor Total</td>
 			<td></td>
 		</tr>
 	</thead>
@@ -34,17 +17,29 @@ table tbody tr td:nth-child(2), table tbody tr td:nth-child(3) {
 	<tbody>
 		<c:forEach items="${vo.itens}" var="item" varStatus="loop">
 			<tr data-id="idItemEntrada=${ item.idItemEntrada}" data-index="${loop.index}">
-				<td>${ item.produto.nome }</td>
-				<td> 
-					<input id="quantidade${loop.index}" class="form-control input-circle text-right item-quantidade"  value="${item.quantidade}" data-field-type="number" data-field-precision="0" /> 
+				<td class="col-xs-4">${ item.produto.nome }</td>
+				<td class="col-xs-1">
+					<input id="quantidade" class="form-control input-circle text-right item-quantidade"  value="${item.quantidade}" data-field-type="number" data-field-precision="0" /> 
 				</td>
-				<td>
-					<div class="input-icon right">
-						<i class="fa fa-usd"></i>
-						<input id="valorCompra${loop.index}" class="form-control input-circle text-right item-valor-compra" data-field-type="number" data-field-precision="2" value="${item.valorCompra }" />
+				<td class="col-xs-2">
+					<div class="input-group">
+						<input id="valorUnitario" class="form-control input-circle text-right item-valor-compra" data-field-type="number" data-field-precision="2" value="${item.valorUnitario }" />
+						<span class="input-group-addon">R$</span>
 					</div>
 				</td>
-				<td>
+				<td class="col-xs-2">
+					<div class="input-group">
+						<input id="valorDesconto" class="form-control input-circle text-right item-valor-compra" data-field-type="number" data-field-precision="2" value="${item.valorDesconto }" />
+						<span class="input-group-addon">R$</span>
+					</div>
+				</td>
+				<td class="col-xs-2">
+					<div class="input-group">
+						<input id="valorTotal" disabled="disabled" class="form-control input-circle text-right item-valor-compra" data-field-type="number" data-field-precision="2" value="${item.valorTotal }" />
+						<span class="input-group-addon">R$</span>
+					</div>
+				</td>
+				<td class="col-xs-2">
 					<button class="btn btn-danger BotaoRemoverItem tooltips" type="button" data-index="${loop.index}" title="Clique para remover este item" tabindex="-1">
 						<i class="fa fa-trash-o"></i>
 					</button>
@@ -52,5 +47,4 @@ table tbody tr td:nth-child(2), table tbody tr td:nth-child(3) {
 			</tr>
 		</c:forEach>
 	</tbody>
-
 </table>

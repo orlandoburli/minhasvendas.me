@@ -43,11 +43,23 @@ public class ItemEntradaVo extends BaseVo {
 	@Description("Quantidade")
 	private BigDecimal quantidade;
 
-	@Column(name = Colunas.VALOR_COMPRA, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true)
+	@Column(name = Colunas.VALOR_UNITARIO, dataType = DataType.NUMERIC, maxSize = 20, precision = 4, isNotNull = true, defaultValue = "0")
 	@Precision(2)
 	@NotNegative
-	@Description("Valor de Compra")
-	private BigDecimal valorCompra;
+	@Description("Valor Unitário")
+	private BigDecimal valorUnitario;
+
+	@Column(name = Colunas.VALOR_DESCONTO, dataType = DataType.NUMERIC, maxSize = 20, precision = 4)
+	@Precision(2)
+	@NotNegative
+	@Description("Valor Desconto")
+	private BigDecimal valorDesconto;
+
+	@Column(name = Colunas.VALOR_TOTAL, dataType = DataType.NUMERIC, maxSize = 20, precision = 4)
+	@Precision(2)
+	@NotNegative
+	@Description("Valor Total")
+	private BigDecimal valorTotal;
 
 	@Join(columnsLocal = { Colunas.ID_ENTRADA }, columnsRemote = { Entrada.Colunas.ID_ENTRADA })
 	private EntradaVo entrada;
@@ -87,14 +99,6 @@ public class ItemEntradaVo extends BaseVo {
 		this.quantidade = quantidade;
 	}
 
-	public BigDecimal getValorCompra() {
-		return valorCompra;
-	}
-
-	public void setValorCompra(BigDecimal valorCompra) {
-		this.valorCompra = valorCompra;
-	}
-
 	public EntradaVo getEntrada() {
 		return entrada;
 	}
@@ -109,5 +113,29 @@ public class ItemEntradaVo extends BaseVo {
 
 	public void setProduto(ProdutoVo produto) {
 		this.produto = produto;
+	}
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public BigDecimal getValorUnitario() {
+		return valorUnitario;
+	}
+
+	public void setValorUnitario(BigDecimal valorUnitario) {
+		this.valorUnitario = valorUnitario;
+	}
+
+	public BigDecimal getValorDesconto() {
+		return valorDesconto;
+	}
+
+	public void setValorDesconto(BigDecimal valorDesconto) {
+		this.valorDesconto = valorDesconto;
 	}
 }

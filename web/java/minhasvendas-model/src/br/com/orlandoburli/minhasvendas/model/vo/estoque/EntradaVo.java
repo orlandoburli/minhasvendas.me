@@ -1,12 +1,15 @@
 package br.com.orlandoburli.minhasvendas.model.vo.estoque;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.Domain;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotEmpty;
+import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotNegative;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotNull;
+import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotZero;
 import br.com.orlandoburli.framework.core.dao.annotations.Column;
 import br.com.orlandoburli.framework.core.dao.annotations.DataType;
 import br.com.orlandoburli.framework.core.dao.annotations.Join;
@@ -17,6 +20,7 @@ import br.com.orlandoburli.framework.core.vo.annotations.Description;
 import br.com.orlandoburli.minhasvendas.model.dicionario.cadastros.Empresa;
 import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.Entrada;
 import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.Entrada.Colunas;
+import br.com.orlandoburli.minhasvendas.model.dicionario.estoque.Fornecedor;
 import br.com.orlandoburli.minhasvendas.model.domains.StatusProcessamento;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 
@@ -51,8 +55,37 @@ public class EntradaVo extends BaseVo {
 	private String status;
 	private Calendar dataProcessamento;
 
+	@Column(name = Colunas.VALOR_ITENS, dataType = DataType.NUMERIC, maxSize = 18, precision = 2)
+	@NotNegative
+	@NotZero
+	@Description("Valor dos Itens")
+	private BigDecimal valorItens;
+
+	@Column(name = Colunas.VALOR_DESCONTOS, dataType = DataType.NUMERIC, maxSize = 18, precision = 2)
+	@NotNegative
+	@Description("Valor Desconto")
+	private BigDecimal valorDescontos;
+
+	@Column(name = Colunas.VALOR_FRETE, dataType = DataType.NUMERIC, maxSize = 18, precision = 2)
+	@NotNegative
+	@Description("Valor Frete")
+	private BigDecimal valorFrete;
+
+	@Column(name = Colunas.VALOR_TOTAL, dataType = DataType.NUMERIC, maxSize = 18, precision = 2)
+	@NotNegative
+	@NotZero
+	@Description("Valor Total")
+	private BigDecimal valorTotal;
+
+	@Column(name = Colunas.ID_FORNECEDOR, dataType = DataType.INT)
+	@Description("Fornecedor")
+	private Integer idFornecedor;
+
 	@Join(columnsLocal = { Colunas.ID_EMPRESA }, columnsRemote = { Empresa.Colunas.ID_EMPRESA }, joinWhen = JoinWhen.MANUAL)
 	private EmpresaVo empresa;
+
+	@Join(columnsLocal = { Colunas.ID_FORNECEDOR }, columnsRemote = { Fornecedor.Colunas.ID_FORNECEDOR })
+	private FornecedorVo fornecedor;
 
 	private List<ItemEntradaVo> itens;
 
@@ -133,5 +166,53 @@ public class EntradaVo extends BaseVo {
 
 	public void setItens(List<ItemEntradaVo> itens) {
 		this.itens = itens;
+	}
+
+	public BigDecimal getValorItens() {
+		return valorItens;
+	}
+
+	public void setValorItens(BigDecimal valorItens) {
+		this.valorItens = valorItens;
+	}
+
+	public BigDecimal getValorDescontos() {
+		return valorDescontos;
+	}
+
+	public void setValorDescontos(BigDecimal valorDescontos) {
+		this.valorDescontos = valorDescontos;
+	}
+
+	public BigDecimal getValorFrete() {
+		return valorFrete;
+	}
+
+	public void setValorFrete(BigDecimal valorFrete) {
+		this.valorFrete = valorFrete;
+	}
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public Integer getIdFornecedor() {
+		return idFornecedor;
+	}
+
+	public void setIdFornecedor(Integer idFornecedor) {
+		this.idFornecedor = idFornecedor;
+	}
+
+	public FornecedorVo getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(FornecedorVo fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 }
