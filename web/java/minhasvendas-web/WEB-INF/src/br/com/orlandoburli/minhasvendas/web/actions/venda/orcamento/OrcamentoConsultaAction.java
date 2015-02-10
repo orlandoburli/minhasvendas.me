@@ -36,41 +36,10 @@ public class OrcamentoConsultaAction extends BaseConsultaAction<OrcamentoVo, Orc
 		filter.setIdEmpresa(usuario.getIdEmpresa());
 
 		if (getParametroPesquisa() != null) {
-			if (getParametroPesquisa().equalsIgnoreCase("idOrcamento")) {
-				Integer codigo = null;
-				try {
-					codigo = Integer.parseInt(getPesquisarPor());
-				} catch (NumberFormatException e) {
-				}
-				filter.setIdOrcamento(codigo);
-			} else if (getParametroPesquisa().equalsIgnoreCase("idEmpresa")) {
-				Integer codigo = null;
-				try {
-					codigo = Integer.parseInt(getPesquisarPor());
-				} catch (NumberFormatException e) {
-				}
-				filter.setIdEmpresa(codigo);
-			} else if (getParametroPesquisa().equalsIgnoreCase("idCliente")) {
-				Integer codigo = null;
-				try {
-					codigo = Integer.parseInt(getPesquisarPor());
-				} catch (NumberFormatException e) {
-				}
-				filter.setIdCliente(codigo);
-			} else if (getParametroPesquisa().equalsIgnoreCase("dataOrcamento")) {
-			} else if (getParametroPesquisa().equalsIgnoreCase("idVendedor")) {
-				Integer codigo = null;
-				try {
-					codigo = Integer.parseInt(getPesquisarPor());
-				} catch (NumberFormatException e) {
-				}
-				filter.setIdVendedor(codigo);
-			} else if (getParametroPesquisa().equalsIgnoreCase("dataValidade")) {
-			} else if (getParametroPesquisa().equalsIgnoreCase("valorItens")) {
-			} else if (getParametroPesquisa().equalsIgnoreCase("valorDesconto")) {
-			} else if (getParametroPesquisa().equalsIgnoreCase("valorTotal")) {
-			} else if (getParametroPesquisa().equalsIgnoreCase("observacoes")) {
-				filter.setObservacoes("%" + getPesquisarPor() + "%");
+			if (getParametroPesquisa().equalsIgnoreCase("cliente.nome")) {
+				filter.getCliente().setNome("%" + getPesquisarPor() + "%");
+			} else if (getParametroPesquisa().equalsIgnoreCase("vendedor.nome")) {
+				filter.getVendedor().setNome("%" + getPesquisarPor() + "%");
 			}
 		}
 	}

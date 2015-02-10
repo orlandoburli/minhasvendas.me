@@ -14,6 +14,7 @@ public final class Orcamento {
 		public static final String DATA_VALIDADE = "data_validade";
 		public static final String VALOR_ITENS = "valor_itens";
 		public static final String VALOR_DESCONTO = "valor_desconto";
+		public static final String VALOR_FRETE = "valor_frete";
 		public static final String VALOR_TOTAL = "valor_total";
 		public static final String OBSERVACOES = "observacoes";
 	}

@@ -46,6 +46,6 @@ public class LoadAppServlet extends HttpServlet {
 
 		Log.info("DAOs checadas.");
 
-		Log.info("App Seguranca inicializado.");
+		Log.info("App Minhas Vendas.me inicializado.");
 	}
 }

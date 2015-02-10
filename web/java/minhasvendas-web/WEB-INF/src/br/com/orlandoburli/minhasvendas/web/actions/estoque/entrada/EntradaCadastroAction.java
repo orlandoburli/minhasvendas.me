@@ -1,6 +1,5 @@
 package br.com.orlandoburli.minhasvendas.web.actions.estoque.entrada;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +11,11 @@ import br.com.orlandoburli.framework.core.be.exceptions.persistence.InsertBeExce
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.ListException;
 import br.com.orlandoburli.framework.core.be.exceptions.persistence.SaveBeException;
 import br.com.orlandoburli.framework.core.be.exceptions.validation.ValidationBeException;
-import br.com.orlandoburli.framework.core.be.validation.annotations.transformation.Precision;
 import br.com.orlandoburli.framework.core.dao.DAOManager;
 import br.com.orlandoburli.framework.core.log.Log;
 import br.com.orlandoburli.framework.core.utils.Utils;
 import br.com.orlandoburli.framework.core.web.BaseCadastroAction;
+import br.com.orlandoburli.framework.core.web.ICadastroFilhoAction;
 import br.com.orlandoburli.framework.core.web.filters.OutjectSession;
 import br.com.orlandoburli.framework.core.web.retorno.RetornoAction;
 import br.com.orlandoburli.minhasvendas.model.be.estoque.EntradaBe;
@@ -30,7 +29,7 @@ import br.com.orlandoburli.minhasvendas.model.vo.estoque.FornecedorVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.ItemEntradaVo;
 import br.com.orlandoburli.minhasvendas.model.vo.estoque.ProdutoVo;
 
-public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, EntradaDao, EntradaBe> {
+public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, EntradaDao, EntradaBe> implements ICadastroFilhoAction {
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,12 +39,6 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 	private Integer idSource;
 
 	private Integer index;
-
-	@Precision(0)
-	private BigDecimal quantidade;
-
-	@Precision(2)
-	private BigDecimal valorCompra;
 
 	@OutjectSession("itensRemover")
 	private List<ItemEntradaVo> itensRemover;
@@ -70,6 +63,7 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 		new ItemEntradaBe(manager).remove(getItensRemover());
 	}
 
+	@Override
 	public void total() {
 
 		EntradaVo entrada = getVoSession();
@@ -154,12 +148,14 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 
 	}
 
+	@Override
 	public void grid() {
 		getRequest().setAttribute("vo", getVoSession());
 
 		forward("web/pages/estoque/itementrada/itementradaconsulta_grid.jsp");
 	}
 
+	@Override
 	public void adicionaritem() {
 		try {
 			EntradaVo entrada = getVoSession();
@@ -189,6 +185,7 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 		}
 	}
 
+	@Override
 	public void removeritem() {
 		EntradaVo entrada = getVoSession();
 
@@ -207,6 +204,7 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 		writeSucesso("Item removido!");
 	}
 
+	@Override
 	public void alteraritem() {
 		try {
 			Log.fine("Editando item...");
@@ -256,22 +254,6 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 
 	public void setQuery(String query) {
 		this.query = query;
-	}
-
-	public BigDecimal getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(BigDecimal quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public BigDecimal getValorCompra() {
-		return valorCompra;
-	}
-
-	public void setValorCompra(BigDecimal valorCompra) {
-		this.valorCompra = valorCompra;
 	}
 
 	public List<ItemEntradaVo> getItensRemover() {

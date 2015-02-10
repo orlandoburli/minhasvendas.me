@@ -1,7 +1,9 @@
 package br.com.orlandoburli.minhasvendas.model.vo.venda;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import br.com.orlandoburli.framework.core.be.validation.annotations.transformation.Precision;
 import br.com.orlandoburli.framework.core.be.validation.annotations.validators.NotEmpty;
@@ -68,7 +70,12 @@ public class OrcamentoVo extends BaseVo {
 	@Column(name = Colunas.VALOR_DESCONTO, dataType = DataType.NUMERIC, maxSize = 10, precision = 2)
 	@NotNegative
 	@Description("Valor Desconto")
-	private BigDecimal valorDesconto;
+	private BigDecimal valorDescontos;
+
+	@Column(name = Colunas.VALOR_FRETE, dataType = DataType.NUMERIC, maxSize = 18, precision = 2)
+	@NotNegative
+	@Description("Valor Frete")
+	private BigDecimal valorFrete;
 
 	@Column(name = Colunas.VALOR_TOTAL, dataType = DataType.NUMERIC, maxSize = 10, precision = 2, isNotNull = true)
 	@NotNull
@@ -90,6 +97,8 @@ public class OrcamentoVo extends BaseVo {
 
 	@Join(columnsLocal = { Colunas.ID_VENDEDOR }, columnsRemote = { Vendedor.Colunas.ID_VENDEDOR })
 	private VendedorVo vendedor;
+
+	private List<ItemOrcamentoVo> itens;
 
 	public Integer getIdOrcamento() {
 		return idOrcamento;
@@ -147,14 +156,6 @@ public class OrcamentoVo extends BaseVo {
 		this.valorItens = valorItens;
 	}
 
-	public BigDecimal getValorDesconto() {
-		return valorDesconto;
-	}
-
-	public void setValorDesconto(BigDecimal valorDesconto) {
-		this.valorDesconto = valorDesconto;
-	}
-
 	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
@@ -180,6 +181,9 @@ public class OrcamentoVo extends BaseVo {
 	}
 
 	public ClienteVo getCliente() {
+		if (cliente == null) {
+			cliente = new ClienteVo();
+		}
 		return cliente;
 	}
 
@@ -188,10 +192,40 @@ public class OrcamentoVo extends BaseVo {
 	}
 
 	public VendedorVo getVendedor() {
+		if (vendedor == null) {
+			vendedor = new VendedorVo();
+		}
 		return vendedor;
 	}
 
 	public void setVendedor(VendedorVo vendedor) {
 		this.vendedor = vendedor;
 	}
+
+	public List<ItemOrcamentoVo> getItens() {
+		if (itens == null) {
+			itens = new ArrayList<ItemOrcamentoVo>();
+		}
+		return itens;
+	}
+
+	public void setItens(List<ItemOrcamentoVo> itens) {
+		this.itens = itens;
+	}
+
+	public BigDecimal getValorDescontos() {
+		return valorDescontos;
+	}
+
+	public void setValorDescontos(BigDecimal valorDescontos) {
+		this.valorDescontos = valorDescontos;
+	}
+
+	public BigDecimal getValorFrete() {
+	    return valorFrete;
+    }
+
+	public void setValorFrete(BigDecimal valorFrete) {
+	    this.valorFrete = valorFrete;
+    }
 }
