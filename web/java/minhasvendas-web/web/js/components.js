@@ -177,7 +177,7 @@ $(".select2").each(function(index) {
             }
         },
         formatNoMatches: function(term) {
-        	return "<span>Sem resultados para sua busca por \"" + term + "\" Clique <a href=\"javascript:void(0)\"  onclick=\"adicionarRapido('" + term + "', '" + adicionarRapidoUrl + "', '" + nomeAtributo + "');\">aqui</a> para adicionar.</span>";
+        	return "<span>Sem resultados para sua busca por \"" + term + "\". Clique <a href=\"javascript:void(0)\"  onclick=\"adicionarRapido('" + term + "', '" + adicionarRapidoUrl + "', '" + nomeAtributo + "');\">aqui</a> para adicionar.</span>";
         },
         formatSearching: function() {
         	return "Pesquisando...";
@@ -203,7 +203,11 @@ $(".select2").each(function(index) {
                 	if (debug) {
                 		console.log(data);
                 	}
-                    callback(data.results[0]);
+                	try {
+                		callback(data.results[0]);	
+                	} catch(error) {
+                		console.log("Erro ao buscar id " + error);
+                	}
                 });
             }
         },

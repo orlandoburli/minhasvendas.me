@@ -203,7 +203,7 @@ var ItemHandler = function() {
 	function getFirstInput() {
 		var input;
 		var continuar = true;
-		$(".FormItens > div > input,select,textarea, .FormItens > div > div > input,select,textarea").each(function(index) {
+		$(".FormItens").find("input,select,textarea").each(function(index) {
 			if (continuar) {
 				if (debug) {
 					console.log("Input: " + $(this).attr("id"));

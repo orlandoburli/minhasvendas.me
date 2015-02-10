@@ -20,6 +20,9 @@ public class ItemOrcamentoBe extends BaseBe<ItemOrcamentoVo, ItemOrcamentoDao> {
 	}
 
 	public List<ItemOrcamentoVo> getList(OrcamentoVo vo) throws ListException {
+		if (vo == null || vo.getIdOrcamento() == null) {
+			return null;
+		}
 		ItemOrcamentoVo filter = new ItemOrcamentoVo();
 		filter.setIdOrcamento(vo.getIdOrcamento());
 

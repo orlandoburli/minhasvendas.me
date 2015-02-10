@@ -162,6 +162,8 @@ public class EntradaCadastroAction extends BaseCadastroAction<EntradaVo, Entrada
 
 			if (entrada == null) {
 				entrada = new EntradaVo();
+			}
+			if (entrada.getIdEntrada() == null) {
 				entrada.setIdEntrada(0);
 			}
 

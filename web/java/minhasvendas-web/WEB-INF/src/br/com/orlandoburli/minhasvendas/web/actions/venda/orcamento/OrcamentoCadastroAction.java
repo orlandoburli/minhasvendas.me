@@ -192,6 +192,9 @@ public class OrcamentoCadastroAction extends BaseCadastroAction<OrcamentoVo, Orc
 
 			if (orcamento == null) {
 				orcamento = new OrcamentoVo();
+			}
+
+			if (orcamento.getIdOrcamento() == null) {
 				orcamento.setIdOrcamento(0);
 			}
 

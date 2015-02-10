@@ -19,6 +19,9 @@ public class ItemEntradaBe extends BaseBe<ItemEntradaVo, ItemEntradaDao> {
 	}
 
 	public List<ItemEntradaVo> getList(EntradaVo vo) throws ListException {
+		if (vo == null || vo.getIdEntrada() == null) {
+			return null;
+		}
 		ItemEntradaVo filter = new ItemEntradaVo();
 		filter.setIdEntrada(vo.getIdEntrada());
 
