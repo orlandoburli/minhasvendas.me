@@ -48,7 +48,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Fornecedor</label>
 									<div class="col-xs-4">
-										<input type="hidden" id="idFornecedor" class="form-control select2" data-remote-source="entradacadastro.fornecedores.action" data-cadastro-rapido="fornecedorcadastro.rapido.action" value="${vo.idFornecedor }"/>
+										<input type="hidden" id="idFornecedor" class="select2" data-remote-source="entradacadastro.fornecedores.action" data-cadastro-rapido="fornecedorcadastro.rapido.action" value="${vo.idFornecedor }"/>
 									</div>
 								</div>
 								
@@ -126,7 +126,7 @@
 											
 											<div class="row FormItens">
 												<div class="col-xs-4">
-													<input type="hidden" id="idProduto" class="form-control select2" data-remote-source="entradacadastro.produtos.action" data-cadastro-rapido="produtocadastro.rapido.action"/>
+													<input type="hidden" id="idProduto" class="select2" data-remote-source="entradacadastro.produtos.action" data-cadastro-rapido="produtocadastro.rapido.action"/>
 												</div>
 												
 												<div class="col-xs-1">

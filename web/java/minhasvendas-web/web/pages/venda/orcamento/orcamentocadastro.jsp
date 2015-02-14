@@ -22,7 +22,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Cliente</label>
 									<div class="col-sm-7">
-										<input id="idCliente" type="hidden" autofocus="autofocus" class="form-control select2" value="${ vo.idCliente }" data-remote-source="orcamentocadastro.clientes.action" data-cadastro-rapido="clientecadastro.rapido.action"/>
+										<input id="idCliente" type="hidden" autofocus="autofocus" class="select2" value="${ vo.idCliente }" data-remote-source="orcamentocadastro.clientes.action" data-cadastro-rapido="clientecadastro.rapido.action"/>
 									</div>
 								</div>
 								
@@ -41,7 +41,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label text-right">Vendedor</label>
 									<div class="col-sm-7">
-										<input id="idVendedor" type="hidden" class="form-control select2" value="${ vo.idVendedor }" data-remote-source="orcamentocadastro.vendedores.action" data-cadastro-rapido="vendedorcadastro.rapido.action"/>
+										<input id="idVendedor" type="hidden" class="select2" value="${ vo.idVendedor }" data-remote-source="orcamentocadastro.vendedores.action" data-cadastro-rapido="vendedorcadastro.rapido.action"/>
 									</div>
 								</div>
 								
@@ -138,7 +138,7 @@
 											
 											<div class="row FormItens">
 												<div class="col-xs-4">
-													<input type="hidden" id="idProduto" class="form-control select2" data-remote-source="orcamentocadastro.produtos.action" data-cadastro-rapido="produtocadastro.rapido.action"/>
+													<input type="hidden" id="idProduto" class="select2" data-remote-source="orcamentocadastro.produtos.action" data-cadastro-rapido="produtocadastro.rapido.action"/>
 												</div>
 												
 												<div class="col-xs-1">
