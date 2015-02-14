@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="pt_BR"/>
+
 <%-- 
  <nav class="navbar navbar-default navbar-static-top">
   <div class="container-fluid container">
@@ -257,7 +259,7 @@
                                     <img src="/minhasvendas-assets/lte/img/avatar3.png" class="img-circle" alt="User Image" />
                                     <p>
                                         ${usuario.razaoSocial}
-                                        <small>Cliente desde Nov. 2014</small>
+                                        <small>Cliente desde <fmt:formatDate value="${ usuario.dataCadastro.time }" pattern="MMM/yyyy"/></small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -275,7 +277,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                        <a href="empresacadastro.visualizar.action?operacao=alterar" class="btn btn-default btn-flat">Perfil</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="logoff.action" class="btn btn-default btn-flat">Sair</a>

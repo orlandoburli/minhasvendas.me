@@ -85,6 +85,9 @@ public class EmpresaVo extends BaseVo {
 	@Column(name = Colunas.HASH, dataType = DataType.VARCHAR, maxSize = 100, isNotNull = true)
 	private String hash;
 
+	@Column(name = Colunas.IMAGEM_LOGO, dataType = DataType.BYTE)
+	private byte[] logo;
+
 	public Integer getIdEmpresa() {
 		return idEmpresa;
 	}
@@ -155,5 +158,13 @@ public class EmpresaVo extends BaseVo {
 
 	public void setHash(String hash) {
 		this.hash = hash;
+	}
+
+	public byte[] getLogo() {
+		return logo;
+	}
+
+	public void setLogo(byte[] logo) {
+		this.logo = logo;
 	}
 }

@@ -57,6 +57,7 @@ public class ProdutoBe extends BaseBe<ProdutoVo, ProdutoDao> {
 			}
 
 			item.setValue(p.getNome());
+			item.setOriginal(p);
 
 			list.add(item);
 		}

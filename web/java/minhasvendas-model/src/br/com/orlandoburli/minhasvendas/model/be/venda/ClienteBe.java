@@ -37,6 +37,7 @@ public class ClienteBe extends BaseBe<ClienteVo, ClienteDao> {
 			item.setId(c.getIdCliente().toString());
 			item.setLabel(c.getNome());
 			item.setValue(c.getNome());
+			item.setOriginal(c);
 
 			list.add(item);
 		}

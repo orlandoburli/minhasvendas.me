@@ -35,17 +35,18 @@ public class VendedorBe extends BaseBe<VendedorVo, VendedorDao> {
 	public List<JsonItemVo> toJsonItemListCustom(List<VendedorVo> source) {
 		List<JsonItemVo> list = new ArrayList<JsonItemVo>(source.size());
 
-		for (VendedorVo p : source) {
+		for (VendedorVo vendedor : source) {
 			JsonItemVo item = new JsonItemVo();
-			item.setId(p.getIdVendedor().toString());
+			item.setId(vendedor.getIdVendedor().toString());
 
-			if (p.getCategoria() != null) {
-				item.setLabel(p.getNome() + " " + p.getCategoria().getNome());
+			if (vendedor.getCategoria() != null) {
+				item.setLabel(vendedor.getNome() + " " + vendedor.getCategoria().getNome());
 			} else {
-				item.setLabel(p.getNome());
+				item.setLabel(vendedor.getNome());
 			}
 
-			item.setValue(p.getNome());
+			item.setValue(vendedor.getNome());
+			item.setOriginal(vendedor);
 
 			list.add(item);
 		}

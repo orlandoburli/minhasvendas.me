@@ -14,5 +14,6 @@ public final class Empresa {
 		public static final String DATA_CADASTRO = "data_cadastro";
 		public static final String FLAG_EMAIL_CONFIRMADO = "flag_email_confirmado";
 		public static final String HASH = "hash";
+		public static final String IMAGEM_LOGO = "imagem_logo";
 	}
 }

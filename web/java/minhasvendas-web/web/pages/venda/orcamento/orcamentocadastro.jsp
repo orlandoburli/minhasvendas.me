@@ -216,6 +216,13 @@
 			
 			// Ao alterar o frete, também recalcula o total.
 			$(".FormularioDadosCadastro").find("#valorFrete").on("blur", funcaoRefresh);
+			
+			// Ao alterar o produto, busca o valor de venda.
+			$("#idProduto").on("select2-selecting", function(e) {
+				$(".FormItens").find("#valorUnitario").val(e.choice.original.valorVenda);
+				formataInput($(".FormItens").find("#valorUnitario"));
+			});
+			
 		});
 	});
 </script>

@@ -6,6 +6,7 @@ import br.com.orlandoburli.framework.core.dao.DaoUtils;
 import br.com.orlandoburli.framework.core.utils.Constants;
 import br.com.orlandoburli.framework.core.vo.BaseVo;
 import br.com.orlandoburli.framework.core.web.BaseCadastroAction;
+import br.com.orlandoburli.framework.core.web.BaseConsultaAction;
 import br.com.orlandoburli.framework.core.web.filters.BaseFilter;
 import br.com.orlandoburli.minhasvendas.model.vo.cadastros.EmpresaVo;
 
@@ -39,6 +40,8 @@ public class EmpresaFilter extends BaseFilter {
 					return false;
 				}
 			}
+		} else if (facade instanceof BaseConsultaAction) {
+
 		}
 
 		return true;

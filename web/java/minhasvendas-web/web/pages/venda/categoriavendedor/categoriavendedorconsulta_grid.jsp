@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="pt_BR"/>
 
 <style type="text/css">
 
@@ -29,7 +30,4 @@
 			</tr>
 		</c:forEach>
 	</tbody>
-
 </table>
-
-
